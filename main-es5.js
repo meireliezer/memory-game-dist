@@ -1,3 +1,17 @@
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"], {
   /***/
   "./$$_lazy_route_resource lazy recursive":
@@ -45,27 +59,47 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
+    __webpack_exports__["default"] = "\r\n<app-game1 [scoreTableTpl1]=\"scoreTable1\" [scoreTableTpl2]=\"scoreTable2\" >\r\n\r\n    <div class=\"name\">Meir Eliezer</div>\r\n    <div class=\"person-title\">The King</div>\r\n    <div>test</div>\r\n    <div>{{title}}</div>\r\n    <!-- content projection example -->\r\n    <app-timer class=\"timer1\" (tick)=\"tick1($event)\"></app-timer>\r\n\r\n    <!-- tempate as content projection -->\r\n    <ng-template class=\"templateAsContentProjection\" \r\n                 #templateAsContentProjection \r\n                 let-nameTpl=\"name\"> \r\n        Hi {{nameTpl}}\r\n    </ng-template>\r\n\r\n</app-game1>\r\n\r\n\r\n<!-- Template injection 1 (score table)-->\r\n<ng-template #scoreTable1 let-tplBetTime=\"bestTime\" let-tplMissed=\"missed\">\r\n    <div class=\"scoreTable\" (click)=\"clickFromTemplate()\">\r\n        <div class=\"best-time\">Best Time: {{tplBetTime}}</div>\r\n        <div class=\"missed\">Missed: {{tplMissed}}</div>\r\n    </div>    \r\n</ng-template>\r\n\r\n<!-- Template injection 2 (score table)-->\r\n<ng-template #scoreTable2 let-tplBetTime=\"bestTime\" let-tplMissed=\"missed\" >\r\n    <div class=\"scoreTable2\">\r\n        <table>\r\n            <thead>\r\n                <th>Best Time</th>\r\n                <th>Missed</th>\r\n            </thead>\r\n            <tbody>\r\n                <tr>\r\n                    <td>{{tplBetTime}}</td>\r\n                    <td>{{tplMissed}}</td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>    \r\n</ng-template>\r\n\r\n\r\n\r\n";
     /***/
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/memory/card/card/card.component.html":
-  /*!********************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/memory/card/card/card.component.html ***!
-    \********************************************************************************************/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/games/game1/game1.component.html":
+  /*!****************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/games/game1/game1.component.html ***!
+    \****************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppMemoryCardCardCardComponentHtml(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesRawLoaderDistCjsJsSrcAppGamesGame1Game1ComponentHtml(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"(isActive()? data.data: '')\"\n        >\n\n        <!--\n            {{data | json}}\n        -->\n\n        </div>        \n    </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"content\" [ngClass]=\"{match: match, no_match:noMatch}\">\n    <div class=\"title\">Select Pairs</div>\n    <div class=\"game-content\" >\n        <div class=\"items\">        \n            <div *ngFor=\"let pair of (pairs$ | async) as pairs\" class=\"item item--a\" [ngClass]=\"{selected: isItemASelected(pair.id), no_visible:pair.match}\" #itemA (click)=\"handleA(pair)\">{{pair.a}}</div>                \n        </div>\n        <div class=\"items\">\n            <div *ngFor=\"let pair of (pairs$ | async | random) as pairs\" class=\"item item--b\" [ngClass]=\"{selected: isItemBSelected(pair.id), no_visible:pair.match}\" #itemB (click)=\"handleB(pair)\">{{pair.b}}</div>\n        </div>\n    </div>\n    <!-- Content Projection:\n            The entier content of this line (ng-content) will be replaced by the contenet\n            nothing that will be add to this line will be add to the DOM.\n            both timer2 class and tick2 event will not happend \n            [input]='val'\n    --> \n    <ng-content class=\"timer2\" select=\"'app-timer'\" (tick)=\"tick2($event)\"></ng-content>\n   \n    <!--  template injection  as content Projection with @ContentChild -->\n<!--    <ng-container   [ngTemplateOutlet]=\"templateAsContentProjectionTplRef\"\n                    [ngTemplateOutletContext]=\"{name:'Meir'}\" >\n    </ng-container>        \n-->\n\n    <!-- Tempalte Injection by input\n    -->\n    <ng-container *ngIf=\"tableScore%2 === 0\">\n        <ng-container   [ngTemplateOutlet]=\"scoreTableTpl1\"\n                        [ngTemplateOutletContext]=\"{bestTime:bestTime, missed: missed}\" >\n        </ng-container>        \n    </ng-container>\n    <ng-container *ngIf=\"tableScore%2 === 1\">\n        <ng-container   [ngTemplateOutlet]=\"scoreTableTpl2\"\n                        [ngTemplateOutletContext]=\"{bestTime:bestTime, missed: missed}\" >\n        </ng-container>        \n    </ng-container>\n    <div class=\"toggle-score\" (click)=\"toggleScore()\"></div>\n\n</div>\n\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/share/timer/timer/timer.component.html":
+  /*!**********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/share/timer/timer/timer.component.html ***!
+    \**********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppShareTimerTimerTimerComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"elapsed\">Elapsed: {{elapsed}} sec  </div>\n\n";
     /***/
   },
 
@@ -75,7 +109,7 @@
     !*** ./node_modules/tslib/tslib.es6.js ***!
     \*****************************************/
 
-  /*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+  /*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
 
   /***/
   function node_modulesTslibTslibEs6Js(module, __webpack_exports__, __webpack_require__) {
@@ -202,18 +236,6 @@
     __webpack_require__.d(__webpack_exports__, "__importDefault", function () {
       return __importDefault;
     });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function () {
-      return __classPrivateFieldGet;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function () {
-      return __classPrivateFieldSet;
-    });
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -238,7 +260,9 @@
       } instanceof Array && function (d, b) {
         d.__proto__ = b;
       } || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        for (var p in b) {
+          if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
       };
 
       return _extendStatics(d, b);
@@ -259,7 +283,9 @@
         for (var s, i = 1, n = arguments.length; i < n; i++) {
           s = arguments[i];
 
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          for (var p in s) {
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          }
         }
 
         return t;
@@ -271,7 +297,9 @@
     function __rest(s, e) {
       var t = {};
 
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+      }
 
       if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
         if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
@@ -283,7 +311,9 @@
       var c = arguments.length,
           r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
           d;
-      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
       return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
 
@@ -298,12 +328,6 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
-      function adopt(value) {
-        return value instanceof P ? value : new P(function (resolve) {
-          resolve(value);
-        });
-      }
-
       return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) {
           try {
@@ -322,7 +346,9 @@
         }
 
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve(result.value) : new P(function (resolve) {
+            resolve(result.value);
+          }).then(fulfilled, rejected);
         }
 
         step((generator = generator.apply(thisArg, _arguments || [])).next());
@@ -360,74 +386,76 @@
       function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
 
-        while (_) try {
-          if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-          if (y = 0, t) op = [op[0] & 2, t.value];
+        while (_) {
+          try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
 
-          switch (op[0]) {
-            case 0:
-            case 1:
-              t = op;
-              break;
-
-            case 4:
-              _.label++;
-              return {
-                value: op[1],
-                done: false
-              };
-
-            case 5:
-              _.label++;
-              y = op[1];
-              op = [0];
-              continue;
-
-            case 7:
-              op = _.ops.pop();
-
-              _.trys.pop();
-
-              continue;
-
-            default:
-              if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                _ = 0;
-                continue;
-              }
-
-              if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-                _.label = op[1];
-                break;
-              }
-
-              if (op[0] === 6 && _.label < t[1]) {
-                _.label = t[1];
+            switch (op[0]) {
+              case 0:
+              case 1:
                 t = op;
                 break;
-              }
 
-              if (t && _.label < t[2]) {
-                _.label = t[2];
+              case 4:
+                _.label++;
+                return {
+                  value: op[1],
+                  done: false
+                };
 
-                _.ops.push(op);
+              case 5:
+                _.label++;
+                y = op[1];
+                op = [0];
+                continue;
 
-                break;
-              }
+              case 7:
+                op = _.ops.pop();
 
-              if (t[2]) _.ops.pop();
+                _.trys.pop();
 
-              _.trys.pop();
+                continue;
 
-              continue;
+              default:
+                if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                  _ = 0;
+                  continue;
+                }
+
+                if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                  _.label = op[1];
+                  break;
+                }
+
+                if (op[0] === 6 && _.label < t[1]) {
+                  _.label = t[1];
+                  t = op;
+                  break;
+                }
+
+                if (t && _.label < t[2]) {
+                  _.label = t[2];
+
+                  _.ops.push(op);
+
+                  break;
+                }
+
+                if (t[2]) _.ops.pop();
+
+                _.trys.pop();
+
+                continue;
+            }
+
+            op = body.call(thisArg, _);
+          } catch (e) {
+            op = [6, e];
+            y = 0;
+          } finally {
+            f = t = 0;
           }
-
-          op = body.call(thisArg, _);
-        } catch (e) {
-          op = [6, e];
-          y = 0;
-        } finally {
-          f = t = 0;
         }
 
         if (op[0] & 5) throw op[1];
@@ -439,15 +467,16 @@
     }
 
     function __exportStar(m, exports) {
-      for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+      for (var p in m) {
+        if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+      }
     }
 
     function __values(o) {
-      var s = typeof Symbol === "function" && Symbol.iterator,
-          m = s && o[s],
+      var m = typeof Symbol === "function" && o[Symbol.iterator],
           i = 0;
       if (m) return m.call(o);
-      if (o && typeof o.length === "number") return {
+      return {
         next: function next() {
           if (o && i >= o.length) o = void 0;
           return {
@@ -456,7 +485,6 @@
           };
         }
       };
-      throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -468,7 +496,9 @@
           e;
 
       try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+          ar.push(r.value);
+        }
       } catch (error) {
         e = {
           error: error
@@ -485,15 +515,23 @@
     }
 
     function __spread() {
-      for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+      for (var ar = [], i = 0; i < arguments.length; i++) {
+        ar = ar.concat(__read(arguments[i]));
+      }
 
       return ar;
     }
 
     function __spreadArrays() {
-      for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+      for (var s = 0, i = 0, il = arguments.length; i < il; i++) {
+        s += arguments[i].length;
+      }
 
-      for (var r = Array(s), k = 0, i = 0; i < il; i++) for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) r[k] = a[j];
+      for (var r = Array(s), k = 0, i = 0; i < il; i++) {
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) {
+          r[k] = a[j];
+        }
+      }
 
       return r;
     }
@@ -607,7 +645,9 @@
     function __importStar(mod) {
       if (mod && mod.__esModule) return mod;
       var result = {};
-      if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+      if (mod != null) for (var k in mod) {
+        if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+      }
       result.default = mod;
       return result;
     }
@@ -617,91 +657,27 @@
         default: mod
       };
     }
-
-    function __classPrivateFieldGet(receiver, privateMap) {
-      if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-      }
-
-      return privateMap.get(receiver);
-    }
-
-    function __classPrivateFieldSet(receiver, privateMap, value) {
-      if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-      }
-
-      privateMap.set(receiver, value);
-      return value;
-    }
     /***/
 
   },
 
   /***/
-  "./src/app/app-routing.module.ts":
-  /*!***************************************!*\
-    !*** ./src/app/app-routing.module.ts ***!
-    \***************************************/
-
-  /*! exports provided: AppRoutingModule */
-
-  /***/
-  function srcAppAppRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function () {
-      return AppRoutingModule;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/fesm2015/router.js");
-
-    const routes = [];
-    let AppRoutingModule = class AppRoutingModule {};
-    AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
-      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
-    })], AppRoutingModule);
-    /***/
-  },
-
-  /***/
-  "./src/app/app.component.scss":
-  /*!************************************!*\
-    !*** ./src/app/app.component.scss ***!
-    \************************************/
+  "./src/app/app.component.css":
+  /*!***********************************!*\
+    !*** ./src/app/app.component.css ***!
+    \***********************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppAppComponentScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppAppComponentCss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */";
+    __webpack_exports__["default"] = ".scoreTable {\r\n    display: -webkit-box;\r\n    display: flex;    \r\n}\r\n\r\n.best-time, .missed {\r\n    font-size: smaller;\r\n}\r\n\r\n.best-time {\r\n    margin-right: 1em;\r\n}\r\n\r\n.scoreTable2 table, .scoreTable2 th, .scoreTable2 td {\r\n    border: 1px solid black;    \r\n  }\r\n\r\n.scoreTable2 td{\r\n    text-align: center;\r\n}\r\n\r\n.scoreTable2 th, .scoreTable2 td{     \r\n    font-size: smaller;    \r\n    font-weight: 300;\r\n    padding: 0.2em 0.6em;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxvQkFBYTtJQUFiLGFBQWE7QUFDakI7O0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxpQkFBaUI7QUFDckI7O0FBSUE7SUFDSSx1QkFBdUI7RUFDekI7O0FBRUY7SUFDSSxrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLG9CQUFvQjtBQUN4QiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNjb3JlVGFibGUge1xyXG4gICAgZGlzcGxheTogZmxleDsgICAgXHJcbn1cclxuXHJcbi5iZXN0LXRpbWUsIC5taXNzZWQge1xyXG4gICAgZm9udC1zaXplOiBzbWFsbGVyO1xyXG59XHJcblxyXG4uYmVzdC10aW1lIHtcclxuICAgIG1hcmdpbi1yaWdodDogMWVtO1xyXG59XHJcblxyXG5cclxuXHJcbi5zY29yZVRhYmxlMiB0YWJsZSwgLnNjb3JlVGFibGUyIHRoLCAuc2NvcmVUYWJsZTIgdGQge1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7ICAgIFxyXG4gIH1cclxuXHJcbi5zY29yZVRhYmxlMiB0ZHtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG4uc2NvcmVUYWJsZTIgdGgsIC5zY29yZVRhYmxlMiB0ZHsgICAgIFxyXG4gICAgZm9udC1zaXplOiBzbWFsbGVyOyAgICBcclxuICAgIGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgICBwYWRkaW5nOiAwLjJlbSAwLjZlbTtcclxufVxyXG5cclxuIl19 */";
     /***/
   },
 
@@ -736,260 +712,41 @@
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
 
-
-    var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./core/memory-game-manager.service */
-    "./src/app/core/memory-game-manager.service.ts");
-    /* harmony import */
-
-
-    var _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./core/memory-data.service */
-    "./src/app/core/memory-data.service.ts");
-    /* harmony import */
-
-
-    var _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./memory/card/card/card.component */
-    "./src/app/memory/card/card/card.component.ts");
-
-    var GAME_STATE;
-
-    (function (GAME_STATE) {
-      GAME_STATE[GAME_STATE["INIT"] = 0] = "INIT";
-      GAME_STATE[GAME_STATE["RUN"] = 1] = "RUN";
-      GAME_STATE[GAME_STATE["COMPLETE"] = 2] = "COMPLETE";
-      GAME_STATE[GAME_STATE["FAILED"] = 3] = "FAILED";
-      GAME_STATE[GAME_STATE["FAILED_COMPLETE"] = 4] = "FAILED_COMPLETE";
-    })(GAME_STATE || (GAME_STATE = {}));
-
-    let AppComponent = class AppComponent {
-      constructor(memoryGameManagerService, memoryDataService) {
-        this.memoryGameManagerService = memoryGameManagerService;
-        this.memoryDataService = memoryDataService;
-        this.init();
+    var AppComponent =
+    /*#__PURE__*/
+    function () {
+      function AppComponent() {
+        _classCallCheck(this, AppComponent);
       }
 
-      get level() {
-        return this.memoryGameManagerService.getCurrentLevel();
-      }
-
-      get userMaxLevel() {
-        return this.memoryGameManagerService.getUserMaxLevel();
-      }
-
-      get gameState() {
-        return this._gameState;
-      }
-
-      get totalScore() {
-        return this.memoryGameManagerService.getTotalScore();
-      }
-
-      onNextLevel() {
-        this.setNewLevel(true);
-      }
-
-      onPrevLevel() {
-        this.setNewLevel(false);
-      }
-
-      getLevelMetadata() {
-        return this._levelMetadata;
-      }
-
-      getCardLevelDimension() {
-        let style = {
-          width: this._levelMetadata.width,
-          height: this._levelMetadata.height
-        };
-        return style;
-      }
-
-      currentClass() {
-        let currentClass = '';
-
-        switch (this._gameState) {
-          case GAME_STATE.COMPLETE:
-            currentClass = 'complete';
-            break;
-
-          case GAME_STATE.FAILED:
-            currentClass = 'failed';
-            break;
-
-          case GAME_STATE.FAILED_COMPLETE:
-            currentClass = 'failed--complete';
-            break;
-
-          default:
-            if (this.current < 10) {
-              currentClass = 'warnning';
-            }
-
-            break;
+      _createClass(AppComponent, [{
+        key: "tick1",
+        value: function tick1(tick) {//console.log(`[app] tick from app-timer`, tick);
         }
-
-        return currentClass;
-      }
-
-      getData() {
-        return this._levelMetadata.data;
-      } // reduce lifes
-
-
-      onCardClicked(cardClicked) {
-        if (this._gameState === GAME_STATE.INIT) {
-          this.onRun();
-        } // First pair Click
-
-
-        if (!this._firstCardClicked) {
-          this._firstCardClicked = cardClicked;
-        } // Second pair click
-        else {
-            // Same cards
-            if (this._firstCardClicked.data.id === cardClicked.data.id) {
-              ++this._totalPairs;
-
-              this._cardComponents.forEach(cardComponent => {
-                if (cardComponent.data.id === cardClicked.data.id) {
-                  cardComponent.pair();
-                }
-              });
-
-              this._firstCardClicked = null; // ---------------------------------------------
-              // Complete game
-              // ---------------------------------------------
-
-              if (this.isComplete()) {
-                // Stop timer
-                clearInterval(this._intervalHandler);
-                this._intervalHandler = null; // Game Complete state
-
-                this._gameState = this.current > 0 ? GAME_STATE.COMPLETE : GAME_STATE.FAILED_COMPLETE; // Store data
-
-                this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
-              }
-            } // Diffrent cards
-            else {
-                setTimeout(() => {
-                  this._cardComponents.forEach(cardComponent => {
-                    if (cardComponent.data.id === cardClicked.data.id || cardComponent.data.id === this._firstCardClicked.data.id) {
-                      cardComponent.reset();
-                    }
-                  });
-
-                  this._firstCardClicked = null;
-                }, 250);
-              }
-          }
-      } // Run Button
-
-
-      onRun() {
-        // Refresh
-        if (this._gameState !== GAME_STATE.INIT) {
-          this.setNewLevel();
-          return;
+      }, {
+        key: "clickFromTemplate",
+        value: function clickFromTemplate() {
+          console.log('[app] clickFromTemplate');
         }
-
-        this._gameState = GAME_STATE.RUN;
-        this._intervalHandler = setInterval(() => {
-          // Timer
-          ++this.timer; // Score
-
-          if (this.current > 0) {
-            --this.current;
-          } // Failed
-
-
-          if (this.current === 0) {
-            if (this.isComplete()) {
-              this._gameState = GAME_STATE.FAILED_COMPLETE;
-            } else {
-              // Reduce lives
-              if (this._gameState !== GAME_STATE.FAILED) {
-                // Only if it is  user max level
-                if (this.level === this.memoryGameManagerService.getUserMaxLevel()) {
-                  this.changeLives(-1);
-                }
-              }
-
-              this._gameState = GAME_STATE.FAILED;
-            }
-          }
-        }, 1000);
-      }
-
-      onReset() {
-        this.memoryGameManagerService.reset();
-        this.init();
-      }
-
-      init() {
-        this.lives = this.memoryGameManagerService.getLives();
-        this.setNewLevel();
-      } //next:  true-next level, false, prev level, undefine refresh current level
-
-
-      setNewLevel(next) {
-        if (next === true) {
-          this.memoryGameManagerService.nextLevel();
-        } else if (next === false) {
-          this.memoryGameManagerService.prevLevel();
+      }, {
+        key: "mouseEvent",
+        value: function mouseEvent(event) {
+          console.log('[app] mouseEvent from testDirective', event);
         }
+      }]);
 
-        this._levelMetadata = this.memoryGameManagerService.getLevelMetadata();
-        this._levelMetadata.data = this.memoryDataService.getRandomPairs(this._levelMetadata.cards / 2);
-        this._totalPairs = 0;
-        this._gameState = GAME_STATE.INIT;
-        this.timer = 0;
-        this.current = this._levelMetadata.score;
+      return AppComponent;
+    }();
 
-        if (this._intervalHandler) {
-          clearInterval(this._intervalHandler);
-          this._intervalHandler = null;
-        }
-      }
-
-      changeLives(lives) {
-        this.lives += lives;
-
-        if (this.lives < 0) {
-          this.lives = 0;
-        }
-
-        this.memoryGameManagerService.changeLive(lives);
-      }
-
-      isFailedStatus() {
-        return this._gameState === GAME_STATE.FAILED || this._gameState === GAME_STATE.FAILED_COMPLETE;
-      }
-
-      isComplete() {
-        return this._totalPairs === this._levelMetadata.cards / 2;
-      }
-
-    };
-
-    AppComponent.ctorParameters = () => [{
-      type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["MemoryGameManagerService"]
-    }, {
-      type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"]
-    }];
-
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])], AppComponent.prototype, "_cardComponents", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-root',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./app.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./app.component.scss */
-      "./src/app/app.component.scss")).default]
+      /*! ./app.component.css */
+      "./src/app/app.component.css")).default]
     })], AppComponent);
     /***/
   },
@@ -1034,220 +791,71 @@
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./app-routing.module */
-    "./src/app/app-routing.module.ts");
-    /* harmony import */
-
-
-    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./memory/card/card/card.component */
-    "./src/app/memory/card/card/card.component.ts");
+    var _games_game1_game1_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./games/game1/game1.component */
+    "./src/app/games/game1/game1.component.ts");
+    /* harmony import */
 
-    let AppModule = class AppModule {};
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _share_random_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./share/random.pipe */
+    "./src/app/share/random.pipe.ts");
+    /* harmony import */
+
+
+    var _share_timer_timer_timer_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./share/timer/timer/timer.component */
+    "./src/app/share/timer/timer/timer.component.ts");
+    /* harmony import */
+
+
+    var _share_test_test_directive__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./share/test/test.directive */
+    "./src/app/share/test/test.directive.ts");
+
+    var AppModule = function AppModule() {
+      _classCallCheck(this, AppModule);
+    };
+
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_5__["CardComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _games_game1_game1_component__WEBPACK_IMPORTED_MODULE_4__["Game1Component"], _share_random_pipe__WEBPACK_IMPORTED_MODULE_6__["RandomPipe"], _share_timer_timer_timer_component__WEBPACK_IMPORTED_MODULE_7__["TimerComponent"], _share_test_test_directive__WEBPACK_IMPORTED_MODULE_8__["TestDirective"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"]],
       providers: [],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
     })], AppModule);
     /***/
   },
 
   /***/
-  "./src/app/core/game-metadata.const.ts":
-  /*!*********************************************!*\
-    !*** ./src/app/core/game-metadata.const.ts ***!
-    \*********************************************/
+  "./src/app/common/data.service.ts":
+  /*!****************************************!*\
+    !*** ./src/app/common/data.service.ts ***!
+    \****************************************/
 
-  /*! exports provided: GAME_METADATA */
+  /*! exports provided: DataService */
 
   /***/
-  function srcAppCoreGameMetadataConstTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppCommonDataServiceTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "GAME_METADATA", function () {
-      return GAME_METADATA;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-
-    ;
-    const GAME_METADATA = [{
-      level: 1,
-      cards: 4,
-      time: 4 * 2,
-      score: 4 * 2,
-      width: '50%',
-      height: '50%'
-    }, {
-      level: 2,
-      cards: 6,
-      time: 6 * 2,
-      score: 6 * 2,
-      width: '50%',
-      height: '33%'
-    }, {
-      level: 3,
-      cards: 8,
-      time: 8 * 2,
-      score: 8 * 2,
-      width: '50%',
-      height: '25%'
-    }, {
-      level: 4,
-      cards: 10,
-      time: 10 * 2,
-      score: 10 * 2,
-      width: '50%',
-      height: '20%'
-    }, {
-      level: 5,
-      cards: 12,
-      time: 12 * 2,
-      score: 12 * 2,
-      width: '25%',
-      height: '33%'
-    }, {
-      level: 6,
-      cards: 14,
-      time: 14 * 2,
-      score: 14 * 2,
-      width: '25%',
-      height: '25%'
-    }, {
-      level: 7,
-      cards: 16,
-      time: 16 * 2,
-      score: 16 * 2,
-      width: '25%',
-      height: '25%'
-    }, {
-      level: 8,
-      cards: 18,
-      time: 18 * 2,
-      score: 18 * 2,
-      width: '25%',
-      height: '20%'
-    }, {
-      level: 9,
-      cards: 20,
-      time: 20 * 2,
-      score: 20 * 2,
-      width: '25%',
-      height: '20%'
-    }];
-    /***/
-  },
-
-  /***/
-  "./src/app/core/memory-data.service.ts":
-  /*!*********************************************!*\
-    !*** ./src/app/core/memory-data.service.ts ***!
-    \*********************************************/
-
-  /*! exports provided: MemoryDataService */
-
-  /***/
-  function srcAppCoreMemoryDataServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "MemoryDataService", function () {
-      return MemoryDataService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    let MemoryDataService = class MemoryDataService {
-      constructor() {
-        this._colorList = ['#000000', '#000080', '#008000', '#00BFFF', '#00FA9A', '#00FF00', '#2F4F4F', '#4B0082', '#800000', '#800080', '#8B4513', '#DAA520', '#FF00FF', '#FFD700'];
-      }
-
-      getRandomPairs(num) {
-        let randomColors = this.randomize(this._colorList);
-        randomColors.length = num;
-        let pairs = [];
-        randomColors.map((color, index) => {
-          pairs.push({
-            id: index,
-            data: color
-          });
-          pairs.push({
-            id: index,
-            data: color
-          });
-        });
-        let randomPairs = this.randomize(pairs);
-        return randomPairs;
-      }
-
-      randomize(list) {
-        let newList = [...list];
-        let len = newList.length;
-
-        for (let i = 0; i < len; ++i) {
-          let rnd = Math.floor(Math.random() * len);
-          let tmp = newList[i];
-          newList[i] = newList[rnd];
-          newList[rnd] = tmp;
-        }
-
-        return newList;
-      }
-
-    };
-    MemoryDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], MemoryDataService);
-    /***/
-  },
-
-  /***/
-  "./src/app/core/memory-game-manager.service.ts":
-  /*!*****************************************************!*\
-    !*** ./src/app/core/memory-game-manager.service.ts ***!
-    \*****************************************************/
-
-  /*! exports provided: MemoryGameManagerService */
-
-  /***/
-  function srcAppCoreMemoryGameManagerServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "MemoryGameManagerService", function () {
-      return MemoryGameManagerService;
+    __webpack_require__.d(__webpack_exports__, "DataService", function () {
+      return DataService;
     });
     /* harmony import */
 
@@ -1264,284 +872,464 @@
     /* harmony import */
 
 
-    var _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./game-metadata.const */
-    "./src/app/core/game-metadata.const.ts");
-    /* harmony import */
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
 
+    var DataService =
+    /*#__PURE__*/
+    function () {
+      function DataService() {
+        _classCallCheck(this, DataService);
 
-    var _user_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./user-data.service */
-    "./src/app/core/user-data.service.ts");
-
-    let MemoryGameManagerService = class MemoryGameManagerService {
-      constructor(userDataService) {
-        this.userDataService = userDataService;
-        this.initFromUserData();
+        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
+        this._level = 0;
+        this.next();
       }
 
-      getCurrentLevel() {
-        return this._currentLevel;
-      }
+      _createClass(DataService, [{
+        key: "generateData2",
+        value: function generateData2(level) {
+          var _data = [];
+          var multi = level < 3 ? 10 : 10 * (level - 2);
 
-      getUserMaxLevel() {
-        return this._userMaxLevel;
-      }
+          var _loop = function _loop(_idx) {
+            var a = Math.trunc(Math.random() * multi);
+            var b = Math.trunc(Math.random() * multi);
+            var op = Math.trunc(Math.random() * (level + 1)) % 3;
+            var newPair = void 0;
 
-      getEndLevel() {
-        _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"].length;
-      }
-
-      getLives() {
-        return this._lives;
-      }
-
-      getTotalScore() {
-        let total = 0;
-        total = this.userDataService.getLevelHistory().map(item => item.score).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        return total;
-      }
-
-      changeLive(lives) {
-        this._lives += lives;
-        this.userDataService.setLives(this._lives);
-      }
-
-      getLevelMetadata() {
-        return _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"][this._currentLevel - 1];
-      }
-
-      nextLevel() {
-        if (this._currentLevel === _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"].length) {
-          return this._currentLevel;
-        }
-
-        ++this._currentLevel;
-        this.userDataService.setCurrentLevel(this._currentLevel);
-
-        if (this._userMaxLevel < this._currentLevel) {
-          this._userMaxLevel = this._currentLevel;
-          this.userDataService.setUserMaxLevel(this._userMaxLevel);
-        }
-
-        return this._currentLevel;
-      }
-
-      prevLevel() {
-        if (this._currentLevel > 1) {
-          --this._currentLevel;
-          this.userDataService.setCurrentLevel(this._currentLevel);
-        }
-
-        return this._currentLevel;
-      }
-
-      completeLevel(failed, time, score) {
-        // Save data;
-        this.userDataService.setLevelData(this._currentLevel, score, time); // Should enable next level
-
-        if (!failed && this._currentLevel === this._userMaxLevel && this._lives > 0) {
-          ++this._userMaxLevel; // Save data;
-
-          this.userDataService.setUserMaxLevel(this._userMaxLevel);
-        }
-      }
-
-      reset() {
-        this.userDataService.reset();
-        this.initFromUserData();
-      }
-
-      initFromUserData() {
-        this._lives = this.userDataService.getLives();
-        this._currentLevel = this.userDataService.getCurrentLevel();
-        this._userMaxLevel = this.userDataService.getUserMaxLevel();
-      }
-
-    };
-
-    MemoryGameManagerService.ctorParameters = () => [{
-      type: _user_data_service__WEBPACK_IMPORTED_MODULE_3__["UserDataService"]
-    }];
-
-    MemoryGameManagerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], MemoryGameManagerService);
-    /***/
-  },
-
-  /***/
-  "./src/app/core/user-data.service.ts":
-  /*!*******************************************!*\
-    !*** ./src/app/core/user-data.service.ts ***!
-    \*******************************************/
-
-  /*! exports provided: UserDataService */
-
-  /***/
-  function srcAppCoreUserDataServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
+            if (op === 0) {
+              newPair = {
+                id: _idx,
+                a: "".concat(a, "+").concat(b),
+                b: "".concat(a + b),
+                match: false
+              };
+            } else if (op === 1) {
+              newPair = {
+                id: _idx,
+                a: "".concat(a, "-").concat(b),
+                b: "".concat(a - b),
+                match: false
+              };
+            } else if (op === 2) {
+              newPair = {
+                id: _idx,
+                a: "".concat(a, "*").concat(b),
+                b: "".concat(a * b),
+                match: false
+              };
+            } else {
+              console.log("EEEEEEE");
+            } // Result alrady exist, retry
 
 
-    __webpack_require__.d(__webpack_exports__, "UserDataService", function () {
-      return UserDataService;
-    });
-    /* harmony import */
+            if (_data.find(function (pair) {
+              return pair.b === newPair.b;
+            })) {
+              --_idx;
+            } else {
+              _data.push(newPair);
+            }
 
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    const INIT_USER_MAX_LEVLE = 1;
-    const INIT_CURRENT_MAX_LEVEL = 1;
-    const INIT_LIVES = 5;
-    let UserDataService = class UserDataService {
-      constructor() {
-        this.loadData();
-      }
-
-      getUserData() {
-        return Object.assign({}, this);
-      }
-
-      getLives() {
-        return this._userData.lives;
-      }
-
-      setLives(lives) {
-        this._userData.lives = lives;
-        this.saveData();
-      }
-
-      getCurrentLevel() {
-        return this._userData.currentLevel;
-      }
-
-      setCurrentLevel(level) {
-        this._userData.currentLevel = level;
-        this.saveData();
-      }
-
-      getUserMaxLevel() {
-        return this._userData.userMaxLevel;
-      }
-
-      setUserMaxLevel(level) {
-        this._userData.userMaxLevel = level;
-        this.saveData();
-      }
-
-      getLevelHistory() {
-        return this._userData.levels;
-      }
-
-      setLevelData(level, score, time) {
-        let levelData = this._userData.levels.find(levelData => {
-          return levelData.level === level;
-        });
-
-        if (levelData) {
-          if (levelData.score < score) {
-            levelData.score = score;
-          }
-
-          if (levelData.time > time) {
-            levelData.time = time;
-          }
-        } else {
-          levelData = {
-            level,
-            time,
-            score
+            idx = _idx;
           };
 
-          this._userData.levels.push(levelData);
+          for (var idx = 0; idx < 5; ++idx) {
+            _loop(idx);
+          }
+
+          this.subject.next([].concat(_data));
         }
-
-        this.saveData();
-      }
-
-      reset() {
-        localStorage.removeItem('userData');
-        this._userData = {
-          levels: [],
-          userMaxLevel: INIT_USER_MAX_LEVLE,
-          currentLevel: INIT_CURRENT_MAX_LEVEL,
-          lives: INIT_LIVES
-        };
-      }
-
-      loadData() {
-        let userData = localStorage.getItem('userData');
-
-        if (userData) {
-          let userDataObj = JSON.parse(userData);
-          this._userData = userDataObj;
-        } else {
-          this.reset();
+      }, {
+        key: "next",
+        value: function next() {
+          this.generateData2(this._level);
+          this._level++;
         }
-      }
+      }, {
+        key: "observable$",
+        get: function get() {
+          return this.subject.asObservable();
+        }
+      }, {
+        key: "level",
+        get: function get() {
+          return this._level + 1;
+        }
+      }]);
 
-      saveData() {
-        let data = JSON.stringify(this._userData);
-        localStorage.setItem('userData', data);
-      }
+      return DataService;
+    }();
 
-    };
-    UserDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+    DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
-    })], UserDataService);
+    })], DataService);
     /***/
   },
 
   /***/
-  "./src/app/memory/card/card/card.component.scss":
-  /*!******************************************************!*\
-    !*** ./src/app/memory/card/card/card.component.scss ***!
-    \******************************************************/
+  "./src/app/games/game1/game1.component.css":
+  /*!*************************************************!*\
+    !*** ./src/app/games/game1/game1.component.css ***!
+    \*************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppMemoryCardCardCardComponentScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppGamesGame1Game1ComponentCss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21lbW9yeS9jYXJkL2NhcmQvY2FyZC5jb21wb25lbnQuc2NzcyJ9 */";
+    __webpack_exports__["default"] = ".content {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n}\r\n\r\n.title{\r\n    text-align: center;\r\n    font-size: 3rem;\r\n}\r\n\r\n.game-content {   \r\n    -webkit-transition: background-color ease-in-out 100ms;   \r\n    transition: background-color ease-in-out 100ms;    \r\n    display: -webkit-box;    \r\n    display: flex;\r\n}\r\n\r\n.items {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n}\r\n\r\n.match {\r\n    background-color: rgba(100, 237, 173, 0.411);\r\n}\r\n\r\n.no_match {\r\n    background-color:rgba(220, 20, 60, 0.63);\r\n}\r\n\r\n.item{\r\n    display: inline-block;\r\n    padding: 0.5em 1.5em;\r\n    border-radius: 10px;\r\n    margin-top: 0.5em;\r\n    cursor: pointer;\r\n    opacity: 1;\r\n    -webkit-transition:     background-color ease-in-out 250ms,\r\n                    opacity  ease-in-out 750ms;\r\n    transition:     background-color ease-in-out 250ms,\r\n                    opacity  ease-in-out 750ms;\r\n}\r\n\r\n.item--a{\r\n    background-color: aqua;\r\n    margin-right: 1em;\r\n\r\n}\r\n\r\n.item--b{\r\n    background-color: bisque;\r\n   \r\n}\r\n\r\n.item:hover {\r\n    background-color: rgba(202, 15, 15, 0.589);\r\n\r\n}\r\n\r\n.selected {\r\n    background-color: rgba(255, 0, 119, 0.308);\r\n    box-shadow: 2px 2px 2px black;\r\n}\r\n\r\n.no_visible {\r\n    opacity: 0;\r\n    pointer-events: none;\r\n}\r\n\r\n.elapsed {\r\n    margin: 0.5em 1.5em;\r\n}\r\n\r\n.toggle-score {\r\n    background-color: gray;\r\n    width: 10px;\r\n    height: 10px;\r\n    margin-top: 0.5em;\r\n    border-radius: 50%;\r\n    cursor:pointer\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ2FtZXMvZ2FtZTEvZ2FtZTEuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLG9CQUFhO0lBQWIsYUFBYTtJQUNiLDRCQUFzQjtJQUF0Qiw2QkFBc0I7WUFBdEIsc0JBQXNCO0lBQ3RCLHlCQUFtQjtZQUFuQixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLHNEQUE4QztJQUE5Qyw4Q0FBOEM7SUFDOUMsb0JBQWE7SUFBYixhQUFhO0FBQ2pCOztBQUdBO0lBQ0ksb0JBQWE7SUFBYixhQUFhO0lBQ2IsNEJBQXNCO0lBQXRCLDZCQUFzQjtZQUF0QixzQkFBc0I7QUFDMUI7O0FBR0E7SUFDSSw0Q0FBNEM7QUFDaEQ7O0FBRUE7SUFDSSx3Q0FBd0M7QUFDNUM7O0FBRUE7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLG1CQUFtQjtJQUNuQixpQkFBaUI7SUFDakIsZUFBZTtJQUNmLFVBQVU7SUFDVjs4Q0FDMEM7SUFEMUM7OENBQzBDO0FBQzlDOztBQUVBO0lBQ0ksc0JBQXNCO0lBQ3RCLGlCQUFpQjs7QUFFckI7O0FBRUE7SUFDSSx3QkFBd0I7O0FBRTVCOztBQUVBO0lBQ0ksMENBQTBDOztBQUU5Qzs7QUFFQTtJQUNJLDBDQUEwQztJQUMxQyw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSxVQUFVO0lBQ1Ysb0JBQW9CO0FBQ3hCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksc0JBQXNCO0lBQ3RCLFdBQVc7SUFDWCxZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQjtBQUNKIiwiZmlsZSI6InNyYy9hcHAvZ2FtZXMvZ2FtZTEvZ2FtZTEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250ZW50IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLnRpdGxle1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgZm9udC1zaXplOiAzcmVtO1xyXG59XHJcblxyXG4uZ2FtZS1jb250ZW50IHsgICBcclxuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgZWFzZS1pbi1vdXQgMTAwbXM7ICAgIFxyXG4gICAgZGlzcGxheTogZmxleDtcclxufVxyXG5cclxuXHJcbi5pdGVtcyB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG5cclxuXHJcbi5tYXRjaCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEwMCwgMjM3LCAxNzMsIDAuNDExKTtcclxufVxyXG5cclxuLm5vX21hdGNoIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyMjAsIDIwLCA2MCwgMC42Myk7XHJcbn1cclxuXHJcbi5pdGVte1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgcGFkZGluZzogMC41ZW0gMS41ZW07XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgbWFyZ2luLXRvcDogMC41ZW07XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBvcGFjaXR5OiAxO1xyXG4gICAgdHJhbnNpdGlvbjogICAgIGJhY2tncm91bmQtY29sb3IgZWFzZS1pbi1vdXQgMjUwbXMsXHJcbiAgICAgICAgICAgICAgICAgICAgb3BhY2l0eSAgZWFzZS1pbi1vdXQgNzUwbXM7XHJcbn1cclxuXHJcbi5pdGVtLS1he1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogYXF1YTtcclxuICAgIG1hcmdpbi1yaWdodDogMWVtO1xyXG5cclxufVxyXG5cclxuLml0ZW0tLWJ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBiaXNxdWU7XHJcbiAgIFxyXG59XHJcblxyXG4uaXRlbTpob3ZlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDIwMiwgMTUsIDE1LCAwLjU4OSk7XHJcblxyXG59XHJcblxyXG4uc2VsZWN0ZWQge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDAsIDExOSwgMC4zMDgpO1xyXG4gICAgYm94LXNoYWRvdzogMnB4IDJweCAycHggYmxhY2s7XHJcbn1cclxuXHJcbi5ub192aXNpYmxlIHtcclxuICAgIG9wYWNpdHk6IDA7XHJcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxufVxyXG5cclxuLmVsYXBzZWQge1xyXG4gICAgbWFyZ2luOiAwLjVlbSAxLjVlbTtcclxufVxyXG5cclxuLnRvZ2dsZS1zY29yZSB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmF5O1xyXG4gICAgd2lkdGg6IDEwcHg7XHJcbiAgICBoZWlnaHQ6IDEwcHg7XHJcbiAgICBtYXJnaW4tdG9wOiAwLjVlbTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgIGN1cnNvcjpwb2ludGVyXHJcbn0iXX0= */";
     /***/
   },
 
   /***/
-  "./src/app/memory/card/card/card.component.ts":
-  /*!****************************************************!*\
-    !*** ./src/app/memory/card/card/card.component.ts ***!
-    \****************************************************/
+  "./src/app/games/game1/game1.component.ts":
+  /*!************************************************!*\
+    !*** ./src/app/games/game1/game1.component.ts ***!
+    \************************************************/
 
-  /*! exports provided: CardComponent */
+  /*! exports provided: Game1Component */
 
   /***/
-  function srcAppMemoryCardCardCardComponentTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppGamesGame1Game1ComponentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "CardComponent", function () {
-      return CardComponent;
+    __webpack_require__.d(__webpack_exports__, "Game1Component", function () {
+      return Game1Component;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_app_common_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/common/data.service */
+    "./src/app/common/data.service.ts");
+    /* harmony import */
+
+
+    var src_app_share_timer_timer_timer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/share/timer/timer/timer.component */
+    "./src/app/share/timer/timer/timer.component.ts");
+
+    var Game1Component =
+    /*#__PURE__*/
+    function () {
+      function Game1Component(dataService) {
+        _classCallCheck(this, Game1Component);
+
+        this.dataService = dataService;
+        this._aId = -1;
+        this._bId = -1;
+        this._match = false;
+        this._noMatch = false;
+        this._matchsCnt = 0;
+        this.bestTime = 0;
+        this.missed = 0;
+        this.context = {
+          bestTime: this.bestTime,
+          missed: this.missed
+        };
+        this.tableScore = 0;
+      }
+
+      _createClass(Game1Component, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.pairs$ = this.dataService.observable$;
+        }
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {}
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this._tickSubscription.unsubscribe();
+        }
+      }, {
+        key: "ngAfterContentInit",
+        value: function ngAfterContentInit() {
+          // ---------------------------------------------------------------------
+          // Manually Register to event from content projection
+          // ---------------------------------------------------------------------
+          this._tickSubscription = this.appTimer.tickEvent$.subscribe(function (tick) {//console.log(`[game1 (subscription to EventEmtiter)] tick from content`, tick); 
+          }); // ---------------------------------------------------------------------
+          // API of the content projection
+          // ---------------------------------------------------------------------
+
+          this.appTimer.start(true);
+        }
+      }, {
+        key: "clickFromTemplate",
+        value: function clickFromTemplate() {
+          console.log('[game1] clickFromTemplate');
+        }
+      }, {
+        key: "toggleScore",
+        value: function toggleScore() {
+          ++this.tableScore;
+        }
+      }, {
+        key: "handleA",
+        value: function handleA(pair) {
+          this.handleClick(pair);
+        }
+      }, {
+        key: "handleB",
+        value: function handleB(pair) {
+          this.handleClick(undefined, pair);
+        }
+      }, {
+        key: "isItemASelected",
+        value: function isItemASelected(id) {
+          return this._aId === id;
+        }
+      }, {
+        key: "isItemBSelected",
+        value: function isItemBSelected(id) {
+          return this._bId === id;
+        }
+      }, {
+        key: "handleClick",
+        value: function handleClick() {
+          var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+          var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+
+          if (a) {
+            if (this._aId === -1 || this._aId !== a.id) {
+              this._aId = a.id;
+            } else {
+              this._aId = -1;
+            }
+          }
+
+          if (b) {
+            if (this._bId === -1 || this._bId !== b.id) {
+              this._bId = b.id;
+            } else {
+              this._bId = -1;
+            }
+          }
+
+          this.checkMatch(a || b);
+        }
+      }, {
+        key: "checkMatch",
+        value: function checkMatch(pair) {
+          var _this = this;
+
+          // Match
+          if (this._aId !== -1 && this._aId === this._bId) {
+            pair.match = true;
+            this._match = true;
+            setTimeout(function () {
+              return _this._match = false;
+            }, 250);
+            this._aId = -1;
+            this._bId = -1;
+            this._matchsCnt++;
+
+            if (this._matchsCnt === 5) {
+              this.appTimer.stop();
+
+              if (this.bestTime === 0) {
+                this.bestTime = this.appTimer.elapsed;
+              }
+
+              this.bestTime = Math.min(this.bestTime, this.appTimer.elapsed);
+              setTimeout(function (_) {
+                _this.dataService.next();
+
+                _this._matchsCnt = 0;
+
+                _this.appTimer.start(true);
+              }, 3000);
+            } // Missed
+
+          } else if (this._aId !== -1 && this._bId !== -1 && this._aId !== this._bId) {
+            this._noMatch = true;
+            setTimeout(function () {
+              return _this._noMatch = false;
+            }, 250);
+            this._aId = -1;
+            this._bId = -1;
+            this.missed++;
+          }
+        }
+      }, {
+        key: "tick2",
+        value: function tick2(tick) {
+          console.log("[timer] tick from content", tick); // We don't get it
+        }
+      }, {
+        key: "match",
+        get: function get() {
+          return this._match;
+        }
+      }, {
+        key: "noMatch",
+        get: function get() {
+          return this._noMatch;
+        }
+      }]);
+
+      return Game1Component;
+    }();
+
+    Game1Component.ctorParameters = function () {
+      return [{
+        type: src_app_common_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]
+      }];
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('scoreTableTpl1')], Game1Component.prototype, "scoreTableTpl1", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('scoreTableTpl2')], Game1Component.prototype, "scoreTableTpl2", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ContentChild"])('templateAsContentProjection', {
+      static: false
+    })], Game1Component.prototype, "templateAsContentProjectionTplRef", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ContentChild"])(src_app_share_timer_timer_timer_component__WEBPACK_IMPORTED_MODULE_3__["TimerComponent"], {
+      static: false
+    })], Game1Component.prototype, "appTimer", void 0);
+    Game1Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-game1',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./game1.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/games/game1/game1.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./game1.component.css */
+      "./src/app/games/game1/game1.component.css")).default]
+    })], Game1Component);
+    /***/
+  },
+
+  /***/
+  "./src/app/share/random.pipe.ts":
+  /*!**************************************!*\
+    !*** ./src/app/share/random.pipe.ts ***!
+    \**************************************/
+
+  /*! exports provided: RandomPipe */
+
+  /***/
+  function srcAppShareRandomPipeTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "RandomPipe", function () {
+      return RandomPipe;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /*
+     * Raise the value exponentially
+     * Takes an exponent argument that defaults to 1.
+     * Usage:
+     *   value | exponentialStrength:exponent
+     * Example:
+     *   {{ 2 | exponentialStrength:10 }}
+     *   formats to: 1024
+    */
+
+
+    var RandomPipe =
+    /*#__PURE__*/
+    function () {
+      function RandomPipe() {
+        _classCallCheck(this, RandomPipe);
+      }
+
+      _createClass(RandomPipe, [{
+        key: "transform",
+        value: function transform(value, exponent) {
+          //console.log('random (before): ', value);
+          value = _toConsumableArray(value);
+          value = this.shuffle(value); //console.log('pipe (after): ', value);
+
+          return value;
+        }
+      }, {
+        key: "shuffle",
+        value: function shuffle(arra1) {
+          var ctr = arra1.length;
+          var temp;
+          var index; // While there are elements in the array
+
+          while (ctr > 0) {
+            // Pick a random index
+            index = Math.floor(Math.random() * ctr); // Decrease ctr by 1
+
+            ctr--; // And swap the last element with it
+
+            temp = arra1[ctr];
+            arra1[ctr] = arra1[index];
+            arra1[index] = temp;
+          }
+
+          return arra1;
+        }
+      }]);
+
+      return RandomPipe;
+    }();
+
+    RandomPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+      name: 'random'
+    })], RandomPipe);
+    /***/
+  },
+
+  /***/
+  "./src/app/share/test/test.directive.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/share/test/test.directive.ts ***!
+    \**********************************************/
+
+  /*! exports provided: TestDirective */
+
+  /***/
+  function srcAppShareTestTestDirectiveTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TestDirective", function () {
+      return TestDirective;
     });
     /* harmony import */
 
@@ -1556,64 +1344,218 @@
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    let CardComponent = class CardComponent {
-      constructor(elmRef, render) {
-        this.elmRef = elmRef;
-        this.render = render;
-        this._isClick = false;
-        this._backgroundColor = '';
-        this._isPair = false;
-        this.cardClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-      }
+    var TestDirective =
+    /*#__PURE__*/
+    function () {
+      function TestDirective(el
+      /*reference to the host DOM element*/
+      ) {
+        _classCallCheck(this, TestDirective);
 
-      ngOnInit() {
-        this._backgroundColor = this.elmRef.nativeElement;
-      }
+        this.el = el;
+        this.myContent = 'myContent'; // Send data to where component that the html belong to (the host)
+        // Will not work on ng-template
 
-      isActive() {
-        return this._isClick;
-      } // "You touch you go"
+        this.mouseEventEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        console.log('appTest', el);
+      } // Listen to host events 
 
 
-      onClick() {
-        if (this._isClick == false) {
-          this._isClick = !this._isClick;
-          this.cardClicked.emit({
-            cardIndex: this.cardIndex,
-            data: this.data
-          });
+      _createClass(TestDirective, [{
+        key: "onMouseEnter",
+        value: function onMouseEnter(event) {
+          this.highlight('yellow');
+          this.mouseEventEmitter.emit(event);
         }
-      } // API
+      }, {
+        key: "onMouseLeave",
+        value: function onMouseLeave(event) {
+          this.highlight(null);
+          this.mouseEventEmitter.emit(event);
+        }
+      }, {
+        key: "highlight",
+        value: function highlight(color) {
+          this.el.nativeElement.style.backgroundColor = color;
+        }
+      }]);
 
+      return TestDirective;
+    }();
 
-      pair() {
-        this._isPair = true;
-      }
+    TestDirective.ctorParameters = function () {
+      return [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]
+        /*reference to the host DOM element*/
 
-      reset() {
-        this._isClick = false;
-      }
-
+      }];
     };
 
-    CardComponent.ctorParameters = () => [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]
-    }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]
-    }];
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])('mouseEvent')], TestDirective.prototype, "mouseEventEmitter", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('mouseenter', ['$event'])], TestDirective.prototype, "onMouseEnter", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('mouseleave'['$event'])], TestDirective.prototype, "onMouseLeave", null);
+    TestDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+      selector: '[appTest]'
+    })], TestDirective);
+    /***/
+  },
 
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CardComponent.prototype, "data", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CardComponent.prototype, "cardIndex", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], CardComponent.prototype, "cardClicked", void 0);
-    CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-card',
+  /***/
+  "./src/app/share/timer/timer/timer.component.css":
+  /*!*******************************************************!*\
+    !*** ./src/app/share/timer/timer/timer.component.css ***!
+    \*******************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppShareTimerTimerTimerComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".elapsed {    \r\n    margin-top: 0.5em;\r\n    margin-bottom: 1em;\r\n    border: 1px solid gray;\r\n    padding: 0.5em 1.5em;\r\n    border-radius: 20px;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmUvdGltZXIvdGltZXIvdGltZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGlCQUFpQjtJQUNqQixrQkFBa0I7SUFDbEIsc0JBQXNCO0lBQ3RCLG9CQUFvQjtJQUNwQixtQkFBbUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC9zaGFyZS90aW1lci90aW1lci90aW1lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmVsYXBzZWQgeyAgICBcclxuICAgIG1hcmdpbi10b3A6IDAuNWVtO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMWVtO1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgZ3JheTtcclxuICAgIHBhZGRpbmc6IDAuNWVtIDEuNWVtO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcclxufVxyXG5cclxuIl19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/share/timer/timer/timer.component.ts":
+  /*!******************************************************!*\
+    !*** ./src/app/share/timer/timer/timer.component.ts ***!
+    \******************************************************/
+
+  /*! exports provided: TimerComponent */
+
+  /***/
+  function srcAppShareTimerTimerTimerComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TimerComponent", function () {
+      return TimerComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _test_test_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../test/test.directive */
+    "./src/app/share/test/test.directive.ts");
+
+    var TimerComponent =
+    /*#__PURE__*/
+    function () {
+      function TimerComponent() {
+        _classCallCheck(this, TimerComponent);
+
+        this.tickEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"](); // Simple Angular event register in HTML
+
+        this._elapsed = 0;
+        this._tickSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](0);
+      }
+
+      _createClass(TimerComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          console.log('[timer] ngAfterViewInit:testDirective', this.testDirective);
+        }
+      }, {
+        key: "start",
+        value: function start(reset) {
+          var _this2 = this;
+
+          if (!this._setIntervalHandler) {
+            if (reset) {
+              this.reset();
+            }
+
+            this._setIntervalHandler = setInterval(function () {
+              ++_this2._elapsed;
+
+              _this2.setElapsed(_this2._elapsed);
+            }, 1000);
+          }
+        }
+      }, {
+        key: "stop",
+        value: function stop() {
+          if (this._setIntervalHandler) {
+            clearInterval(this._setIntervalHandler);
+            this._setIntervalHandler = null;
+          }
+        }
+      }, {
+        key: "reset",
+        value: function reset() {
+          this.setElapsed(0);
+        }
+      }, {
+        key: "setElapsed",
+        value: function setElapsed(val) {
+          this._elapsed = val;
+          this.tickEvent.next(val); // Simple Angular event 
+
+          this._tickSubject.next(val); // for compoent host to get the event
+
+        }
+      }, {
+        key: "elapsed",
+        get: function get() {
+          return this._elapsed;
+        }
+      }, {
+        key: "tick$",
+        get: function get() {
+          return this._tickSubject.asObservable(); // for compoent host to get the event
+        }
+      }, {
+        key: "tickEvent$",
+        get: function get() {
+          return this.tickEvent.asObservable(); // Communication from timer to the component hosting the ng-content
+        }
+      }]);
+
+      return TimerComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])('tick')], TimerComponent.prototype, "tickEvent", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_test_test_directive__WEBPACK_IMPORTED_MODULE_3__["TestDirective"], {
+      static: false
+    })], TimerComponent.prototype, "testDirective", void 0);
+    TimerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-timer',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./card.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/memory/card/card/card.component.html")).default,
+      /*! raw-loader!./timer.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/share/timer/timer/timer.component.html")).default,
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./card.component.scss */
-      "./src/app/memory/card/card/card.component.scss")).default]
-    })], CardComponent);
+      /*! ./timer.component.css */
+      "./src/app/share/timer/timer/timer.component.css")).default]
+    })], TimerComponent);
     /***/
   },
 
@@ -1646,7 +1588,7 @@
     // The list of file replacements can be found in `angular.json`.
 
 
-    const environment = {
+    var environment = {
       production: false
     };
     /*
@@ -1709,7 +1651,9 @@
       Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
     }
 
-    Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"]).catch(err => console.error(err));
+    Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"]).catch(function (err) {
+      return console.error(err);
+    });
     /***/
   },
 
@@ -1724,7 +1668,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Meir\Interview\porjects\memory-game\src\main.ts */
+    /*! C:\Meir\Interview\porjects\card-matching-game\src\main.ts */
     "./src/main.ts");
     /***/
   }
