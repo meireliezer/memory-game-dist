@@ -374,9 +374,6 @@ let AppComponent = class AppComponent {
         this.memoryDataService = memoryDataService;
         this.init();
     }
-    ngOnInit() {
-        window.scrollTo(0, 1);
-    }
     get level() {
         return this.memoryGameManagerService.getCurrentLevel();
     }
