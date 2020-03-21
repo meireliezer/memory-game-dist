@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;-</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
 
 /***/ }),
 
@@ -355,7 +355,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/memory-game-manager.service */ "./src/app/core/memory-game-manager.service.ts");
 /* harmony import */ var _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/memory-data.service */ "./src/app/core/memory-data.service.ts");
 /* harmony import */ var _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./memory/card/card/card.component */ "./src/app/memory/card/card/card.component.ts");
-/* harmony import */ var _share_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./share/sound.service */ "./src/app/share/sound.service.ts");
+/* harmony import */ var _core_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./core/sound.service */ "./src/app/core/sound.service.ts");
 
 
 
@@ -557,7 +557,7 @@ let AppComponent = class AppComponent {
 AppComponent.ctorParameters = () => [
     { type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["MemoryGameManagerService"] },
     { type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"] },
-    { type: _share_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"] }
+    { type: _core_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])
@@ -701,6 +701,22 @@ const GAME_METADATA = [
         time: 20 * 2,
         score: 20 * 2,
         width: '25%',
+        height: '20%'
+    },
+    {
+        level: 10,
+        cards: 22,
+        time: 22 * 2,
+        score: 22 * 2,
+        width: '20%',
+        height: '20%'
+    },
+    {
+        level: 11,
+        cards: 24,
+        time: 24 * 2,
+        score: 24 * 2,
+        width: '20%',
         height: '20%'
     }
 ];
@@ -870,6 +886,61 @@ MemoryGameManagerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: 'root'
     })
 ], MemoryGameManagerService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/sound.service.ts":
+/*!***************************************!*\
+  !*** ./src/app/core/sound.service.ts ***!
+  \***************************************/
+/*! exports provided: SoundService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SoundService", function() { return SoundService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let SoundService = class SoundService {
+    constructor() {
+        // browsers limit the number of concurrent audio contexts, so you better re-use'em
+        this.audioContext = new AudioContext();
+    }
+    failed() {
+        this.beep(999, 500, 300);
+        this.beep(999, 210, 300);
+        this.beep(999, 100, 300);
+    }
+    complete() {
+        this.beep(999, 100, 100);
+        setTimeout(() => this.beep(999, 300, 100), 100);
+        setTimeout(() => this.beep(999, 500, 100), 200);
+        setTimeout(() => this.beep(999, 900, 100), 300);
+    }
+    beepCard(cardId) {
+        this.beep(999, ((cardId + 1) * 100), 100);
+    }
+    beep(vol, freq, duration) {
+        let oscillator = this.audioContext.createOscillator();
+        let gain = this.audioContext.createGain();
+        oscillator.connect(gain);
+        oscillator.frequency.value = freq;
+        oscillator.type = "square";
+        gain.connect(this.audioContext.destination);
+        gain.gain.value = vol * 0.01;
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + duration * 0.001);
+    }
+};
+SoundService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], SoundService);
 
 
 
@@ -1052,61 +1123,6 @@ CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./card.component.scss */ "./src/app/memory/card/card/card.component.scss")).default]
     })
 ], CardComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/share/sound.service.ts":
-/*!****************************************!*\
-  !*** ./src/app/share/sound.service.ts ***!
-  \****************************************/
-/*! exports provided: SoundService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SoundService", function() { return SoundService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let SoundService = class SoundService {
-    constructor() {
-        // browsers limit the number of concurrent audio contexts, so you better re-use'em
-        this.audioContext = new AudioContext();
-    }
-    failed() {
-        this.beep(999, 500, 300);
-        this.beep(999, 210, 300);
-        this.beep(999, 100, 300);
-    }
-    complete() {
-        this.beep(999, 100, 100);
-        setTimeout(() => this.beep(999, 300, 100), 100);
-        setTimeout(() => this.beep(999, 500, 100), 200);
-        setTimeout(() => this.beep(999, 900, 100), 300);
-    }
-    beepCard(cardId) {
-        this.beep(999, ((cardId + 1) * 100), 100);
-    }
-    beep(vol, freq, duration) {
-        let oscillator = this.audioContext.createOscillator();
-        let gain = this.audioContext.createGain();
-        oscillator.connect(gain);
-        oscillator.frequency.value = freq;
-        oscillator.type = "square";
-        gain.connect(this.audioContext.destination);
-        gain.gain.value = vol * 0.01;
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + duration * 0.001);
-    }
-};
-SoundService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], SoundService);
 
 
 
