@@ -355,6 +355,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/memory-game-manager.service */ "./src/app/core/memory-game-manager.service.ts");
 /* harmony import */ var _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/memory-data.service */ "./src/app/core/memory-data.service.ts");
 /* harmony import */ var _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./memory/card/card/card.component */ "./src/app/memory/card/card/card.component.ts");
+/* harmony import */ var _share_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./share/sound.service */ "./src/app/share/sound.service.ts");
+
 
 
 
@@ -369,9 +371,10 @@ var GAME_STATE;
     GAME_STATE[GAME_STATE["FAILED_COMPLETE"] = 4] = "FAILED_COMPLETE";
 })(GAME_STATE || (GAME_STATE = {}));
 let AppComponent = class AppComponent {
-    constructor(memoryGameManagerService, memoryDataService) {
+    constructor(memoryGameManagerService, memoryDataService, soundService) {
         this.memoryGameManagerService = memoryGameManagerService;
         this.memoryDataService = memoryDataService;
+        this.soundService = soundService;
         this.init();
     }
     get level() {
@@ -430,6 +433,7 @@ let AppComponent = class AppComponent {
         if (this._gameState === GAME_STATE.INIT) {
             this.onRun();
         }
+        this.soundService.beepCard(cardClicked.data.id);
         // First pair Click
         if (!this._firstCardClicked) {
             this._firstCardClicked = cardClicked;
@@ -458,11 +462,13 @@ let AppComponent = class AppComponent {
                     // Store data
                     this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
                     navigator.vibrate([300, 300, 300]);
+                    this.soundService.complete();
                 }
             }
             // Diffrent cards
             else {
                 navigator.vibrate(250);
+                this.soundService.failed();
                 setTimeout(() => {
                     this._cardComponents.forEach(cardComponent => {
                         if ((cardComponent.data.id === cardClicked.data.id) || (cardComponent.data.id === this._firstCardClicked.data.id)) {
@@ -550,7 +556,8 @@ let AppComponent = class AppComponent {
 };
 AppComponent.ctorParameters = () => [
     { type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["MemoryGameManagerService"] },
-    { type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"] }
+    { type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"] },
+    { type: _share_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])
@@ -1045,6 +1052,61 @@ CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./card.component.scss */ "./src/app/memory/card/card/card.component.scss")).default]
     })
 ], CardComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/share/sound.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/share/sound.service.ts ***!
+  \****************************************/
+/*! exports provided: SoundService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SoundService", function() { return SoundService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let SoundService = class SoundService {
+    constructor() {
+        // browsers limit the number of concurrent audio contexts, so you better re-use'em
+        this.audioContext = new AudioContext();
+    }
+    failed() {
+        this.beep(999, 500, 300);
+        this.beep(999, 210, 300);
+        this.beep(999, 100, 300);
+    }
+    complete() {
+        this.beep(999, 100, 100);
+        setTimeout(() => this.beep(999, 300, 100), 100);
+        setTimeout(() => this.beep(999, 500, 100), 200);
+        setTimeout(() => this.beep(999, 900, 100), 300);
+    }
+    beepCard(cardId) {
+        this.beep(999, ((cardId + 1) * 100), 100);
+    }
+    beep(vol, freq, duration) {
+        let oscillator = this.audioContext.createOscillator();
+        let gain = this.audioContext.createGain();
+        oscillator.connect(gain);
+        oscillator.frequency.value = freq;
+        oscillator.type = "square";
+        gain.connect(this.audioContext.destination);
+        gain.gain.value = vol * 0.01;
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + duration * 0.001);
+    }
+};
+SoundService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], SoundService);
 
 
 
