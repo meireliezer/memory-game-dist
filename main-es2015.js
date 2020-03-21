@@ -445,7 +445,7 @@ let AppComponent = class AppComponent {
                     }
                 });
                 this._firstCardClicked = null;
-                navigator.vibrate(200);
+                navigator.vibrate(50);
                 // ---------------------------------------------
                 // Complete game
                 // ---------------------------------------------
@@ -462,7 +462,7 @@ let AppComponent = class AppComponent {
             }
             // Diffrent cards
             else {
-                navigator.vibrate(2000);
+                navigator.vibrate(250);
                 setTimeout(() => {
                     this._cardComponents.forEach(cardComponent => {
                         if ((cardComponent.data.id === cardClicked.data.id) || (cardComponent.data.id === this._firstCardClicked.data.id)) {
