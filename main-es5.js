@@ -1966,6 +1966,10 @@
       constructor(fullscreenService) {
         this.fullscreenService = fullscreenService;
         this.display = true;
+
+        if (this.isIOS()) {
+          this.display = false;
+        }
       }
 
       ngOnInit() {}
@@ -1973,6 +1977,12 @@
       go() {
         this.fullscreenService.requestFullscreen();
         this.display = false;
+      }
+
+      isIOS() {
+        let agent = window.navigator.userAgent;
+        let start = agent.indexOf("OS ");
+        return (agent.indexOf("iPhone") > -1 || agent.indexOf("iPad") > -1) && start > -1;
       }
 
     };
