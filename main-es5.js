@@ -45,7 +45,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-openning-screen></app-openning-screen>\n\n<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
+    __webpack_exports__["default"] = "<app-openning-screen></app-openning-screen>\n\n\n<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center \"\n    (click)=\"onRun()\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x26B6;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
     /***/
   },
 
@@ -909,7 +909,7 @@
 
               this._firstCardClicked = null;
               this.vibrateService.pairMatch(); // ---------------------------------------------
-              // Complete game
+              // Complete level
               // ---------------------------------------------
 
               if (this.isComplete()) {
@@ -922,6 +922,7 @@
                 this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
                 this.vibrateService.complete();
                 this.soundService.complete();
+                this.setNewLevel(true);
               }
             } // Diffrent cards
             else {
@@ -980,6 +981,22 @@
       onReset() {
         this.memoryGameManagerService.reset();
         this.init();
+      }
+
+      toggleSound() {
+        this.soundService.toggleSound();
+      }
+
+      isSoundDisabled() {
+        return !this.soundService.isEnable();
+      }
+
+      toggleVibrate() {
+        this.vibrateService.toggleSound();
+      }
+
+      isVibrateDisabled() {
+        return this.vibrateService.isEnable();
       }
 
       init() {
@@ -1553,8 +1570,14 @@
 
     let SoundService = class SoundService {
       constructor() {
-        // browsers limit the number of concurrent audio contexts, so you better re-use'em
+        this._randomInervals = []; // browsers limit the number of concurrent audio contexts, so you better re-use'em
+
         this.audioContext = new AudioContext();
+        this._enabled = localStorage.getItem('sound') !== "0";
+      }
+
+      isEnable() {
+        return this._enabled;
       }
 
       pairMissMatch() {
@@ -1581,6 +1604,10 @@
       }
 
       beep(vol, freq, duration) {
+        if (this._enabled === false) {
+          return;
+        }
+
         let oscillator = this.audioContext.createOscillator();
         let gain = this.audioContext.createGain();
         oscillator.connect(gain);
@@ -1590,6 +1617,29 @@
         gain.gain.value = vol * 0.01;
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + duration * 0.001);
+      }
+
+      toggleSound() {
+        this._enabled = !this._enabled;
+        localStorage.setItem('sound', this._enabled ? "1" : "0");
+      }
+
+      randomStart() {
+        for (let i = 0; i < 4; ++i) {
+          let interval = setInterval(() => {
+            this.beep(999, Math.random() * 1000, Math.random() * 500);
+          }, Math.random() * 2000);
+
+          this._randomInervals.push(interval);
+        }
+      }
+
+      randomStop() {
+        this._randomInervals.forEach(intrevalHandler => {
+          clearInterval(intrevalHandler);
+        });
+
+        this._randomInervals = [];
       }
 
     };
@@ -1766,22 +1816,41 @@
     "./node_modules/@angular/core/fesm2015/core.js");
 
     let VibrateService = class VibrateService {
-      constructor() {}
+      constructor() {
+        this._enabled = localStorage.getItem('vibrate') !== "0";
+      }
+
+      isEnable() {
+        return this._enabled;
+      }
 
       levelFailed() {
-        navigator.vibrate(50);
+        this.vibrate(50);
       }
 
       complete() {
-        navigator.vibrate([300, 300, 300]);
+        this.vibrate([300, 300, 300]);
       }
 
       pairMatch() {
-        navigator.vibrate(50);
+        this.vibrate(50);
       }
 
       pairMissMatch() {
-        navigator.vibrate(250);
+        this.vibrate(250);
+      }
+
+      toggleSound() {
+        this._enabled = !this._enabled;
+        localStorage.setItem('vibrate', this._enabled ? "1" : "0");
+      }
+
+      vibrate(arg) {
+        if (!this._enabled) {
+          return;
+        }
+
+        navigator.vibrate(arg);
       }
 
     };
@@ -1920,7 +1989,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".openning-screen {\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: 2;\n  background-color: rgba(0, 0, 0, 0.753);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.openning-screen .os-title {\n  font-size: 1.7em;\n  text-align: center;\n  color: chartreuse;\n  text-transform: uppercase;\n  letter-spacing: 1em;\n  line-height: 2em;\n  text-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n}\n.openning-screen .os-card {\n  display: inline-block;\n  height: 7em;\n  width: 5em;\n  margin: 2em;\n  background-color: chocolate;\n  border: 2px solid black;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(210, 105, 30, 0.24);\n}\n.openning-screen .os-card:first-of-type {\n  background-color: blue;\n  -webkit-transform: rotate(-20deg);\n          transform: rotate(-20deg);\n}\n.openning-screen .os-card:last-of-type {\n  background-color: blueviolet;\n  -webkit-transform: rotate(20deg);\n          transform: rotate(20deg);\n}\n.openning-screen .os-btn {\n  padding: 1em 3em;\n  background-color: chartreuse;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n  cursor: pointer;\n}\n.openning-screen .os-btn:hover {\n  background-color: rgba(128, 255, 0, 0.514);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcb3Blbm5pbmctc2NyZWVuXFxvcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsVUFBQTtFQUNBLHNDQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsNEJBQUE7RUFBQSw2QkFBQTtVQUFBLHNCQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBRENJO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaURBQUE7QUNDUjtBRE1JO0VBQ0kscUJBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTtFQUNBLFdBQUE7RUFDQSwyQkFBQTtFQUNBLHVCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtBQ0pSO0FETVE7RUFDSSxzQkFBQTtFQUNBLGlDQUFBO1VBQUEseUJBQUE7QUNKWjtBRE9RO0VBQ0ksNEJBQUE7RUFDQSxnQ0FBQTtVQUFBLHdCQUFBO0FDTFo7QURVSTtFQUNJLGdCQUFBO0VBQ0EsNEJBQUE7RUFDQSxrQkFBQTtFQUNBLGdEQUFBO0VBQ0EsZUFBQTtBQ1JSO0FEVVE7RUFDSSwwQ0FBQTtBQ1JaIiwiZmlsZSI6InNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL29wZW5uaW5nLXNjcmVlbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5vcGVubmluZy1zY3JlZW4ge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIHotaW5kZXg6IDI7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNzUzKTtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG5cclxuICAgIC5vcy10aXRsZXtcclxuICAgICAgICBmb250LXNpemU6IDEuN2VtOyAgICBcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgY29sb3I6IGNoYXJ0cmV1c2U7XHJcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgICAgICBsZXR0ZXItc3BhY2luZzogMWVtO1xyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyZW07ICAgICAgICBcclxuICAgICAgICB0ZXh0LXNoYWRvdzogNXB4IDVweCA1cHggIHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcclxuICAgIH1cclxuXHJcbiAgICAub3MtY2FyZHMge1xyXG5cclxuICAgIH1cclxuXHJcbiAgICAub3MtY2FyZCB7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgICAgIGhlaWdodDogN2VtO1xyXG4gICAgICAgIHdpZHRoOiA1ZW07ICAgICAgICBcclxuICAgICAgICBtYXJnaW46IDJlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBjaG9jb2xhdGU7XHJcbiAgICAgICAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgICAgIGJveC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMjEwLCAxMDUsIDMwLCAwLjI0KTtcclxuXHJcbiAgICAgICAgJjpmaXJzdC1vZi10eXBle1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgtMjBkZWcpO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgJjpsYXN0LW9mLXR5cGV7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgfVxyXG5cclxuICAgIC5vcy1idG4ge1xyXG4gICAgICAgIHBhZGRpbmc6IDFlbSAzZW07XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTtcclxuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgxMjgsIDI1NSwgMCwgMC4yODgpO1xyXG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAgICAgJjpob3ZlcntcclxuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMjgsIDI1NSwgMCwgMC41MTQpOztcclxuICAgICAgICB9XHJcblxyXG4gICAgfVxyXG5cclxuXHJcblxyXG59IiwiLm9wZW5uaW5nLXNjcmVlbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDEwMHZ3O1xuICBoZWlnaHQ6IDEwMHZoO1xuICB6LWluZGV4OiAyO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNzUzKTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy10aXRsZSB7XG4gIGZvbnQtc2l6ZTogMS43ZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6IGNoYXJ0cmV1c2U7XG4gIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gIGxldHRlci1zcGFjaW5nOiAxZW07XG4gIGxpbmUtaGVpZ2h0OiAyZW07XG4gIHRleHQtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1jYXJkIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBoZWlnaHQ6IDdlbTtcbiAgd2lkdGg6IDVlbTtcbiAgbWFyZ2luOiAyZW07XG4gIGJhY2tncm91bmQtY29sb3I6IGNob2NvbGF0ZTtcbiAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgyMTAsIDEwNSwgMzAsIDAuMjQpO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtY2FyZDpmaXJzdC1vZi10eXBlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcbiAgdHJhbnNmb3JtOiByb3RhdGUoLTIwZGVnKTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQ6bGFzdC1vZi10eXBlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZXZpb2xldDtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMjBkZWcpO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtYnRuIHtcbiAgcGFkZGluZzogMWVtIDNlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWJ0bjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTI4LCAyNTUsIDAsIDAuNTE0KTtcbn0iXX0= */";
+    __webpack_exports__["default"] = ".openning-screen {\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: 2;\n  background-color: rgba(0, 0, 0, 0.753);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.openning-screen .os-title {\n  font-size: 1.7em;\n  text-align: center;\n  color: chartreuse;\n  text-transform: uppercase;\n  letter-spacing: 1em;\n  line-height: 2em;\n  text-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n}\n.openning-screen .os-card {\n  display: inline-block;\n  height: 7em;\n  width: 5em;\n  margin: 2em;\n  background-color: chocolate;\n  border: 2px solid black;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(210, 105, 30, 0.24);\n  -webkit-animation-name: rotate;\n          animation-name: rotate;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear;\n}\n.openning-screen .os-card:first-of-type {\n  background-color: blue;\n  -webkit-transform: rotate(-20deg);\n          transform: rotate(-20deg);\n  -webkit-animation-direction: normal;\n          animation-direction: normal;\n}\n.openning-screen .os-card:last-of-type {\n  background-color: blueviolet;\n  -webkit-transform: rotate(20deg);\n          transform: rotate(20deg);\n  animation-direction: reverse;\n}\n.openning-screen .os-btn {\n  padding: 1em 3em;\n  background-color: chartreuse;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n  cursor: pointer;\n}\n.openning-screen .os-btn:hover {\n  background-color: rgba(128, 255, 0, 0.514);\n}\n@-webkit-keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@-webkit-keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n@keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcb3Blbm5pbmctc2NyZWVuXFxvcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsVUFBQTtFQUNBLHNDQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsNEJBQUE7RUFBQSw2QkFBQTtVQUFBLHNCQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBRENJO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaURBQUE7QUNDUjtBRE1JO0VBQ0kscUJBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTtFQUNBLFdBQUE7RUFDQSwyQkFBQTtFQUNBLHVCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtFQUNBLDhCQUFBO1VBQUEsc0JBQUE7RUFDQSw4QkFBQTtVQUFBLHNCQUFBO0VBQ0EsMkNBQUE7VUFBQSxtQ0FBQTtFQUNBLHlDQUFBO1VBQUEsaUNBQUE7QUNKUjtBRE1RO0VBQ0ksc0JBQUE7RUFDQSxpQ0FBQTtVQUFBLHlCQUFBO0VBQ0EsbUNBQUE7VUFBQSwyQkFBQTtBQ0paO0FET1E7RUFDSSw0QkFBQTtFQUNBLGdDQUFBO1VBQUEsd0JBQUE7RUFDQSw0QkFBQTtBQ0xaO0FEVUk7RUFDSSxnQkFBQTtFQUNBLDRCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtFQUNBLGVBQUE7QUNSUjtBRFVRO0VBQ0ksMENBQUE7QUNSWjtBRGFJO0VBQ0k7SUFDSSw0QkFBQTtZQUFBLG9CQUFBO0VDWFY7RURjTTtJQUNJLGdDQUFBO1lBQUEsd0JBQUE7RUNaVjtFRGVNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ2JWO0VEZ0JNO0lBQ0ksaUNBQUE7WUFBQSx5QkFBQTtFQ2RWO0VEZ0JNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ2RWO0FBQ0Y7QURKSTtFQUNJO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ1hWO0VEY007SUFDSSxnQ0FBQTtZQUFBLHdCQUFBO0VDWlY7RURlTTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNiVjtFRGdCTTtJQUNJLGlDQUFBO1lBQUEseUJBQUE7RUNkVjtFRGdCTTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNkVjtBQUNGO0FEbUJJO0VBQ0k7SUFBTSxxQkFBQTtFQ2hCWjtFRGlCTTtJQUFJLHdCQUFBO0VDZFY7QUFDRjtBRFdJO0VBQ0k7SUFBTSxxQkFBQTtFQ2hCWjtFRGlCTTtJQUFJLHdCQUFBO0VDZFY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub3Blbm5pbmctc2NyZWVuIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiAxMDB2dztcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICB6LWluZGV4OiAyO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjc1Myk7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIFxyXG4gICAgLm9zLXRpdGxle1xyXG4gICAgICAgIGZvbnQtc2l6ZTogMS43ZW07ICAgIFxyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBjb2xvcjogY2hhcnRyZXVzZTtcclxuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gICAgICAgIGxldHRlci1zcGFjaW5nOiAxZW07XHJcbiAgICAgICAgbGluZS1oZWlnaHQ6IDJlbTsgICAgICAgIFxyXG4gICAgICAgIHRleHQtc2hhZG93OiA1cHggNXB4IDVweCAgcmdiYSgxMjgsIDI1NSwgMCwgMC4yODgpO1xyXG4gICAgfVxyXG5cclxuICAgIC5vcy1jYXJkcyB7XHJcblxyXG4gICAgfVxyXG5cclxuICAgIC5vcy1jYXJkIHtcclxuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAgICAgaGVpZ2h0OiA3ZW07XHJcbiAgICAgICAgd2lkdGg6IDVlbTsgICAgICAgIFxyXG4gICAgICAgIG1hcmdpbjogMmVtO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IGNob2NvbGF0ZTtcclxuICAgICAgICBib3JkZXI6IDJweCBzb2xpZCBibGFjaztcclxuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgyMTAsIDEwNSwgMzAsIDAuMjQpO1xyXG4gICAgICAgIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XHJcbiAgICAgICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxcztcclxuICAgICAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTtcclxuICAgICAgICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XHJcblxyXG4gICAgICAgICY6Zmlyc3Qtb2YtdHlwZXtcclxuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoLTIwZGVnKTtcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRpcmVjdGlvbjogbm9ybWFsO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgJjpsYXN0LW9mLXR5cGV7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRpcmVjdGlvbjogcmV2ZXJzZTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICB9XHJcblxyXG4gICAgLm9zLWJ0biB7XHJcbiAgICAgICAgcGFkZGluZzogMWVtIDNlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBjaGFydHJldXNlO1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XHJcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xyXG5cclxuICAgICAgICAmOmhvdmVye1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEyOCwgMjU1LCAwLCAwLjUxNCk7O1xyXG4gICAgICAgIH1cclxuXHJcbiAgICB9XHJcblxyXG4gICAgQGtleWZyYW1lcyByb3RhdGV7XHJcbiAgICAgICAgMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIDI1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDEwZGVnKTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICAgICAgNTAlICB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xyXG4gICAgICAgIH0gICAgXHJcblxyXG4gICAgICAgIDc1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKC0xMGRlZyk7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIDEwMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG5cclxuICAgIH1cclxuXHJcbiAgICBAa2V5ZnJhbWVzIGV4YW1wbGUge1xyXG4gICAgICAgIGZyb20ge2JhY2tncm91bmQtY29sb3I6IHJlZDt9XHJcbiAgICAgICAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XHJcbiAgICAgIH1cclxuXHJcbn0iLCIub3Blbm5pbmctc2NyZWVuIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIHotaW5kZXg6IDI7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC43NTMpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxLjdlbTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogY2hhcnRyZXVzZTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgbGV0dGVyLXNwYWNpbmc6IDFlbTtcbiAgbGluZS1oZWlnaHQ6IDJlbTtcbiAgdGV4dC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGhlaWdodDogN2VtO1xuICB3aWR0aDogNWVtO1xuICBtYXJnaW46IDJlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hvY29sYXRlO1xuICBib3JkZXI6IDJweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDIxMCwgMTA1LCAzMCwgMC4yNCk7XG4gIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XG4gIGFuaW1hdGlvbi1pdGVyYXRpb24tY291bnQ6IGluZmluaXRlO1xuICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1jYXJkOmZpcnN0LW9mLXR5cGUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgtMjBkZWcpO1xuICBhbmltYXRpb24tZGlyZWN0aW9uOiBub3JtYWw7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1jYXJkOmxhc3Qtb2YtdHlwZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XG4gIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcbiAgYW5pbWF0aW9uLWRpcmVjdGlvbjogcmV2ZXJzZTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWJ0biB7XG4gIHBhZGRpbmc6IDFlbSAzZW07XG4gIGJhY2tncm91bmQtY29sb3I6IGNoYXJ0cmV1c2U7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgxMjgsIDI1NSwgMCwgMC4yODgpO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1idG46aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEyOCwgMjU1LCAwLCAwLjUxNCk7XG59XG5Aa2V5ZnJhbWVzIHJvdGF0ZSB7XG4gIDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbiAgfVxuICAyNSUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDEwZGVnKTtcbiAgfVxuICA1MCUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xuICB9XG4gIDc1JSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoLTEwZGVnKTtcbiAgfVxuICAxMDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbiAgfVxufVxuQGtleWZyYW1lcyBleGFtcGxlIHtcbiAgZnJvbSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xuICB9XG4gIHRvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB5ZWxsb3c7XG4gIH1cbn0iXX0= */";
     /***/
   },
 
@@ -1966,10 +2035,6 @@
       constructor(fullscreenService) {
         this.fullscreenService = fullscreenService;
         this.display = true;
-
-        if (this.isIOS()) {
-          this.display = false;
-        }
       }
 
       ngOnInit() {}
