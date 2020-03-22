@@ -45,7 +45,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
+    __webpack_exports__["default"] = "<app-openning-screen></app-openning-screen>\n\n<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">Lives<div class=\"value heart\">{{lives}}&#x2764;</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action \"\n    (click)=\"onRun()\">\n    <div *ngIf=\"(gameState === 0)\"  title=\"Run\">&#9658;</div> <!-- play -->\n    <div *ngIf=\"(gameState !== 0 )\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
     /***/
   },
 
@@ -66,6 +66,26 @@
 
 
     __webpack_exports__["default"] = "<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"(isActive()? data.data: '')\"\n        >\n\n        <!--\n            {{data | json}}\n        -->\n\n        </div>        \n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/openning-screen/openning-screen.component.html":
+  /*!******************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/openning-screen/openning-screen.component.html ***!
+    \******************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppOpenningScreenOpenningScreenComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"openning-screen\" *ngIf=\"display\">\n\n    <div class=\"os-title\">Memory Match</div>\n    <div class=\"os-cards\">\n        <div class=\"os-card\"></div>\n        <div class=\"os-card\"></div>    \n    </div>\n    <div class=\"os-btn\"\n        (click)=\"go()\">Go</div>\n</div>\n";
     /***/
   },
 
@@ -757,9 +777,21 @@
     /* harmony import */
 
 
-    var _core_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./core/sound.service */
-    "./src/app/core/sound.service.ts");
+    var _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./core/windows/sound.service */
+    "./src/app/core/windows/sound.service.ts");
+    /* harmony import */
+
+
+    var _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./core/windows/vibrate.service */
+    "./src/app/core/windows/vibrate.service.ts");
+    /* harmony import */
+
+
+    var _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./core/windows/full-screen.service */
+    "./src/app/core/windows/full-screen.service.ts");
 
     var GAME_STATE;
 
@@ -772,11 +804,18 @@
     })(GAME_STATE || (GAME_STATE = {}));
 
     let AppComponent = class AppComponent {
-      constructor(memoryGameManagerService, memoryDataService, soundService) {
+      constructor(memoryGameManagerService, memoryDataService, soundService, vibrateService, fullscreenService) {
         this.memoryGameManagerService = memoryGameManagerService;
         this.memoryDataService = memoryDataService;
         this.soundService = soundService;
+        this.vibrateService = vibrateService;
+        this.fullscreenService = fullscreenService;
+        this.i = true;
         this.init();
+      }
+
+      ngOnDestroy() {
+        this.fullscreenService.exitFullscreen();
       }
 
       get level() {
@@ -869,7 +908,7 @@
               });
 
               this._firstCardClicked = null;
-              navigator.vibrate(50); // ---------------------------------------------
+              this.vibrateService.pairMatch(); // ---------------------------------------------
               // Complete game
               // ---------------------------------------------
 
@@ -881,13 +920,13 @@
                 this._gameState = this.current > 0 ? GAME_STATE.COMPLETE : GAME_STATE.FAILED_COMPLETE; // Store data
 
                 this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
-                navigator.vibrate([300, 300, 300]);
+                this.vibrateService.complete();
                 this.soundService.complete();
               }
             } // Diffrent cards
             else {
-                navigator.vibrate(250);
-                this.soundService.failed();
+                this.vibrateService.pairMissMatch();
+                this.soundService.pairMissMatch();
                 setTimeout(() => {
                   this._cardComponents.forEach(cardComponent => {
                     if (cardComponent.data.id === cardClicked.data.id || cardComponent.data.id === this._firstCardClicked.data.id) {
@@ -925,7 +964,8 @@
             } else {
               // Reduce lives
               if (this._gameState !== GAME_STATE.FAILED) {
-                // Only if it is  user max level
+                this.soundService.failed(); // Only if it is  user max level            
+
                 if (this.level === this.memoryGameManagerService.getUserMaxLevel()) {
                   this.changeLives(-1);
                 }
@@ -993,7 +1033,11 @@
     }, {
       type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"]
     }, {
-      type: _core_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"]
+      type: _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"]
+    }, {
+      type: _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_6__["VibrateService"]
+    }, {
+      type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__["FullScreenService"]
     }];
 
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])], AppComponent.prototype, "_cardComponents", void 0);
@@ -1064,10 +1108,16 @@
     var _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./memory/card/card/card.component */
     "./src/app/memory/card/card/card.component.ts");
+    /* harmony import */
+
+
+    var _openning_screen_openning_screen_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./openning-screen/openning-screen.component */
+    "./src/app/openning-screen/openning-screen.component.ts");
 
     let AppModule = class AppModule {};
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_5__["CardComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_5__["CardComponent"], _openning_screen_openning_screen_component__WEBPACK_IMPORTED_MODULE_6__["OpenningScreenComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
       providers: [],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -1299,9 +1349,9 @@
     /* harmony import */
 
 
-    var _user_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./user-data.service */
-    "./src/app/core/user-data.service.ts");
+    var _windows_user_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./windows/user-data.service */
+    "./src/app/core/windows/user-data.service.ts");
 
     let MemoryGameManagerService = class MemoryGameManagerService {
       constructor(userDataService) {
@@ -1390,7 +1440,7 @@
     };
 
     MemoryGameManagerService.ctorParameters = () => [{
-      type: _user_data_service__WEBPACK_IMPORTED_MODULE_3__["UserDataService"]
+      type: _windows_user_data_service__WEBPACK_IMPORTED_MODULE_3__["UserDataService"]
     }];
 
     MemoryGameManagerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1400,15 +1450,85 @@
   },
 
   /***/
-  "./src/app/core/sound.service.ts":
-  /*!***************************************!*\
-    !*** ./src/app/core/sound.service.ts ***!
-    \***************************************/
+  "./src/app/core/windows/full-screen.service.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/core/windows/full-screen.service.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: FullScreenService */
+
+  /***/
+  function srcAppCoreWindowsFullScreenServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FullScreenService", function () {
+      return FullScreenService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let FullScreenService = class FullScreenService {
+      constructor() {}
+
+      requestFullscreen() {
+        var docElm = document.documentElement;
+
+        if (docElm.requestFullscreen) {
+          docElm.requestFullscreen();
+        } else if (docElm.mozRequestFullScreen) {
+          docElm.mozRequestFullScreen();
+        } else if (docElm.webkitRequestFullScreen) {
+          docElm.webkitRequestFullScreen();
+        } else if (docElm.msRequestFullscreen) {
+          docElm.msRequestFullscreen();
+        }
+      }
+
+      exitFullscreen() {
+        let doc = document;
+
+        if (doc.exitFullscreen) {
+          doc.exitFullscreen();
+        } else if (doc.mozCancelFullScreen) {
+          doc.mozCancelFullScreen();
+        } else if (doc.webkitCancelFullScreen) {
+          doc.webkitCancelFullScreen();
+        } else if (doc.msExitFullscreen) {
+          doc.msExitFullscreen();
+        }
+      }
+
+    };
+    FullScreenService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], FullScreenService);
+    /***/
+  },
+
+  /***/
+  "./src/app/core/windows/sound.service.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/core/windows/sound.service.ts ***!
+    \***********************************************/
 
   /*! exports provided: SoundService */
 
   /***/
-  function srcAppCoreSoundServiceTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppCoreWindowsSoundServiceTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -1437,7 +1557,7 @@
         this.audioContext = new AudioContext();
       }
 
-      failed() {
+      pairMissMatch() {
         this.beep(999, 500, 300);
         this.beep(999, 210, 300);
         this.beep(999, 100, 300);
@@ -1448,6 +1568,12 @@
         setTimeout(() => this.beep(999, 300, 100), 100);
         setTimeout(() => this.beep(999, 500, 100), 200);
         setTimeout(() => this.beep(999, 900, 100), 300);
+      }
+
+      failed() {
+        this.beep(999, 80, 600);
+        this.beep(999, 800, 700);
+        this.beep(999, 600, 600);
       }
 
       beepCard(cardId) {
@@ -1474,15 +1600,15 @@
   },
 
   /***/
-  "./src/app/core/user-data.service.ts":
-  /*!*******************************************!*\
-    !*** ./src/app/core/user-data.service.ts ***!
-    \*******************************************/
+  "./src/app/core/windows/user-data.service.ts":
+  /*!***************************************************!*\
+    !*** ./src/app/core/windows/user-data.service.ts ***!
+    \***************************************************/
 
   /*! exports provided: UserDataService */
 
   /***/
-  function srcAppCoreUserDataServiceTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppCoreWindowsUserDataServiceTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -1608,6 +1734,64 @@
   },
 
   /***/
+  "./src/app/core/windows/vibrate.service.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/core/windows/vibrate.service.ts ***!
+    \*************************************************/
+
+  /*! exports provided: VibrateService */
+
+  /***/
+  function srcAppCoreWindowsVibrateServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "VibrateService", function () {
+      return VibrateService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let VibrateService = class VibrateService {
+      constructor() {}
+
+      levelFailed() {
+        navigator.vibrate(50);
+      }
+
+      complete() {
+        navigator.vibrate([300, 300, 300]);
+      }
+
+      pairMatch() {
+        navigator.vibrate(50);
+      }
+
+      pairMissMatch() {
+        navigator.vibrate(250);
+      }
+
+    };
+    VibrateService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], VibrateService);
+    /***/
+  },
+
+  /***/
   "./src/app/memory/card/card/card.component.scss":
   /*!******************************************************!*\
     !*** ./src/app/memory/card/card/card.component.scss ***!
@@ -1717,6 +1901,95 @@
       /*! ./card.component.scss */
       "./src/app/memory/card/card/card.component.scss")).default]
     })], CardComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/openning-screen/openning-screen.component.scss":
+  /*!****************************************************************!*\
+    !*** ./src/app/openning-screen/openning-screen.component.scss ***!
+    \****************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppOpenningScreenOpenningScreenComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".openning-screen {\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: 2;\n  background-color: rgba(0, 0, 0, 0.753);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.openning-screen .os-title {\n  font-size: 3em;\n  text-align: center;\n  color: chartreuse;\n  text-transform: uppercase;\n  letter-spacing: 1em;\n  line-height: 2em;\n  text-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n}\n.openning-screen .os-card {\n  display: inline-block;\n  height: 10em;\n  width: 7em;\n  margin: 1em;\n  background-color: chocolate;\n  border: 2px solid black;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(210, 105, 30, 0.24);\n}\n.openning-screen .os-card:first-of-type {\n  background-color: blue;\n  -webkit-transform: rotate(-20deg);\n          transform: rotate(-20deg);\n}\n.openning-screen .os-card:last-of-type {\n  background-color: blueviolet;\n  -webkit-transform: rotate(20deg);\n          transform: rotate(20deg);\n}\n.openning-screen .os-btn {\n  padding: 1em 3em;\n  background-color: chartreuse;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n  cursor: pointer;\n}\n.openning-screen .os-btn:hover {\n  background-color: rgba(128, 255, 0, 0.514);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcb3Blbm5pbmctc2NyZWVuXFxvcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsVUFBQTtFQUNBLHNDQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsNEJBQUE7RUFBQSw2QkFBQTtVQUFBLHNCQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBRENJO0VBQ0ksY0FBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSx5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpREFBQTtBQ0NSO0FETUk7RUFDSSxxQkFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLDJCQUFBO0VBQ0EsdUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdEQUFBO0FDSlI7QURNUTtFQUNJLHNCQUFBO0VBQ0EsaUNBQUE7VUFBQSx5QkFBQTtBQ0paO0FET1E7RUFDSSw0QkFBQTtFQUNBLGdDQUFBO1VBQUEsd0JBQUE7QUNMWjtBRFVJO0VBQ0ksZ0JBQUE7RUFDQSw0QkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0RBQUE7RUFDQSxlQUFBO0FDUlI7QURVUTtFQUNJLDBDQUFBO0FDUloiLCJmaWxlIjoic3JjL2FwcC9vcGVubmluZy1zY3JlZW4vb3Blbm5pbmctc2NyZWVuLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9wZW5uaW5nLXNjcmVlbiB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgei1pbmRleDogMjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC43NTMpO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcblxyXG4gICAgLm9zLXRpdGxle1xyXG4gICAgICAgIGZvbnQtc2l6ZTogM2VtOyAgICBcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgY29sb3I6IGNoYXJ0cmV1c2U7XHJcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgICAgICBsZXR0ZXItc3BhY2luZzogMWVtO1xyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyZW07ICAgICAgICBcclxuICAgICAgICB0ZXh0LXNoYWRvdzogNXB4IDVweCA1cHggIHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcclxuICAgIH1cclxuXHJcbiAgICAub3MtY2FyZHMge1xyXG5cclxuICAgIH1cclxuXHJcbiAgICAub3MtY2FyZCB7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgICAgIGhlaWdodDogMTBlbTtcclxuICAgICAgICB3aWR0aDogN2VtOyAgICAgICAgXHJcbiAgICAgICAgbWFyZ2luOiAxZW07XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogY2hvY29sYXRlO1xyXG4gICAgICAgIGJvcmRlcjogMnB4IHNvbGlkIGJsYWNrO1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDIxMCwgMTA1LCAzMCwgMC4yNCk7XHJcblxyXG4gICAgICAgICY6Zmlyc3Qtb2YtdHlwZXtcclxuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoLTIwZGVnKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgICY6bGFzdC1vZi10eXBle1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVldmlvbGV0O1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgyMGRlZyk7XHJcbiAgICAgICAgfVxyXG5cclxuICAgIH1cclxuXHJcbiAgICAub3MtYnRuIHtcclxuICAgICAgICBwYWRkaW5nOiAxZW0gM2VtO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IGNoYXJ0cmV1c2U7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgICAgIGJveC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcclxuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XHJcblxyXG4gICAgICAgICY6aG92ZXJ7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTI4LCAyNTUsIDAsIDAuNTE0KTs7XHJcbiAgICAgICAgfVxyXG5cclxuICAgIH1cclxuXHJcblxyXG5cclxufSIsIi5vcGVubmluZy1zY3JlZW4ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgei1pbmRleDogMjtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjc1Myk7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtdGl0bGUge1xuICBmb250LXNpemU6IDNlbTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogY2hhcnRyZXVzZTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgbGV0dGVyLXNwYWNpbmc6IDFlbTtcbiAgbGluZS1oZWlnaHQ6IDJlbTtcbiAgdGV4dC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGhlaWdodDogMTBlbTtcbiAgd2lkdGg6IDdlbTtcbiAgbWFyZ2luOiAxZW07XG4gIGJhY2tncm91bmQtY29sb3I6IGNob2NvbGF0ZTtcbiAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgyMTAsIDEwNSwgMzAsIDAuMjQpO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtY2FyZDpmaXJzdC1vZi10eXBlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcbiAgdHJhbnNmb3JtOiByb3RhdGUoLTIwZGVnKTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQ6bGFzdC1vZi10eXBlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZXZpb2xldDtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMjBkZWcpO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtYnRuIHtcbiAgcGFkZGluZzogMWVtIDNlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWJ0bjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTI4LCAyNTUsIDAsIDAuNTE0KTtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/openning-screen/openning-screen.component.ts":
+  /*!**************************************************************!*\
+    !*** ./src/app/openning-screen/openning-screen.component.ts ***!
+    \**************************************************************/
+
+  /*! exports provided: OpenningScreenComponent */
+
+  /***/
+  function srcAppOpenningScreenOpenningScreenComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "OpenningScreenComponent", function () {
+      return OpenningScreenComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../core/windows/full-screen.service */
+    "./src/app/core/windows/full-screen.service.ts");
+
+    let OpenningScreenComponent = class OpenningScreenComponent {
+      constructor(fullscreenService) {
+        this.fullscreenService = fullscreenService;
+        this.display = true;
+      }
+
+      ngOnInit() {}
+
+      go() {
+        this.fullscreenService.requestFullscreen();
+        this.display = false;
+      }
+
+    };
+
+    OpenningScreenComponent.ctorParameters = () => [{
+      type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__["FullScreenService"]
+    }];
+
+    OpenningScreenComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-openning-screen',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./openning-screen.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/openning-screen/openning-screen.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./openning-screen.component.scss */
+      "./src/app/openning-screen/openning-screen.component.scss")).default]
+    })], OpenningScreenComponent);
     /***/
   },
 
