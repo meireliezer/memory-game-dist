@@ -982,28 +982,29 @@ let SoundService = class SoundService {
         // browsers limit the number of concurrent audio contexts, so you better re-use'em
         this.audioContext = new AudioContext();
         this._enabled = localStorage.getItem('sound') !== "0";
+        this._volume = 500;
     }
     isEnable() {
         return this._enabled;
     }
     pairMissMatch() {
-        this.beep(999, 500, 300);
-        this.beep(999, 210, 300);
-        this.beep(999, 100, 300);
+        this.beep(this._volume, 500, 300);
+        this.beep(this._volume, 210, 300);
+        this.beep(this._volume, 100, 300);
     }
     complete() {
         this.beep(999, 100, 100);
-        setTimeout(() => this.beep(999, 300, 100), 100);
-        setTimeout(() => this.beep(999, 500, 100), 200);
-        setTimeout(() => this.beep(999, 900, 100), 300);
+        setTimeout(() => this.beep(this._volume, 300, 100), 100);
+        setTimeout(() => this.beep(this._volume, 500, 100), 200);
+        setTimeout(() => this.beep(this._volume, 900, 100), 300);
     }
     failed() {
-        this.beep(999, 80, 600);
-        this.beep(999, 800, 700);
-        this.beep(999, 600, 600);
+        this.beep(this._volume, 80, 600);
+        this.beep(this._volume, 800, 700);
+        this.beep(this._volume, 600, 600);
     }
     beepCard(cardId) {
-        this.beep(999, ((cardId + 1) * 100), 100);
+        this.beep(this._volume, ((cardId + 1) * 100), 100);
     }
     beep(vol, freq, duration) {
         if (this._enabled === false) {
@@ -1321,7 +1322,7 @@ let OpenningScreenComponent = class OpenningScreenComponent {
     ngOnInit() {
     }
     go() {
-        //this.fullscreenService.requestFullscreen();  
+        this.fullscreenService.requestFullscreen();
         this.display = false;
     }
     isIOS() {
