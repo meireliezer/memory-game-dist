@@ -1543,29 +1543,29 @@
       }
 
       pairMissMatch() {
-        this.beep(this._volume, 500, 300);
-        this.beep(this._volume, 210, 300);
-        this.beep(this._volume, 100, 300);
+        this.beep(500, 300);
+        this.beep(210, 300);
+        this.beep(100, 300);
       }
 
       complete() {
-        this.beep(999, 100, 100);
-        setTimeout(() => this.beep(this._volume, 300, 100), 100);
-        setTimeout(() => this.beep(this._volume, 500, 100), 200);
-        setTimeout(() => this.beep(this._volume, 900, 100), 300);
+        this.beep(100, 100);
+        setTimeout(() => this.beep(300, 100), 100);
+        setTimeout(() => this.beep(500, 100), 200);
+        setTimeout(() => this.beep(900, 100), 300);
       }
 
       failed() {
-        this.beep(this._volume, 80, 600);
-        this.beep(this._volume, 800, 700);
-        this.beep(this._volume, 600, 600);
+        this.beep(80, 600);
+        this.beep(800, 700);
+        this.beep(600, 600);
       }
 
       beepCard(cardId) {
-        this.beep(this._volume, (cardId + 1) * 100, 100);
+        this.beep((cardId + 1) * 100, 100);
       }
 
-      beep(vol, freq, duration) {
+      beep(freq, duration) {
         if (this._enabled === false) {
           return;
         }
@@ -1576,7 +1576,7 @@
         oscillator.frequency.value = freq;
         oscillator.type = "square";
         gain.connect(this.audioContext.destination);
-        gain.gain.value = vol * 0.01;
+        gain.gain.value = this._volume * 0.01;
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + duration * 0.001);
       }
@@ -1589,7 +1589,7 @@
       randomStart() {
         for (let i = 0; i < 4; ++i) {
           let interval = setInterval(() => {
-            this.beep(999, Math.random() * 1000, Math.random() * 500);
+            this.beep(Math.random() * 1000, Math.random() * 500);
           }, Math.random() * 2000);
 
           this._randomInervals.push(interval);
