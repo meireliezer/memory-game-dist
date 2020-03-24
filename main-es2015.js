@@ -979,8 +979,7 @@ __webpack_require__.r(__webpack_exports__);
 let SoundService = class SoundService {
     constructor() {
         this._randomInervals = [];
-        // browsers limit the number of concurrent audio contexts, so you better re-use'em
-        this.audioContext = new AudioContext();
+        // browsers limit the number of concurrent audio contexts, so you better re-use'em    
         this._enabled = localStorage.getItem('sound') !== "0";
         this._volume = 500;
     }
@@ -1009,6 +1008,9 @@ let SoundService = class SoundService {
     beep(freq, duration) {
         if (this._enabled === false) {
             return;
+        }
+        if (!this.audioContext) {
+            this.audioContext = new AudioContext();
         }
         let oscillator = this.audioContext.createOscillator();
         let gain = this.audioContext.createGain();

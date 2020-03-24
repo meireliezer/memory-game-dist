@@ -1531,9 +1531,8 @@
 
     let SoundService = class SoundService {
       constructor() {
-        this._randomInervals = []; // browsers limit the number of concurrent audio contexts, so you better re-use'em
+        this._randomInervals = []; // browsers limit the number of concurrent audio contexts, so you better re-use'em    
 
-        this.audioContext = new AudioContext();
         this._enabled = localStorage.getItem('sound') !== "0";
         this._volume = 500;
       }
@@ -1568,6 +1567,10 @@
       beep(freq, duration) {
         if (this._enabled === false) {
           return;
+        }
+
+        if (!this.audioContext) {
+          this.audioContext = new AudioContext();
         }
 
         let oscillator = this.audioContext.createOscillator();
