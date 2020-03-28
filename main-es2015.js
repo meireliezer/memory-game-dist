@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-openning-screen></app-openning-screen>\n\n\n<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"   (click)=\"onRun()\" title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\"  (click)=\"onRun()\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x21AD;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-openning-screen></app-openning-screen>\n\n\n<header class=\"header\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\"\n        [ngClass]=\"currentClass()\"\n        > Current <div class=\"value\">{{current}}</div></div>\n  <div class=\"header__section timer\">Timer<div class=\"value\">{{timer}} sec</div></div>\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>\n</header>\n<main>    \n\n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"   (click)=\"onRun()\" title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\"  (click)=\"onRun()\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x21AD;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
 
 /***/ }),
 
@@ -341,6 +341,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./core/windows/sound.service */ "./src/app/core/windows/sound.service.ts");
 /* harmony import */ var _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./core/windows/vibrate.service */ "./src/app/core/windows/vibrate.service.ts");
 /* harmony import */ var _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./core/windows/full-screen.service */ "./src/app/core/windows/full-screen.service.ts");
+/* harmony import */ var _core_windows_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./core/windows/utils */ "./src/app/core/windows/utils.ts");
+
 
 
 
@@ -366,6 +368,7 @@ let AppComponent = class AppComponent {
         this.fullscreenService = fullscreenService;
         this.i = true;
         this.init();
+        this.isIOS = Object(_core_windows_utils__WEBPACK_IMPORTED_MODULE_8__["iOS"])();
     }
     ngOnDestroy() {
         this.fullscreenService.exitFullscreen();
@@ -456,7 +459,9 @@ let AppComponent = class AppComponent {
                     this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
                     this.vibrateService.complete();
                     this.soundService.complete();
-                    this.setNewLevel(true);
+                    if (this._gameState === GAME_STATE.COMPLETE) {
+                        this.setNewLevel(true);
+                    }
                 }
             }
             // Diffrent cards
@@ -758,17 +763,16 @@ let MemoryDataService = class MemoryDataService {
             '#000000',
             '#000080',
             '#008000',
-            '#00BFFF',
-            '#00FA9A',
-            '#00FF00',
-            '#2F4F4F',
-            '#4B0082',
             '#800000',
-            '#800080',
-            '#8B4513',
-            '#DAA520',
-            '#FF00FF',
-            '#FFD700'
+            '#000FFF',
+            '#00FF00',
+            '#FF0000',
+            '#ff00ff',
+            '#ffff00',
+            '#00ffff',
+            '#ff6600',
+            '#0091ff',
+            '#ff0088'
         ];
     }
     getRandomPairs(num) {
@@ -974,6 +978,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SoundService", function() { return SoundService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/app/core/windows/utils.ts");
+
 
 
 let SoundService = class SoundService {
@@ -981,6 +987,9 @@ let SoundService = class SoundService {
         this._randomInervals = [];
         // browsers limit the number of concurrent audio contexts, so you better re-use'em    
         this._enabled = localStorage.getItem('sound') !== "0";
+        if (Object(_utils__WEBPACK_IMPORTED_MODULE_2__["iOS"])()) {
+            this._enabled = false;
+        }
         this._volume = 500;
     }
     isEnable() {
@@ -1151,6 +1160,36 @@ UserDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/core/windows/utils.ts":
+/*!***************************************!*\
+  !*** ./src/app/core/windows/utils.ts ***!
+  \***************************************/
+/*! exports provided: iOS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iOS", function() { return iOS; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+function iOS() {
+    var iDevices = [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ];
+    if (!!navigator.platform) {
+        return !!iDevices.find(device => device === navigator.platform);
+    }
+    return false;
+}
+
+
+/***/ }),
+
 /***/ "./src/app/core/windows/vibrate.service.ts":
 /*!*************************************************!*\
   !*** ./src/app/core/windows/vibrate.service.ts ***!
@@ -1163,11 +1202,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VibrateService", function() { return VibrateService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/app/core/windows/utils.ts");
+
 
 
 let VibrateService = class VibrateService {
     constructor() {
         this._enabled = localStorage.getItem('vibrate') !== "0";
+        if (Object(_utils__WEBPACK_IMPORTED_MODULE_2__["iOS"])()) {
+            this._enabled = false;
+        }
     }
     isEnable() {
         return this._enabled;
