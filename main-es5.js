@@ -942,7 +942,7 @@
       }
 
       isBackgroundDisabled() {
-        return this.memoryGameManagerService.getBackground();
+        return !this.memoryGameManagerService.getBackground();
       }
 
       getBackgroundColor() {
@@ -1250,7 +1250,7 @@
     let MemoryDataService = class MemoryDataService {
       constructor() {
         this._dataList = [{
-          color: '#111111',
+          color: '#222222',
           symbol: '&#9728;'
         }, {
           color: '#000080',

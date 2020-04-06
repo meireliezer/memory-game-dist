@@ -515,7 +515,7 @@ let AppComponent = class AppComponent {
         this.memoryGameManagerService.toggleBackground();
     }
     isBackgroundDisabled() {
-        return this.memoryGameManagerService.getBackground();
+        return !this.memoryGameManagerService.getBackground();
     }
     getBackgroundColor() {
         let gameStateColor = '';
@@ -762,7 +762,7 @@ __webpack_require__.r(__webpack_exports__);
 let MemoryDataService = class MemoryDataService {
     constructor() {
         this._dataList = [
-            { color: '#111111', symbol: '&#9728;' },
+            { color: '#222222', symbol: '&#9728;' },
             { color: '#000080', symbol: '&#9730;' },
             { color: '#008000', symbol: '&#9734;' },
             { color: '#800000', symbol: '&#9742;' },
