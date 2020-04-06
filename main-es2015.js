@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"((isActive() && !disableBackground)? data.data.color: '')\"\n        >\n            <div class=\"card__internal--symbol\" [innerHTML]=\"(isActive()? data.data.symbol: '')\">                    \n            </div>\n            \n        </div>        \n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"((isActive() && !disableBackground)? data.data.color: '')\"         \n    >\n            <div class=\"card__internal--symbol\" [innerHTML]=\"(isActive()? data.data.symbol: '')\">                    \n            </div>\n            \n        </div>        \n    </div>\n</div>");
 
 /***/ }),
 
