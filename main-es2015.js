@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (" <app-openning-screen></app-openning-screen>\n\n\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\n  <!--<div class=\"header__section timer\">Stopper<div class=\"value\">{{timer}} sec</div></div> -->\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>\n</header>\n<main >    \n\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n              [disableBackground]=\"isBackgroundDisabled()\"\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>\n  \n\n  \n</main>\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"   (click)=\"onRun()\" title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\"  (click)=\"onRun()\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [ngClass]=\"{crossed:isBackgroundDisabled()}\" (click)=\"onBackgroundToggle()\" title=\"disabel/enable background\">bg</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x21AD;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-openning-screen #openning></app-openning-screen>\n\n\n\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\n  <!--<div class=\"header__section timer\">Stopper<div class=\"value\">{{timer}} sec</div></div> -->\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>  \n  <div class=\"header__section_menu\" (click)=\"home(); openning.display=true;\">\n    <div class=\"menu\"></div>\n  </div>\n</header>\n\n<main>    \n  <div class=\"screen\" #screen (click)=\"onRun()\">\n      <div class=\"screen__title\">MEMORIES</div>\n      <div class=\"screen__timer\">{{showTimer}}</div>\n  </div>\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n              [disableBackground]=\"isBackgroundDisabled()\"\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>  \n</main>\n\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"   (click)=\"onRun()\" title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\"  (click)=\"onRun()\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [ngClass]=\"{crossed:isBackgroundDisabled()}\" (click)=\"onBackgroundToggle()\" title=\"disabel/enable background\">bg</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x21AD;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"((isActive() && !disableBackground)? data.data.color: '')\"         \n    >\n            <div class=\"card__internal--symbol\" [innerHTML]=\"(isActive()? data.data.symbol: '')\">                    \n            </div>\n            \n        </div>        \n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <div class=\"card__internal\"        \n        (click)=\"onClick()\">\n        <div class=\"card__internal-content\"\n            [style.backgroundColor]=\"displayBackground()\"         \n    >\n            <div class=\"card__internal--symbol\" [innerHTML]=\"dispaySymbol()\">                    \n            </div>\n            \n        </div>        \n    </div>\n</div>");
 
 /***/ }),
 
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"openning-screen\" *ngIf=\"display\">\n\n    <div class=\"os-title\">Memory Match</div>\n    <div class=\"os-cards\">\n        <div class=\"os-card\"></div>\n        <div class=\"os-card\"></div>    \n    </div>\n    <div class=\"os-btn\"\n        (click)=\"go()\">Go</div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"openning-screen\" *ngIf=\"display\">\n\n    <div class=\"os-title\">Memory Match</div>\n    <div class=\"os-cards\">\n        <div class=\"os-card\" (click)=\"go(0)\">\n            <div>Game</div>\n            <div>1</div>\n        </div>\n        <div class=\"os-card\" (click)=\"go(1)\">\n            <div>Game</div>\n            <div>2</div>\n        </div> \n\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -360,15 +360,21 @@ var GAME_STATE;
     GAME_STATE[GAME_STATE["FAILED_COMPLETE"] = 4] = "FAILED_COMPLETE";
 })(GAME_STATE || (GAME_STATE = {}));
 let AppComponent = class AppComponent {
-    constructor(memoryGameManagerService, memoryDataService, soundService, vibrateService, fullscreenService) {
+    constructor(memoryGameManagerService, memoryDataService, soundService, vibrateService, fullscreenService, renderer2) {
         this.memoryGameManagerService = memoryGameManagerService;
         this.memoryDataService = memoryDataService;
         this.soundService = soundService;
         this.vibrateService = vibrateService;
         this.fullscreenService = fullscreenService;
-        this.i = true;
+        this.renderer2 = renderer2;
+    }
+    ngOnInit() {
         this.init();
         this.isIOS = Object(_core_windows_utils__WEBPACK_IMPORTED_MODULE_8__["iOS"])();
+        this._gameChanged$ = this.memoryGameManagerService.gameChanged$;
+        this._gameChanged$.subscribe((game) => {
+            this.init();
+        });
     }
     ngOnDestroy() {
         this.fullscreenService.exitFullscreen();
@@ -384,6 +390,9 @@ let AppComponent = class AppComponent {
     }
     get totalScore() {
         return this.memoryGameManagerService.getTotalScore();
+    }
+    get showTimer() {
+        return this._showTimer;
     }
     onNextLevel() {
         this.setNewLevel(true);
@@ -403,6 +412,13 @@ let AppComponent = class AppComponent {
     }
     getData() {
         return this._levelMetadata.data;
+    }
+    home() {
+        clearInterval(this._intervalHandler);
+        this._intervalHandler = null;
+        clearTimeout(this._disaplyShowTimerHandlerTimeout);
+        this._disaplyShowTimerHandlerTimeout = null;
+        this.clearShowTimer();
     }
     // reduce lifes
     onCardClicked(cardClicked) {
@@ -457,6 +473,13 @@ let AppComponent = class AppComponent {
                         }
                     });
                     this._firstCardClicked = null;
+                    if (this.memoryGameManagerService.getGame() == _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
+                        this.discoverAll();
+                        this._showTimer = 'Try Again';
+                        this.renderer2.addClass(this._screen.nativeElement, 'screen--display');
+                        clearInterval(this._intervalHandler);
+                        this.changeLives(-1);
+                    }
                 }, 250);
             }
         }
@@ -468,6 +491,7 @@ let AppComponent = class AppComponent {
             this.setNewLevel();
             return;
         }
+        this.clearShowTimer();
         this._gameState = GAME_STATE.RUN;
         this._intervalHandler = setInterval(() => {
             // Timer
@@ -558,13 +582,33 @@ let AppComponent = class AppComponent {
             clearInterval(this._intervalHandler);
             this._intervalHandler = null;
         }
+        if (this.memoryGameManagerService.getGame() === _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
+            this._disaplyShowTimerHandlerTimeout = setTimeout(() => {
+                clearInterval(this._showTimerIntervalHandler);
+                this._showTimer = 10;
+                this.renderer2.addClass(this._screen.nativeElement, 'screen--display');
+                this.discoverAll();
+                this._showTimerIntervalHandler = setInterval(() => {
+                    --this._showTimer;
+                    if (this._showTimer === 0) {
+                        this.clearShowTimer();
+                    }
+                }, 1000);
+            }, 0);
+        }
     }
-    changeLives(lives) {
-        this.lives += lives;
+    clearShowTimer() {
+        clearInterval(this._showTimerIntervalHandler);
+        this._showTimerIntervalHandler = null;
+        this.renderer2.removeClass(this._screen.nativeElement, 'screen--display');
+        this.hideAll();
+    }
+    changeLives(deltaLives) {
+        this.lives += deltaLives;
         if (this.lives < 0) {
             this.lives = 0;
         }
-        this.memoryGameManagerService.changeLive(lives);
+        this.memoryGameManagerService.changeLive(deltaLives);
     }
     isFailedStatus() {
         return (this._gameState === GAME_STATE.FAILED) || (this._gameState === GAME_STATE.FAILED_COMPLETE);
@@ -572,17 +616,31 @@ let AppComponent = class AppComponent {
     isComplete() {
         return (this._totalPairs === (this._levelMetadata.cards / 2));
     }
+    discoverAll() {
+        this._cardComponents.forEach(card => {
+            card.discover();
+        });
+    }
+    hideAll() {
+        this._cardComponents.forEach(card => {
+            card.hide();
+        });
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["MemoryGameManagerService"] },
     { type: _core_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["MemoryDataService"] },
     { type: _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"] },
     { type: _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_6__["VibrateService"] },
-    { type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__["FullScreenService"] }
+    { type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__["FullScreenService"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])
 ], AppComponent.prototype, "_cardComponents", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('screen', { static: true, read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] })
+], AppComponent.prototype, "_screen", void 0);
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
@@ -659,6 +717,7 @@ const GAME_METADATA = [
         score: 4 * 2,
         width: '50%',
         height: '50%',
+        showTimer: 5
     },
     {
         level: 2,
@@ -666,7 +725,8 @@ const GAME_METADATA = [
         time: 6 * 2,
         score: 6 * 2,
         width: '50%',
-        height: '33%'
+        height: '33%',
+        showTimer: 10
     },
     {
         level: 3,
@@ -674,7 +734,8 @@ const GAME_METADATA = [
         time: 8 * 2,
         score: 8 * 2,
         width: '50%',
-        height: '25%'
+        height: '25%',
+        showTimer: 15
     },
     {
         level: 4,
@@ -682,7 +743,8 @@ const GAME_METADATA = [
         time: 10 * 2,
         score: 10 * 2,
         width: '50%',
-        height: '20%'
+        height: '20%',
+        showTimer: 25
     },
     {
         level: 5,
@@ -690,7 +752,8 @@ const GAME_METADATA = [
         time: 12 * 2,
         score: 12 * 2,
         width: '25%',
-        height: '33%'
+        height: '33%',
+        showTimer: 35
     },
     {
         level: 6,
@@ -698,7 +761,8 @@ const GAME_METADATA = [
         time: 14 * 2,
         score: 14 * 2,
         width: '25%',
-        height: '25%'
+        height: '25%',
+        showTimer: 45
     },
     {
         level: 7,
@@ -706,7 +770,8 @@ const GAME_METADATA = [
         time: 16 * 2,
         score: 16 * 2,
         width: '25%',
-        height: '25%'
+        height: '25%',
+        showTimer: 45
     },
     {
         level: 8,
@@ -714,7 +779,8 @@ const GAME_METADATA = [
         time: 18 * 2,
         score: 18 * 2,
         width: '25%',
-        height: '20%'
+        height: '20%',
+        showTimer: 45
     },
     {
         level: 9,
@@ -722,7 +788,8 @@ const GAME_METADATA = [
         time: 20 * 2,
         score: 20 * 2,
         width: '25%',
-        height: '20%'
+        height: '20%',
+        showTimer: 60
     },
     {
         level: 10,
@@ -730,7 +797,8 @@ const GAME_METADATA = [
         time: 22 * 2,
         score: 22 * 2,
         width: '20%',
-        height: '20%'
+        height: '20%',
+        showTimer: 60
     },
     {
         level: 11,
@@ -738,7 +806,8 @@ const GAME_METADATA = [
         time: 24 * 2,
         score: 24 * 2,
         width: '20%',
-        height: '20%'
+        height: '20%',
+        showTimer: 60
     }
 ];
 
@@ -814,24 +883,46 @@ MemoryDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*****************************************************!*\
   !*** ./src/app/core/memory-game-manager.service.ts ***!
   \*****************************************************/
-/*! exports provided: MemoryGameManagerService */
+/*! exports provided: GAME, MemoryGameManagerService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GAME", function() { return GAME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryGameManagerService", function() { return MemoryGameManagerService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game-metadata.const */ "./src/app/core/game-metadata.const.ts");
 /* harmony import */ var _windows_user_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./windows/user-data.service */ "./src/app/core/windows/user-data.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 
 
 
 
+
+var GAME;
+(function (GAME) {
+    GAME[GAME["REGULAR"] = 0] = "REGULAR";
+    GAME[GAME["REVERSE"] = 1] = "REVERSE";
+})(GAME || (GAME = {}));
 let MemoryGameManagerService = class MemoryGameManagerService {
     constructor(userDataService) {
         this.userDataService = userDataService;
+        this._gameChanged = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+        this._game = GAME.REGULAR;
         this.initFromUserData();
+    }
+    setGame(game) {
+        this._game = game;
+        this.userDataService.setGame(game);
+        this.initFromUserData();
+        this._gameChanged.next(this._game);
+    }
+    getGame() {
+        return this._game;
+    }
+    get gameChanged$() {
+        return this._gameChanged.asObservable();
     }
     getCurrentLevel() {
         return this._currentLevel;
@@ -1096,6 +1187,12 @@ const INIT_CURRENT_MAX_LEVEL = 1;
 const INIT_LIVES = 5;
 let UserDataService = class UserDataService {
     constructor() {
+        this._userDataKey = `userData_${this._game}`;
+        this.loadData();
+    }
+    setGame(game) {
+        this._game = game;
+        this._userDataKey = `userData_${this._game}`;
         this.loadData();
     }
     getUserData() {
@@ -1177,7 +1274,7 @@ let UserDataService = class UserDataService {
         };
     }
     loadData() {
-        let userData = localStorage.getItem('userData');
+        let userData = localStorage.getItem(this._userDataKey);
         if (userData) {
             let userDataObj = JSON.parse(userData);
             this._userData = userDataObj;
@@ -1191,7 +1288,7 @@ let UserDataService = class UserDataService {
     }
     saveData() {
         let data = JSON.stringify(this._userData);
-        localStorage.setItem('userData', data);
+        localStorage.setItem(this._userDataKey, data);
     }
 };
 UserDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1327,20 +1424,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CardComponent = class CardComponent {
-    constructor(elmRef, render) {
+    constructor(elmRef) {
         this.elmRef = elmRef;
-        this.render = render;
-        this.symbol = '&#9728';
-        this._isClick = false;
-        this._backgroundColor = '';
-        this._isPair = false;
         this.cardClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this._isClick = false;
     }
     ngOnInit() {
-        this._backgroundColor = this.elmRef.nativeElement;
+        this._discover = false;
     }
     isActive() {
         return this._isClick;
+    }
+    isDiscover() {
+        return this._discover;
+    }
+    dispaySymbol() {
+        if (this.isActive() || this.isDiscover()) {
+            return this.data.data.symbol;
+        }
+        return '';
+    }
+    displayBackground() {
+        if (this.disableBackground === true) {
+            return '';
+        }
+        if (this.isActive() || this.isDiscover()) {
+            return this.data.data.color;
+        }
+        return '';
     }
     // "You touch you go"
     onClick() {
@@ -1349,17 +1460,23 @@ let CardComponent = class CardComponent {
             this.cardClicked.emit({ cardIndex: this.cardIndex, data: this.data });
         }
     }
+    // -----------------------------------------
     // API
+    // -----------------------------------------
     pair() {
-        this._isPair = true;
     }
     reset() {
         this._isClick = false;
     }
+    discover() {
+        this._discover = true;
+    }
+    hide() {
+        this._discover = false;
+    }
 };
 CardComponent.ctorParameters = () => [
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"] }
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
@@ -1394,7 +1511,7 @@ CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".openning-screen {\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: 2;\n  background-color: rgba(0, 0, 0, 0.753);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.openning-screen .os-title {\n  font-size: 1.7em;\n  text-align: center;\n  color: chartreuse;\n  text-transform: uppercase;\n  letter-spacing: 1em;\n  line-height: 2em;\n  text-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n}\n.openning-screen .os-card {\n  display: inline-block;\n  height: 7em;\n  width: 5em;\n  margin: 2em;\n  background-color: chocolate;\n  border: 2px solid black;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(210, 105, 30, 0.24);\n  -webkit-animation-name: rotate;\n          animation-name: rotate;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear;\n}\n.openning-screen .os-card:first-of-type {\n  background-color: blue;\n  -webkit-transform: rotate(-20deg);\n          transform: rotate(-20deg);\n  -webkit-animation-direction: normal;\n          animation-direction: normal;\n}\n.openning-screen .os-card:last-of-type {\n  background-color: blueviolet;\n  -webkit-transform: rotate(20deg);\n          transform: rotate(20deg);\n  animation-direction: reverse;\n}\n.openning-screen .os-btn {\n  padding: 1em 3em;\n  background-color: chartreuse;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n  cursor: pointer;\n}\n.openning-screen .os-btn:hover {\n  background-color: rgba(128, 255, 0, 0.514);\n}\n@-webkit-keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@-webkit-keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n@keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcb3Blbm5pbmctc2NyZWVuXFxvcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsVUFBQTtFQUNBLHNDQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsNEJBQUE7RUFBQSw2QkFBQTtVQUFBLHNCQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBRENJO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaURBQUE7QUNDUjtBRE1JO0VBQ0kscUJBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTtFQUNBLFdBQUE7RUFDQSwyQkFBQTtFQUNBLHVCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtFQUNBLDhCQUFBO1VBQUEsc0JBQUE7RUFDQSw4QkFBQTtVQUFBLHNCQUFBO0VBQ0EsMkNBQUE7VUFBQSxtQ0FBQTtFQUNBLHlDQUFBO1VBQUEsaUNBQUE7QUNKUjtBRE1RO0VBQ0ksc0JBQUE7RUFDQSxpQ0FBQTtVQUFBLHlCQUFBO0VBQ0EsbUNBQUE7VUFBQSwyQkFBQTtBQ0paO0FET1E7RUFDSSw0QkFBQTtFQUNBLGdDQUFBO1VBQUEsd0JBQUE7RUFDQSw0QkFBQTtBQ0xaO0FEVUk7RUFDSSxnQkFBQTtFQUNBLDRCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtFQUNBLGVBQUE7QUNSUjtBRFVRO0VBQ0ksMENBQUE7QUNSWjtBRGFJO0VBQ0k7SUFDSSw0QkFBQTtZQUFBLG9CQUFBO0VDWFY7RURjTTtJQUNJLGdDQUFBO1lBQUEsd0JBQUE7RUNaVjtFRGVNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ2JWO0VEZ0JNO0lBQ0ksaUNBQUE7WUFBQSx5QkFBQTtFQ2RWO0VEZ0JNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ2RWO0FBQ0Y7QURKSTtFQUNJO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ1hWO0VEY007SUFDSSxnQ0FBQTtZQUFBLHdCQUFBO0VDWlY7RURlTTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNiVjtFRGdCTTtJQUNJLGlDQUFBO1lBQUEseUJBQUE7RUNkVjtFRGdCTTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNkVjtBQUNGO0FEbUJJO0VBQ0k7SUFBTSxxQkFBQTtFQ2hCWjtFRGlCTTtJQUFJLHdCQUFBO0VDZFY7QUFDRjtBRFdJO0VBQ0k7SUFBTSxxQkFBQTtFQ2hCWjtFRGlCTTtJQUFJLHdCQUFBO0VDZFY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub3Blbm5pbmctc2NyZWVuIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiAxMDB2dztcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICB6LWluZGV4OiAyO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjc1Myk7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIFxyXG4gICAgLm9zLXRpdGxle1xyXG4gICAgICAgIGZvbnQtc2l6ZTogMS43ZW07ICAgIFxyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICBjb2xvcjogY2hhcnRyZXVzZTtcclxuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gICAgICAgIGxldHRlci1zcGFjaW5nOiAxZW07XHJcbiAgICAgICAgbGluZS1oZWlnaHQ6IDJlbTsgICAgICAgIFxyXG4gICAgICAgIHRleHQtc2hhZG93OiA1cHggNXB4IDVweCAgcmdiYSgxMjgsIDI1NSwgMCwgMC4yODgpO1xyXG4gICAgfVxyXG5cclxuICAgIC5vcy1jYXJkcyB7XHJcblxyXG4gICAgfVxyXG5cclxuICAgIC5vcy1jYXJkIHtcclxuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAgICAgaGVpZ2h0OiA3ZW07XHJcbiAgICAgICAgd2lkdGg6IDVlbTsgICAgICAgIFxyXG4gICAgICAgIG1hcmdpbjogMmVtO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IGNob2NvbGF0ZTtcclxuICAgICAgICBib3JkZXI6IDJweCBzb2xpZCBibGFjaztcclxuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgyMTAsIDEwNSwgMzAsIDAuMjQpO1xyXG4gICAgICAgIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XHJcbiAgICAgICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxcztcclxuICAgICAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTtcclxuICAgICAgICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XHJcblxyXG4gICAgICAgICY6Zmlyc3Qtb2YtdHlwZXtcclxuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoLTIwZGVnKTtcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRpcmVjdGlvbjogbm9ybWFsO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgJjpsYXN0LW9mLXR5cGV7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRpcmVjdGlvbjogcmV2ZXJzZTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICB9XHJcblxyXG4gICAgLm9zLWJ0biB7XHJcbiAgICAgICAgcGFkZGluZzogMWVtIDNlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBjaGFydHJldXNlO1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XHJcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xyXG5cclxuICAgICAgICAmOmhvdmVye1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEyOCwgMjU1LCAwLCAwLjUxNCk7O1xyXG4gICAgICAgIH1cclxuXHJcbiAgICB9XHJcblxyXG4gICAgQGtleWZyYW1lcyByb3RhdGV7XHJcbiAgICAgICAgMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIDI1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDEwZGVnKTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICAgICAgNTAlICB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xyXG4gICAgICAgIH0gICAgXHJcblxyXG4gICAgICAgIDc1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKC0xMGRlZyk7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIDEwMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG5cclxuICAgIH1cclxuXHJcbiAgICBAa2V5ZnJhbWVzIGV4YW1wbGUge1xyXG4gICAgICAgIGZyb20ge2JhY2tncm91bmQtY29sb3I6IHJlZDt9XHJcbiAgICAgICAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XHJcbiAgICAgIH1cclxuXHJcbn0iLCIub3Blbm5pbmctc2NyZWVuIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIHotaW5kZXg6IDI7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC43NTMpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxLjdlbTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogY2hhcnRyZXVzZTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgbGV0dGVyLXNwYWNpbmc6IDFlbTtcbiAgbGluZS1oZWlnaHQ6IDJlbTtcbiAgdGV4dC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGhlaWdodDogN2VtO1xuICB3aWR0aDogNWVtO1xuICBtYXJnaW46IDJlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hvY29sYXRlO1xuICBib3JkZXI6IDJweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDIxMCwgMTA1LCAzMCwgMC4yNCk7XG4gIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XG4gIGFuaW1hdGlvbi1pdGVyYXRpb24tY291bnQ6IGluZmluaXRlO1xuICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1jYXJkOmZpcnN0LW9mLXR5cGUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgtMjBkZWcpO1xuICBhbmltYXRpb24tZGlyZWN0aW9uOiBub3JtYWw7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1jYXJkOmxhc3Qtb2YtdHlwZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XG4gIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcbiAgYW5pbWF0aW9uLWRpcmVjdGlvbjogcmV2ZXJzZTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWJ0biB7XG4gIHBhZGRpbmc6IDFlbSAzZW07XG4gIGJhY2tncm91bmQtY29sb3I6IGNoYXJ0cmV1c2U7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgYm94LXNoYWRvdzogNXB4IDVweCA1cHggcmdiYSgxMjgsIDI1NSwgMCwgMC4yODgpO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ub3Blbm5pbmctc2NyZWVuIC5vcy1idG46aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEyOCwgMjU1LCAwLCAwLjUxNCk7XG59XG5Aa2V5ZnJhbWVzIHJvdGF0ZSB7XG4gIDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbiAgfVxuICAyNSUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDEwZGVnKTtcbiAgfVxuICA1MCUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xuICB9XG4gIDc1JSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoLTEwZGVnKTtcbiAgfVxuICAxMDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbiAgfVxufVxuQGtleWZyYW1lcyBleGFtcGxlIHtcbiAgZnJvbSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xuICB9XG4gIHRvIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB5ZWxsb3c7XG4gIH1cbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".openning-screen {\n  position: absolute;\n  width: 100vw;\n  height: 100vh;\n  z-index: 2;\n  background-color: rgba(0, 0, 0, 0.753);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.openning-screen .os-title {\n  font-size: 1.7em;\n  text-align: center;\n  color: chartreuse;\n  text-transform: uppercase;\n  letter-spacing: 1em;\n  line-height: 2em;\n  text-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n}\n.openning-screen .os-cards {\n  display: -webkit-box;\n  display: flex;\n}\n.openning-screen .os-card {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  font-size: 1em;\n  height: 7em;\n  width: 5em;\n  margin: 2em;\n  background-color: chocolate;\n  border: 2px solid black;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(210, 105, 30, 0.24);\n  -webkit-animation-name: rotate;\n          animation-name: rotate;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear;\n  cursor: pointer;\n}\n.openning-screen .os-card:first-of-type {\n  background-color: blue;\n  -webkit-transform: rotate(-20deg);\n          transform: rotate(-20deg);\n  -webkit-animation-direction: normal;\n          animation-direction: normal;\n}\n.openning-screen .os-card:last-of-type {\n  background-color: blueviolet;\n  -webkit-transform: rotate(20deg);\n          transform: rotate(20deg);\n  animation-direction: reverse;\n}\n.openning-screen .os-btn {\n  padding: 1em 3em;\n  background-color: chartreuse;\n  border-radius: 5px;\n  box-shadow: 5px 5px 5px rgba(128, 255, 0, 0.288);\n  cursor: pointer;\n}\n.openning-screen .os-btn:hover {\n  background-color: rgba(128, 255, 0, 0.514);\n}\n@-webkit-keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  25% {\n    -webkit-transform: rotate(10deg);\n            transform: rotate(10deg);\n  }\n  50% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  75% {\n    -webkit-transform: rotate(-10deg);\n            transform: rotate(-10deg);\n  }\n  100% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n}\n@-webkit-keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n@keyframes example {\n  from {\n    background-color: red;\n  }\n  to {\n    background-color: yellow;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3Blbm5pbmctc2NyZWVuL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcb3Blbm5pbmctc2NyZWVuXFxvcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL29wZW5uaW5nLXNjcmVlbi9vcGVubmluZy1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsVUFBQTtFQUNBLHNDQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsNEJBQUE7RUFBQSw2QkFBQTtVQUFBLHNCQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBRENJO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaURBQUE7QUNDUjtBREVJO0VBQ0ksb0JBQUE7RUFBQSxhQUFBO0FDQVI7QURHSTtFQUNJLG9CQUFBO0VBQUEsYUFBQTtFQUNBLDRCQUFBO0VBQUEsNkJBQUE7VUFBQSxzQkFBQTtFQUNBLHdCQUFBO1VBQUEsdUJBQUE7RUFDQSx5QkFBQTtVQUFBLG1CQUFBO0VBQ0EsY0FBQTtFQUNBLFdBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLDJCQUFBO0VBQ0EsdUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdEQUFBO0VBQ0EsOEJBQUE7VUFBQSxzQkFBQTtFQUNBLDhCQUFBO1VBQUEsc0JBQUE7RUFDQSwyQ0FBQTtVQUFBLG1DQUFBO0VBQ0EseUNBQUE7VUFBQSxpQ0FBQTtFQUNBLGVBQUE7QUNEUjtBREdRO0VBQ0ksc0JBQUE7RUFDQSxpQ0FBQTtVQUFBLHlCQUFBO0VBQ0EsbUNBQUE7VUFBQSwyQkFBQTtBQ0RaO0FES1E7RUFDSSw0QkFBQTtFQUNBLGdDQUFBO1VBQUEsd0JBQUE7RUFDQSw0QkFBQTtBQ0haO0FEUUk7RUFDSSxnQkFBQTtFQUNBLDRCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnREFBQTtFQUNBLGVBQUE7QUNOUjtBRFFRO0VBQ0ksMENBQUE7QUNOWjtBRFdJO0VBQ0k7SUFDSSw0QkFBQTtZQUFBLG9CQUFBO0VDVFY7RURZTTtJQUNJLGdDQUFBO1lBQUEsd0JBQUE7RUNWVjtFRGFNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ1hWO0VEY007SUFDSSxpQ0FBQTtZQUFBLHlCQUFBO0VDWlY7RURjTTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNaVjtBQUNGO0FETkk7RUFDSTtJQUNJLDRCQUFBO1lBQUEsb0JBQUE7RUNUVjtFRFlNO0lBQ0ksZ0NBQUE7WUFBQSx3QkFBQTtFQ1ZWO0VEYU07SUFDSSw0QkFBQTtZQUFBLG9CQUFBO0VDWFY7RURjTTtJQUNJLGlDQUFBO1lBQUEseUJBQUE7RUNaVjtFRGNNO0lBQ0ksNEJBQUE7WUFBQSxvQkFBQTtFQ1pWO0FBQ0Y7QURpQkk7RUFDSTtJQUFNLHFCQUFBO0VDZFo7RURlTTtJQUFJLHdCQUFBO0VDWlY7QUFDRjtBRFNJO0VBQ0k7SUFBTSxxQkFBQTtFQ2RaO0VEZU07SUFBSSx3QkFBQTtFQ1pWO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9vcGVubmluZy1zY3JlZW4vb3Blbm5pbmctc2NyZWVuLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9wZW5uaW5nLXNjcmVlbiB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgei1pbmRleDogMjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC43NTMpO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBcclxuICAgIC5vcy10aXRsZXtcclxuICAgICAgICBmb250LXNpemU6IDEuN2VtOyAgICBcclxuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgY29sb3I6IGNoYXJ0cmV1c2U7XHJcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgICAgICBsZXR0ZXItc3BhY2luZzogMWVtO1xyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyZW07ICAgICAgICBcclxuICAgICAgICB0ZXh0LXNoYWRvdzogNXB4IDVweCA1cHggIHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcclxuICAgIH1cclxuXHJcbiAgICAub3MtY2FyZHMge1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICB9XHJcblxyXG4gICAgLm9zLWNhcmQge1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgIGZvbnQtc2l6ZTogMWVtO1xyXG4gICAgICAgIGhlaWdodDogN2VtO1xyXG4gICAgICAgIHdpZHRoOiA1ZW07ICAgICAgICBcclxuICAgICAgICBtYXJnaW46IDJlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBjaG9jb2xhdGU7XHJcbiAgICAgICAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgICAgIGJveC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMjEwLCAxMDUsIDMwLCAwLjI0KTtcclxuICAgICAgICBhbmltYXRpb24tbmFtZTogcm90YXRlO1xyXG4gICAgICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XHJcbiAgICAgICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogaW5maW5pdGU7XHJcbiAgICAgICAgYW5pbWF0aW9uLXRpbWluZy1mdW5jdGlvbjogbGluZWFyO1xyXG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAgICAgJjpmaXJzdC1vZi10eXBle1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgtMjBkZWcpO1xyXG4gICAgICAgICAgICBhbmltYXRpb24tZGlyZWN0aW9uOiBub3JtYWw7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgJjpsYXN0LW9mLXR5cGV7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IGJsdWV2aW9sZXQ7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDIwZGVnKTtcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRpcmVjdGlvbjogcmV2ZXJzZTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICB9XHJcblxyXG4gICAgLm9zLWJ0biB7XHJcbiAgICAgICAgcGFkZGluZzogMWVtIDNlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBjaGFydHJldXNlO1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XHJcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xyXG5cclxuICAgICAgICAmOmhvdmVye1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEyOCwgMjU1LCAwLCAwLjUxNCk7O1xyXG4gICAgICAgIH1cclxuXHJcbiAgICB9XHJcblxyXG4gICAgQGtleWZyYW1lcyByb3RhdGV7XHJcbiAgICAgICAgMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIDI1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDEwZGVnKTtcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICAgICAgNTAlICB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xyXG4gICAgICAgIH0gICAgXHJcblxyXG4gICAgICAgIDc1JSB7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKC0xMGRlZyk7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIDEwMCUge1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcclxuICAgICAgICB9XHJcblxyXG5cclxuICAgIH1cclxuXHJcbiAgICBAa2V5ZnJhbWVzIGV4YW1wbGUge1xyXG4gICAgICAgIGZyb20ge2JhY2tncm91bmQtY29sb3I6IHJlZDt9XHJcbiAgICAgICAgdG8ge2JhY2tncm91bmQtY29sb3I6IHllbGxvdzt9XHJcbiAgICAgIH1cclxuXHJcbn0iLCIub3Blbm5pbmctc2NyZWVuIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIHotaW5kZXg6IDI7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC43NTMpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxLjdlbTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogY2hhcnRyZXVzZTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgbGV0dGVyLXNwYWNpbmc6IDFlbTtcbiAgbGluZS1oZWlnaHQ6IDJlbTtcbiAgdGV4dC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMTI4LCAyNTUsIDAsIDAuMjg4KTtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmRzIHtcbiAgZGlzcGxheTogZmxleDtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgZm9udC1zaXplOiAxZW07XG4gIGhlaWdodDogN2VtO1xuICB3aWR0aDogNWVtO1xuICBtYXJnaW46IDJlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hvY29sYXRlO1xuICBib3JkZXI6IDJweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDIxMCwgMTA1LCAzMCwgMC4yNCk7XG4gIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XG4gIGFuaW1hdGlvbi1pdGVyYXRpb24tY291bnQ6IGluZmluaXRlO1xuICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQ6Zmlyc3Qtb2YtdHlwZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XG4gIHRyYW5zZm9ybTogcm90YXRlKC0yMGRlZyk7XG4gIGFuaW1hdGlvbi1kaXJlY3Rpb246IG5vcm1hbDtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWNhcmQ6bGFzdC1vZi10eXBlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZXZpb2xldDtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMjBkZWcpO1xuICBhbmltYXRpb24tZGlyZWN0aW9uOiByZXZlcnNlO1xufVxuLm9wZW5uaW5nLXNjcmVlbiAub3MtYnRuIHtcbiAgcGFkZGluZzogMWVtIDNlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2JhKDEyOCwgMjU1LCAwLCAwLjI4OCk7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5vcGVubmluZy1zY3JlZW4gLm9zLWJ0bjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTI4LCAyNTUsIDAsIDAuNTE0KTtcbn1cbkBrZXlmcmFtZXMgcm90YXRlIHtcbiAgMCUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xuICB9XG4gIDI1JSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMTBkZWcpO1xuICB9XG4gIDUwJSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMCk7XG4gIH1cbiAgNzUlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgtMTBkZWcpO1xuICB9XG4gIDEwMCUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xuICB9XG59XG5Aa2V5ZnJhbWVzIGV4YW1wbGUge1xuICBmcm9tIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XG4gIH1cbiAgdG8ge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHllbGxvdztcbiAgfVxufSJdfQ== */");
 
 /***/ }),
 
@@ -1411,19 +1528,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/windows/full-screen.service */ "./src/app/core/windows/full-screen.service.ts");
+/* harmony import */ var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/memory-game-manager.service */ "./src/app/core/memory-game-manager.service.ts");
+
 
 
 
 let OpenningScreenComponent = class OpenningScreenComponent {
-    constructor(fullscreenService) {
+    constructor(fullscreenService, memoryGameManagerService) {
         this.fullscreenService = fullscreenService;
+        this.memoryGameManagerService = memoryGameManagerService;
         this.display = true;
     }
     ngOnInit() {
     }
-    go() {
+    go(game) {
         this.fullscreenService.requestFullscreen();
         this.display = false;
+        this.memoryGameManagerService.setGame(game);
     }
     isIOS() {
         let agent = window.navigator.userAgent;
@@ -1432,7 +1553,8 @@ let OpenningScreenComponent = class OpenningScreenComponent {
     }
 };
 OpenningScreenComponent.ctorParameters = () => [
-    { type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__["FullScreenService"] }
+    { type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__["FullScreenService"] },
+    { type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_3__["MemoryGameManagerService"] }
 ];
 OpenningScreenComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
