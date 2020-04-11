@@ -1027,7 +1027,7 @@
         if (this.memoryGameManagerService.getGame() === _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
           this._disaplyShowTimerHandlerTimeout = setTimeout(() => {
             clearInterval(this._showTimerIntervalHandler);
-            this._showTimer = 10;
+            this._showTimer = this._levelMetadata.showTimer;
             this.renderer2.addClass(this._screen.nativeElement, 'screen--display');
             this.discoverAll();
             this._showTimerIntervalHandler = setInterval(() => {
@@ -1211,7 +1211,7 @@
       score: 4 * 2,
       width: '50%',
       height: '50%',
-      showTimer: 5
+      showTimer: 6
     }, {
       level: 2,
       cards: 6,
@@ -1267,7 +1267,7 @@
       score: 18 * 2,
       width: '25%',
       height: '20%',
-      showTimer: 45
+      showTimer: 60
     }, {
       level: 9,
       cards: 20,
