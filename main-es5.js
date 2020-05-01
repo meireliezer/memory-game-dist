@@ -45,7 +45,87 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-openning-screen #openning></app-openning-screen>\n\n\n\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\n  <!--<div class=\"header__section timer\">Stopper<div class=\"value\">{{timer}} sec</div></div> -->\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>  \n  <div class=\"header__section_menu\" (click)=\"home(); openning.display=true;\">\n    <div class=\"menu\"></div>\n  </div>\n</header>\n\n<main>    \n  <div class=\"screen\" #screen (click)=\"onRun()\">\n      <div class=\"screen__title\">MEMORIZE</div>\n      <div class=\"screen__timer\">{{showTimer}}</div>\n  </div>\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \n    <app-card class=\"app-card\" \n              [data]=\"data\"\n              [ngStyle]=\"getCardLevelDimension()\"\n              [cardIndex] = \"idx\"\n              [disableBackground]=\"isBackgroundDisabled()\"\n              (cardClicked)=onCardClicked($event)\n              >\n    </app-card>\n  </ng-container>  \n</main>\n\n<footer class=\"actions\">\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === 1)}\"\n      (click)=\"onPrevLevel()\"\n      title=\"Back\"\n      >&larr;</div>\n  <div class=\"action--center\">\n    <div class=\"action\"  *ngIf=\"(gameState === 0)\"   (click)=\"onRun()\" title=\"Run\">&#9658;</div> <!-- play -->\n    <div class=\"action\"  *ngIf=\"(gameState !== 0 )\"  (click)=\"onRun()\" title=\"Refresh\">&#8635;</div> <!-- refresh -->\n    <div class=\"action\"  [ngClass]=\"{crossed:isBackgroundDisabled()}\" (click)=\"onBackgroundToggle()\" title=\"disabel/enable background\">bg</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isSoundDisabled()}\" (click)=\"toggleSound() \"title=\"Sound\">&#x266B;</div>\n    <div class=\"action\"  [hidden]=\"isIOS\" [ngClass]=\"{crossed:isVibrateDisabled()}\" (click)=\"toggleVibrate()\" title=\"Vibrate\">&#x21AD;</div>   \n  </div>\n  <div *ngIf=\"(lives === 0)\" \n        class=\"action\" \n        (click)=\"onReset()\"\n        title=\"Reset\">&#8676;</div>\n  <div class=\"action\" \n      [ngClass]=\"{disabled: (level === userMaxLevel)}\"\n      (click)=\"onNextLevel()\"\n      title=\"Next\"\n   >&rarr;</div> \n</footer>\n";
+    __webpack_exports__["default"] = "<!---->\r\n  <app-openning-screen #openning></app-openning-screen>\r\n\r\n<app-menu></app-menu>\r\n\r\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\r\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\r\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\r\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\r\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>  \r\n  <div class=\"header__section_menu\" (click)=\"onMenu()\">\r\n    <div class=\"menu\"></div>\r\n  </div>\r\n</header>\r\n\r\n\r\n\r\n<main [ngClass]=\"{'disabled': (menuService.open$ | async)} \">    \r\n  <ng-container #mainTopScreen></ng-container>\r\n  \r\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \r\n    <app-card class=\"app-card\" \r\n              [data]=\"data\"\r\n              [ngStyle]=\"getCardLevelDimension()\"\r\n              [cardIndex] = \"idx\"\r\n              [disableBackground]=\"isBackgroundDisabled()\"\r\n              [discover]=\"isDiscoverCardOnInit()\"\r\n              (cardClicked)=onCardClicked($event)\r\n              >\r\n    </app-card>\r\n  </ng-container>  \r\n</main>\r\n\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/main/count-down/count-down.component.html":
+  /*!*************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/main/count-down/count-down.component.html ***!
+    \*************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppMainCountDownCountDownComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n<div class=\"main-page\" (click)=\"onRun()\">\n    <div class=\"title\">Memorize</div>\n    <div class=\"counter\">{{data}}</div>\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-complete/game-complete.component.html":
+  /*!*******************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-complete/game-complete.component.html ***!
+    \*******************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppMainGameCompleteGameCompleteComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"main-page\">\n \n    <div class=\"main-page-content\">\n        <div class=\"title\">Game Complete</div>\n        <div class=\"game-actions\">\n            <div class=\"game-action\" (click)=\"retry()\">Try Again</div>            \n            <div class=\"game-action\" (click)=\"restart()\">Restart</div>\n            <div class=\"game-action\" (click)=\"home()\">Home</div>                \n        </div>    \n    </div>\n\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-over/game-over.component.html":
+  /*!***********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-over/game-over.component.html ***!
+    \***********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppMainGameOverGameOverComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"main-page\">\n \n    <div class=\"main-page-content\">\n        <div class=\"title\">Game Over</div>\n        <div class=\"game-actions\">\n            <div class=\"game-action\" (click)=\"retry()\">Try Again</div>\n            <div class=\"game-action\" (click)=\"continue()\" *ngIf=\"data\">Continue (just for fun)</div>            \n            <div class=\"game-action\" (click)=\"restart()\">Restart</div>\n            <div class=\"game-action\" (click)=\"home()\">Home</div>                \n        </div>    \n    </div>\n\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/main/level-failed/level-failed.component.html":
+  /*!*****************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/main/level-failed/level-failed.component.html ***!
+    \*****************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppMainLevelFailedLevelFailedComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"main-page\">\n \n    <div class=\"main-page-content\">\n        <div class=\"title\">Failed</div>\n        <div class=\"game-actions\">\n            <div class=\"game-action\" (click)=\"retry()\">Try Again</div>\n            <div class=\"game-action\" (click)=\"continue()\" *ngIf=\"data\">Continue (just for fun)</div>            \n            <div class=\"game-action\" (click)=\"restart()\">Restart</div>\n            <div class=\"game-action\" (click)=\"home()\">Home</div>                \n        </div>    \n    </div>\n\n</div>\n";
     /***/
   },
 
@@ -70,6 +150,26 @@
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/menu/menu.component.html":
+  /*!********************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/menu/menu.component.html ***!
+    \********************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppMenuMenuComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"menu-page\" [ngClass]=\"{'open': (menuService.open$|async)}\">\n    <div class=\"menu-page--content\">\n        <div class=\"menu-page--header\">\n            <div class=\"menu-page--title\">Menu</div>\n            <div class=\"menu-page--close\" (click)=\"onClose()\">X</div>\n        </div>\n        <div class=\"menu-page--section\">\n            <div class=\"menu-section--title\">Settings:</div>\n\n            <div class=\"setting-item\">\n                <div class=\"setting-item--title \">Sound:</div>\n                <div class=\"setting-item--btn\" \n                        [ngClass]=\"{'crossed': (isSoundDisabled() || isIOS), 'disabled': isIOS }\"\n                        (click)=\"toggleSound()\" >♫</div>\n            </div>\n            <div class=\"setting-item\">\n                <div class=\"setting-item--title\">Vibration:</div>\n                <div class=\"setting-item--btn crossed\"\n                        [ngClass]=\"{'crossed': (isVibrateDisabled() || isIOS), 'disabled': isIOS }\"\n                        (click)=\"toggleVibrate()\">↭</div>\n            </div>\n            <div class=\"setting-item\">\n                <div class=\"setting-item--title\">Backgound:</div>\n                <div class=\"setting-item--btn \" \n                        [ngClass]=\"{'crossed': isBackgroundDisabled()}\"\n                        (click)=\"onBackgroundToggle()\">bg</div>\n            </div>\n\n        </div>\n        <div class=\"menu-page--section\">\n            <div class=\"menu-section--title\">Results:</div>\n            <div class=\"mini-cards\" >\n                <div class=\"mini-card\" \n                    *ngFor=\"let level of memoryGameManagerService.getGameMetadat()\" \n                    [ngClass]=\"{'mini-card--disabled':!memoryGameManagerService.getLevelHistory(level.level)}\"\n                    (click)=\"onSelectLevel(level)\">\n                    <div class=\"mini-card--level\">Level: {{level.level}}</div>\n                    <div class=\"mini-card--paris\">cards: 2x{{level.cards/2}}</div>\n                    <div class=\"mini-card--score\">\n                        <div *ngIf=\"memoryGameManagerService.getLevelHistory(level.level) as levelData; else elseScore \">\n                                score: {{levelData.score}}\n                        </div>                        \n                        <ng-template #elseScore>\n                            score: -\n                        </ng-template>\n                </div>\n            </div>\n        </div>            \n    </div>\n    <div class=\"menu-page--section\">\n        <div class=\"menu-section--title\">Go To:</div>\n        <div class=\"menu-btn\" (click)=\"onHome()\">Home</div>\n    </div>\n    \n</div>\n";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/openning-screen/openning-screen.component.html":
   /*!******************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/openning-screen/openning-screen.component.html ***!
@@ -85,7 +185,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"openning-screen\" *ngIf=\"display\">\n\n    <div class=\"os-title\">Memory Match</div>\n    <div class=\"os-cards\">\n        <div class=\"os-card\" (click)=\"go(0)\">\n            <div>Game</div>\n            <div>1</div>\n        </div>\n        <div class=\"os-card\" (click)=\"go(1)\">\n            <div>Game</div>\n            <div>2</div>\n        </div> \n\n    </div>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"openning-screen\" *ngIf=\"openningScreenService.display$ | async\">\n\n    <div class=\"os-title\">Memory Match</div>\n    <div class=\"os-cards\">\n        <div class=\"os-card\" (click)=\"go(0)\">\n            <div>Game</div>\n            <div>1</div>\n        </div>\n        <div class=\"os-card\" (click)=\"go(1)\">\n            <div>Game</div>\n            <div>2</div>\n        </div> \n\n    </div>\n</div>\n";
     /***/
   },
 
@@ -751,6 +851,42 @@
     var _core_windows_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./core/windows/utils */
     "./src/app/core/windows/utils.ts");
+    /* harmony import */
+
+
+    var _main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./main/level-failed/level-failed.component */
+    "./src/app/main/level-failed/level-failed.component.ts");
+    /* harmony import */
+
+
+    var _openning_screen_openning_screen_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./openning-screen/openning-screen.service */
+    "./src/app/openning-screen/openning-screen.service.ts");
+    /* harmony import */
+
+
+    var _main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ./main/game-over/game-over.component */
+    "./src/app/main/game-over/game-over.component.ts");
+    /* harmony import */
+
+
+    var _main_game_complete_game_complete_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ./main/game-complete/game-complete.component */
+    "./src/app/main/game-complete/game-complete.component.ts");
+    /* harmony import */
+
+
+    var _main_count_down_count_down_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ./main/count-down/count-down.component */
+    "./src/app/main/count-down/count-down.component.ts");
+    /* harmony import */
+
+
+    var _menu_menu_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! ./menu/menu.service */
+    "./src/app/menu/menu.service.ts");
 
     var GAME_STATE;
 
@@ -759,63 +895,68 @@
       GAME_STATE[GAME_STATE["RUN"] = 1] = "RUN";
       GAME_STATE[GAME_STATE["COMPLETE"] = 2] = "COMPLETE";
       GAME_STATE[GAME_STATE["FAILED"] = 3] = "FAILED";
-      GAME_STATE[GAME_STATE["FAILED_COMPLETE"] = 4] = "FAILED_COMPLETE";
+      GAME_STATE[GAME_STATE["CONTINUE"] = 4] = "CONTINUE";
+      GAME_STATE[GAME_STATE["FAILED_COMPLETE"] = 5] = "FAILED_COMPLETE";
     })(GAME_STATE || (GAME_STATE = {}));
 
     let AppComponent = class AppComponent {
-      constructor(memoryGameManagerService, memoryDataService, soundService, vibrateService, fullscreenService, renderer2) {
+      constructor(memoryGameManagerService, memoryDataService, soundService, vibrateService, fullscreenService, cfr, injector, openningScreenService, menuService) {
         this.memoryGameManagerService = memoryGameManagerService;
         this.memoryDataService = memoryDataService;
         this.soundService = soundService;
         this.vibrateService = vibrateService;
         this.fullscreenService = fullscreenService;
-        this.renderer2 = renderer2;
+        this.cfr = cfr;
+        this.injector = injector;
+        this.openningScreenService = openningScreenService;
+        this.menuService = menuService;
       }
 
       ngOnInit() {
         this.init();
         this.isIOS = Object(_core_windows_utils__WEBPACK_IMPORTED_MODULE_8__["iOS"])();
-        this._gameChanged$ = this.memoryGameManagerService.gameChanged$;
-
-        this._gameChanged$.subscribe(game => {
+        this._gameChangedSubscription = this.memoryGameManagerService.gameChanged$.subscribe(game => {
           this.init();
+        });
+        this._levelSubscrption = this.memoryGameManagerService.levelChanged$.subscribe(level => {
+          this.initLevel();
+        });
+        this._menuGoHomeSubscription = this.menuService.home$.subscribe(() => {
+          this.removeMainTopScreen();
+          setTimeout(() => {
+            this.openningScreenService.display();
+          }, 750);
         });
       }
 
       ngOnDestroy() {
         this.fullscreenService.exitFullscreen();
+
+        this._levelSubscrption.unsubscribe();
+
+        this._gameChangedSubscription.unsubscribe();
+
+        this._menuGoHomeSubscription.unsubscribe();
       }
 
       get level() {
         return this.memoryGameManagerService.getCurrentLevel();
       }
 
-      get userMaxLevel() {
-        return this.memoryGameManagerService.getUserMaxLevel();
-      }
-
-      get gameState() {
-        return this._gameState;
-      }
-
       get totalScore() {
         return this.memoryGameManagerService.getTotalScore();
       }
 
-      get showTimer() {
-        return this._showTimer;
+      isDiscoverCardOnInit() {
+        return this.memoryGameManagerService.getGame() === _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE;
       }
 
       onNextLevel() {
-        this.setNewLevel(true);
+        this.setLevel(true);
       }
 
       onPrevLevel() {
-        this.setNewLevel(false);
-      }
-
-      getLevelMetadata() {
-        return this._levelMetadata;
+        this.setLevel(false);
       }
 
       getCardLevelDimension() {
@@ -830,12 +971,11 @@
         return this._levelMetadata.data;
       }
 
-      home() {
-        clearInterval(this._intervalHandler);
-        this._intervalHandler = null;
-        clearTimeout(this._disaplyShowTimerHandlerTimeout);
-        this._disaplyShowTimerHandlerTimeout = null;
-        this.clearShowTimer();
+      isMainDisabled() {}
+
+      onMenu() {
+        this.clearMainInterval();
+        this.menuService.open(); //this.openningScreenService.display();  
       } // reduce lifes
 
 
@@ -844,102 +984,129 @@
           this.onRun();
         }
 
-        this.soundService.beepCard(cardClicked.data.id); // First pair Click
+        this.soundService.beepCard(cardClicked.data.id); // -----------------------------------------
+        // First pair Click
+        // -----------------------------------------
 
         if (!this._firstCardClicked) {
           this._firstCardClicked = cardClicked;
-        } // Second pair click
-        else {
-            // Same cards
-            if (this._firstCardClicked.data.id === cardClicked.data.id) {
-              ++this._totalPairs;
+          return;
+        } // -----------------------------------------
+        // Second pair click
+        // -----------------------------------------
+        // -----------------------------------------
+        //        Same cards
+        // -----------------------------------------
 
+
+        if (this._firstCardClicked.data.id === cardClicked.data.id) {
+          ++this._totalPairs;
+
+          this._cardComponents.forEach(cardComponent => {
+            if (cardComponent.data.id === cardClicked.data.id) {
+              cardComponent.pair();
+            }
+          });
+
+          this._firstCardClicked = null; // Complete level      
+
+          if (this.isComplete()) {
+            // Stop timer
+            this.clearMainInterval(); // Game Complete state
+
+            if (this._gameState === GAME_STATE.CONTINUE) {
+              this._gameState = GAME_STATE.FAILED_COMPLETE;
+            } else {
+              this._gameState = GAME_STATE.COMPLETE;
+            } // Store data
+
+
+            this.memoryGameManagerService.completeLevel(this.isFailedStatus(), 0, this.current);
+            this.vibrateService.complete();
+            this.soundService.complete();
+
+            if (this.level === this.memoryGameManagerService.getEndLevel() && this._gameState === GAME_STATE.COMPLETE) {
+              this.displayMainTopComponent(_main_game_complete_game_complete_component__WEBPACK_IMPORTED_MODULE_12__["GameCompleteComponent"], null);
+              return;
+            } // Change to next level
+
+
+            setTimeout(() => {
+              this.setLevel(true); // TODO:: check if game finished
+            }, 1000);
+          }
+        } // -----------------------------------------
+        // Diffrent cards
+        // -----------------------------------------
+        else {
+            this.vibrateService.pairMissMatch();
+            this.soundService.pairMissMatch();
+            setTimeout(() => {
               this._cardComponents.forEach(cardComponent => {
-                if (cardComponent.data.id === cardClicked.data.id) {
-                  cardComponent.pair();
+                if (cardComponent.data.id === cardClicked.data.id || cardComponent.data.id === this._firstCardClicked.data.id) {
+                  cardComponent.reset();
                 }
               });
 
-              this._firstCardClicked = null; //this.vibrateService.pairMatch();
-              // ---------------------------------------------
-              // Complete level
-              // ---------------------------------------------
+              this._firstCardClicked = null;
 
-              if (this.isComplete()) {
-                // Stop timer
-                clearInterval(this._intervalHandler);
-                this._intervalHandler = null; // Game Complete state
+              if (this.memoryGameManagerService.getGame() == _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
+                this.discoverAll();
+                this.clearMainInterval();
+                this.changeLives(-1);
 
-                this._gameState = this.current > 0 ? GAME_STATE.COMPLETE : GAME_STATE.FAILED_COMPLETE; // Store data
-
-                this.memoryGameManagerService.completeLevel(this.isFailedStatus(), this.timer, this.current);
-                this.vibrateService.complete();
-                this.soundService.complete();
-
-                if (this._gameState === GAME_STATE.COMPLETE) {
-                  setTimeout(() => {
-                    this.setNewLevel(true);
-                  }, 1000);
+                if (this.lives === 0) {
+                  this.displayMainTopComponent(_main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_11__["GameOverComponent"], false);
+                } else {
+                  this.displayMainTopComponent(_main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_9__["LevelFailedComponent"], false);
                 }
               }
-            } // Diffrent cards
-            else {
-                this.vibrateService.pairMissMatch();
-                this.soundService.pairMissMatch();
-                setTimeout(() => {
-                  this._cardComponents.forEach(cardComponent => {
-                    if (cardComponent.data.id === cardClicked.data.id || cardComponent.data.id === this._firstCardClicked.data.id) {
-                      cardComponent.reset();
-                    }
-                  });
-
-                  this._firstCardClicked = null;
-
-                  if (this.memoryGameManagerService.getGame() == _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
-                    this.discoverAll();
-                    this._showTimer = 'Try Again';
-                    this.renderer2.addClass(this._screen.nativeElement, 'screen--display');
-                    clearInterval(this._intervalHandler);
-                    this.changeLives(-1);
-                  }
-                }, 250);
-              }
+            }, 250);
           }
-      } // Run Button
+      } // --------------------------------------------------------
+      // Run Button (The Timer)
+      // --------------------------------------------------------
 
 
       onRun() {
         // Refresh
         if (this._gameState !== GAME_STATE.INIT) {
-          this.setNewLevel();
+          this.setLevel();
           return;
         }
 
-        this.clearShowTimer();
         this._gameState = GAME_STATE.RUN;
         this._intervalHandler = setInterval(() => {
-          // Timer
-          ++this.timer; // Score
-
+          // Score
           if (this.current > 0) {
             --this.current;
-          } // Failed
+          } // ----------------------------------------------
+          // Time out
+          // ----------------------------------------------
 
 
           if (this.current === 0) {
+            this.clearMainInterval(); // Succeed on the second (go to next level)
+
             if (this.isComplete()) {
-              this._gameState = GAME_STATE.FAILED_COMPLETE;
+              this._gameState = GAME_STATE.COMPLETE;
+              setTimeout(() => {
+                this.setLevel(true); // TODO:: check if game finished
+              }, 1000); // Failed
             } else {
-              // Reduce lives
-              if (this._gameState !== GAME_STATE.FAILED) {
-                this.soundService.failed(); // Only if it is  user max level            
-
-                if (this.level === this.memoryGameManagerService.getUserMaxLevel()) {
-                  this.changeLives(-1);
-                }
-              }
-
               this._gameState = GAME_STATE.FAILED;
+              this.soundService.failed(); // Only if it is  user max level            
+
+              if (this.level === this.memoryGameManagerService.getUserMaxLevel()) {
+                this.changeLives(-1);
+              } // Time end (due to time), alow continue till end          
+
+
+              if (this.lives === 0) {
+                this.displayMainTopComponent(_main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_11__["GameOverComponent"], true);
+              } else {
+                this.displayMainTopComponent(_main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_9__["LevelFailedComponent"], true);
+              }
             }
           }
         }, 1000);
@@ -948,30 +1115,6 @@
       onReset() {
         this.memoryGameManagerService.reset();
         this.init();
-      }
-
-      toggleSound() {
-        this.soundService.toggleSound();
-      }
-
-      isSoundDisabled() {
-        return !this.soundService.isEnable();
-      }
-
-      toggleVibrate() {
-        this.vibrateService.toggleSound();
-      }
-
-      isVibrateDisabled() {
-        return !this.vibrateService.isEnable();
-      }
-
-      onBackgroundToggle() {
-        this.memoryGameManagerService.toggleBackground();
-      }
-
-      isBackgroundDisabled() {
-        return !this.memoryGameManagerService.getBackground();
       }
 
       getBackgroundColor() {
@@ -1001,51 +1144,34 @@
 
       init() {
         this.lives = this.memoryGameManagerService.getLives();
-        this.setNewLevel();
-      } //next:  true-next level, false, prev level, undefine refresh current level
+        this.setLevel();
+      } //next:  true-next level, 
+      //       false-prev level,
+      //       undefine refresh current level
 
 
-      setNewLevel(next) {
+      setLevel(next) {
         if (next === true) {
           this.memoryGameManagerService.nextLevel();
         } else if (next === false) {
           this.memoryGameManagerService.prevLevel();
         }
 
+        this.initLevel();
+      }
+
+      initLevel() {
+        this.removeMainTopScreen();
         this._levelMetadata = this.memoryGameManagerService.getLevelMetadata();
         this._levelMetadata.data = this.memoryDataService.getRandomPairs(this._levelMetadata.cards / 2);
         this._totalPairs = 0;
         this._gameState = GAME_STATE.INIT;
-        this.timer = 0;
         this.current = this._levelMetadata.score;
-
-        if (this._intervalHandler) {
-          clearInterval(this._intervalHandler);
-          this._intervalHandler = null;
-        }
+        this.clearMainInterval();
 
         if (this.memoryGameManagerService.getGame() === _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_2__["GAME"].REVERSE) {
-          this._disaplyShowTimerHandlerTimeout = setTimeout(() => {
-            clearInterval(this._showTimerIntervalHandler);
-            this._showTimer = this._levelMetadata.showTimer;
-            this.renderer2.addClass(this._screen.nativeElement, 'screen--display');
-            this.discoverAll();
-            this._showTimerIntervalHandler = setInterval(() => {
-              --this._showTimer;
-
-              if (this._showTimer === 0) {
-                this.clearShowTimer();
-              }
-            }, 1000);
-          }, 0);
+          this.displayMainTopComponent(_main_count_down_count_down_component__WEBPACK_IMPORTED_MODULE_13__["CountDownComponent"], this._levelMetadata.showTimer);
         }
-      }
-
-      clearShowTimer() {
-        clearInterval(this._showTimerIntervalHandler);
-        this._showTimerIntervalHandler = null;
-        this.renderer2.removeClass(this._screen.nativeElement, 'screen--display');
-        this.hideAll();
       }
 
       changeLives(deltaLives) {
@@ -1053,17 +1179,21 @@
 
         if (this.lives < 0) {
           this.lives = 0;
+        } else {
+          this.memoryGameManagerService.changeLive(deltaLives);
         }
-
-        this.memoryGameManagerService.changeLive(deltaLives);
       }
 
       isFailedStatus() {
-        return this._gameState === GAME_STATE.FAILED || this._gameState === GAME_STATE.FAILED_COMPLETE;
+        return this._gameState === GAME_STATE.FAILED || this._gameState === GAME_STATE.FAILED_COMPLETE || this._gameState === GAME_STATE.CONTINUE;
       }
 
       isComplete() {
         return this._totalPairs === this._levelMetadata.cards / 2;
+      }
+
+      isBackgroundDisabled() {
+        return !this.memoryGameManagerService.getBackground();
       }
 
       discoverAll() {
@@ -1076,6 +1206,56 @@
         this._cardComponents.forEach(card => {
           card.hide();
         });
+      }
+
+      clearMainInterval() {
+        clearInterval(this._intervalHandler);
+        this._intervalHandler = null;
+      }
+
+      displayMainTopComponent(comp, data) {
+        let componentFactory = this.cfr.resolveComponentFactory(comp);
+        let component = componentFactory.create(this.injector);
+        let componentInstace = component.instance;
+        componentInstace.data = data;
+        this._mainTopScreenSubscription = componentInstace.output.subscribe(action => {
+          console.log(action);
+          this.removeMainTopScreen();
+
+          switch (action.action) {
+            case 'RETRY':
+              this.onRun();
+              break;
+
+            case 'CONTINUE':
+              this._gameState = GAME_STATE.CONTINUE;
+              break;
+
+            case 'RESTART':
+              this.onReset();
+              break;
+
+            case 'HOME':
+              this.openningScreenService.display();
+              break;
+
+            case 'REVERSE_RUN':
+              this.hideAll();
+              this.onRun();
+              break;
+          }
+        });
+        this.mainTopScreen.insert(component.hostView);
+      }
+
+      removeMainTopScreen() {
+        if (this._mainTopScreenSubscription) {
+          this._mainTopScreenSubscription.unsubscribe();
+
+          this._mainTopScreenSubscription = null;
+        }
+
+        this.mainTopScreen.remove();
       }
 
     };
@@ -1091,14 +1271,20 @@
     }, {
       type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_7__["FullScreenService"]
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]
+    }, {
+      type: _openning_screen_openning_screen_service__WEBPACK_IMPORTED_MODULE_10__["OpenningScreenService"]
+    }, {
+      type: _menu_menu_service__WEBPACK_IMPORTED_MODULE_14__["MenuService"]
     }];
 
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"])], AppComponent.prototype, "_cardComponents", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('screen', {
-      static: true,
-      read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]
-    })], AppComponent.prototype, "_screen", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('mainTopScreen', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"],
+      static: true
+    })], AppComponent.prototype, "mainTopScreen", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-root',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -1166,13 +1352,44 @@
     var _openning_screen_openning_screen_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./openning-screen/openning-screen.component */
     "./src/app/openning-screen/openning-screen.component.ts");
+    /* harmony import */
+
+
+    var _main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./main/level-failed/level-failed.component */
+    "./src/app/main/level-failed/level-failed.component.ts");
+    /* harmony import */
+
+
+    var _main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./main/game-over/game-over.component */
+    "./src/app/main/game-over/game-over.component.ts");
+    /* harmony import */
+
+
+    var _main_game_complete_game_complete_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./main/game-complete/game-complete.component */
+    "./src/app/main/game-complete/game-complete.component.ts");
+    /* harmony import */
+
+
+    var _main_count_down_count_down_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./main/count-down/count-down.component */
+    "./src/app/main/count-down/count-down.component.ts");
+    /* harmony import */
+
+
+    var _menu_menu_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./menu/menu.component */
+    "./src/app/menu/menu.component.ts");
 
     let AppModule = class AppModule {};
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"], _openning_screen_openning_screen_component__WEBPACK_IMPORTED_MODULE_5__["OpenningScreenComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _memory_card_card_card_component__WEBPACK_IMPORTED_MODULE_4__["CardComponent"], _openning_screen_openning_screen_component__WEBPACK_IMPORTED_MODULE_5__["OpenningScreenComponent"], _main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_6__["LevelFailedComponent"], _main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_7__["GameOverComponent"], _main_game_complete_game_complete_component__WEBPACK_IMPORTED_MODULE_8__["GameCompleteComponent"], _main_count_down_count_down_component__WEBPACK_IMPORTED_MODULE_9__["CountDownComponent"], _menu_menu_component__WEBPACK_IMPORTED_MODULE_10__["MenuComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"]],
       providers: [],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
+      entryComponents: [_main_level_failed_level_failed_component__WEBPACK_IMPORTED_MODULE_6__["LevelFailedComponent"], _main_game_over_game_over_component__WEBPACK_IMPORTED_MODULE_7__["GameOverComponent"], _main_game_complete_game_complete_component__WEBPACK_IMPORTED_MODULE_8__["GameCompleteComponent"], _main_count_down_count_down_component__WEBPACK_IMPORTED_MODULE_9__["CountDownComponent"]]
     })], AppModule);
     /***/
   },
@@ -1334,40 +1551,40 @@
           color: '#222222',
           symbol: '&#9728;'
         }, {
-          color: '#000080',
+          color: '#FF0000',
           symbol: '&#9730;'
         }, {
-          color: '#008000',
+          color: '#ff9933',
           symbol: '&#9734;'
         }, {
-          color: '#800000',
+          color: '#FFFF00',
           symbol: '&#9742;'
         }, {
-          color: '#000FFF',
+          color: '#33ff33',
           symbol: '&#9762;'
         }, {
-          color: '#00FF00',
+          color: '#009800',
           symbol: '&#9774;'
         }, {
-          color: '#FF0000',
+          color: '#33ffff',
           symbol: '&#9775;'
         }, {
-          color: '#FF00FF',
+          color: '#1292ff',
           symbol: '&#9786;'
         }, {
-          color: '#FFFF00',
+          color: '#0000FF',
           symbol: '&#9788;'
         }, {
-          color: '#00FFFF',
+          color: '#9933ff',
           symbol: '&#9819;'
         }, {
-          color: '#FF6600',
+          color: '#ff00ff',
           symbol: '&#9832;'
         }, {
-          color: '#009191',
+          color: '#ff3366',
           symbol: '&#9851;'
         }, {
-          color: '#FF0088',
+          color: '#fceabf',
           symbol: '&#9863;'
         }];
       }
@@ -1478,6 +1695,7 @@
       constructor(userDataService) {
         this.userDataService = userDataService;
         this._gameChanged = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+        this._levelChanged = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this._game = GAME.REGULAR;
         this.initFromUserData();
       }
@@ -1496,6 +1714,10 @@
 
       get gameChanged$() {
         return this._gameChanged.asObservable();
+      }
+
+      get levelChanged$() {
+        return this._levelChanged.asObservable();
       }
 
       getCurrentLevel() {
@@ -1538,13 +1760,24 @@
         return _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"][this._currentLevel - 1];
       }
 
+      getHistory() {
+        return this.userDataService.getLevelHistory();
+      }
+
+      getLevelHistory(level) {
+        return this.userDataService.getLevelHistory().find(item => item.level === level);
+      }
+
+      getGameMetadat() {
+        return _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"];
+      }
+
       nextLevel() {
         if (this._currentLevel === _game_metadata_const__WEBPACK_IMPORTED_MODULE_2__["GAME_METADATA"].length) {
           return this._currentLevel;
         }
 
-        ++this._currentLevel;
-        this.userDataService.setCurrentLevel(this._currentLevel);
+        this.setLevel(this._currentLevel + 1);
 
         if (this._userMaxLevel < this._currentLevel) {
           this._userMaxLevel = this._currentLevel;
@@ -1556,11 +1789,17 @@
 
       prevLevel() {
         if (this._currentLevel > 1) {
-          --this._currentLevel;
-          this.userDataService.setCurrentLevel(this._currentLevel);
+          this.setLevel(this._currentLevel - 1);
         }
 
         return this._currentLevel;
+      }
+
+      setLevel(level) {
+        this._currentLevel = level;
+        this.userDataService.setCurrentLevel(this._currentLevel);
+
+        this._levelChanged.next(this._currentLevel);
       }
 
       completeLevel(failed, time, score) {
@@ -1843,7 +2082,7 @@
     const PRODUCTION_VERSION = 1;
     const INIT_USER_MAX_LEVLE = 1;
     const INIT_CURRENT_MAX_LEVEL = 1;
-    const INIT_LIVES = 5;
+    const INIT_LIVES = 2;
     let UserDataService = class UserDataService {
       constructor() {
         this._userDataKey = "userData_".concat(this._game);
@@ -2122,6 +2361,378 @@
   },
 
   /***/
+  "./src/app/main/count-down/count-down.component.scss":
+  /*!***********************************************************!*\
+    !*** ./src/app/main/count-down/count-down.component.scss ***!
+    \***********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppMainCountDownCountDownComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".main-page {\n  background-color: rgba(0, 0, 0, 0.123);\n  color: black;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  font-size: 4rem;\n  font-weight: bold;\n}\n.main-page .counter {\n  margin-top: 0.2em;\n  font-size: 8rem;\n  background-color: rgba(255, 255, 255, 0.5);\n  border-radius: 100vmax;\n  padding: 0.25em;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFpbi9jb3VudC1kb3duL0M6XFxNZWlyXFxJbnRlcnZpZXdcXHBvcmplY3RzXFxtZW1vcnktZ2FtZS9zcmNcXGFwcFxcbWFpblxcY291bnQtZG93blxcY291bnQtZG93bi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbWFpbi9jb3VudC1kb3duL2NvdW50LWRvd24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxzQ0FBQTtFQUNBLFlBQUE7RUFDQSxvQkFBQTtFQUFBLGFBQUE7RUFDQSw0QkFBQTtFQUFBLDZCQUFBO1VBQUEsc0JBQUE7RUFFQSxlQUFBO0VBQ0EsaUJBQUE7QUNBSjtBREVJO0VBQ0ksaUJBQUE7RUFDQSxlQUFBO0VBQ0EsMENBQUE7RUFDQSxzQkFBQTtFQUNBLGVBQUE7QUNBUiIsImZpbGUiOiJzcmMvYXBwL21haW4vY291bnQtZG93bi9jb3VudC1kb3duLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4tcGFnZXtcclxuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgwLCAwLCAwLCAwLjEyMyk7XHJcbiAgICBjb2xvcjogYmxhY2s7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuXHJcbiAgICBmb250LXNpemU6IDRyZW07XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuXHJcbiAgICAuY291bnRlciB7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogMC4yZW07XHJcbiAgICAgICAgZm9udC1zaXplOiA4cmVtO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC41KTtcclxuICAgICAgICBib3JkZXItcmFkaXVzOiAxMDB2bWF4O1xyXG4gICAgICAgIHBhZGRpbmc6MC4yNWVtIDtcclxuICAgIH1cclxufVxyXG4iLCIubWFpbi1wYWdlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjEyMyk7XG4gIGNvbG9yOiBibGFjaztcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgZm9udC1zaXplOiA0cmVtO1xuICBmb250LXdlaWdodDogYm9sZDtcbn1cbi5tYWluLXBhZ2UgLmNvdW50ZXIge1xuICBtYXJnaW4tdG9wOiAwLjJlbTtcbiAgZm9udC1zaXplOiA4cmVtO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNSk7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHZtYXg7XG4gIHBhZGRpbmc6IDAuMjVlbTtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/main/count-down/count-down.component.ts":
+  /*!*********************************************************!*\
+    !*** ./src/app/main/count-down/count-down.component.ts ***!
+    \*********************************************************/
+
+  /*! exports provided: CountDownComponent */
+
+  /***/
+  function srcAppMainCountDownCountDownComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CountDownComponent", function () {
+      return CountDownComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let CountDownComponent = class CountDownComponent {
+      constructor() {
+        this.output = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+      }
+
+      ngOnInit() {
+        this._intervaleHandler = setInterval(() => {
+          --this.data;
+
+          if (this.data === 0) {
+            this.onRun();
+          }
+        }, 1000);
+      }
+
+      onRun() {
+        clearInterval(this._intervaleHandler);
+        this.output.emit({
+          action: 'REVERSE_RUN'
+        });
+      }
+
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CountDownComponent.prototype, "data", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], CountDownComponent.prototype, "output", void 0);
+    CountDownComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-count-down',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./count-down.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/main/count-down/count-down.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./count-down.component.scss */
+      "./src/app/main/count-down/count-down.component.scss")).default]
+    })], CountDownComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/main/game-complete/game-complete.component.scss":
+  /*!*****************************************************************!*\
+    !*** ./src/app/main/game-complete/game-complete.component.scss ***!
+    \*****************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppMainGameCompleteGameCompleteComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21haW4vZ2FtZS1jb21wbGV0ZS9nYW1lLWNvbXBsZXRlLmNvbXBvbmVudC5zY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/main/game-complete/game-complete.component.ts":
+  /*!***************************************************************!*\
+    !*** ./src/app/main/game-complete/game-complete.component.ts ***!
+    \***************************************************************/
+
+  /*! exports provided: GameCompleteComponent */
+
+  /***/
+  function srcAppMainGameCompleteGameCompleteComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "GameCompleteComponent", function () {
+      return GameCompleteComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let GameCompleteComponent = class GameCompleteComponent {
+      constructor() {
+        this.output = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+      }
+
+      retry() {
+        this.output.emit({
+          action: 'RETRY'
+        });
+      }
+
+      restart() {
+        this.output.emit({
+          action: 'RESTART'
+        });
+      }
+
+      home() {
+        this.output.emit({
+          action: 'HOME'
+        });
+      }
+
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], GameCompleteComponent.prototype, "output", void 0);
+    GameCompleteComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-game-complete',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./game-complete.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-complete/game-complete.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./game-complete.component.scss */
+      "./src/app/main/game-complete/game-complete.component.scss")).default]
+    })], GameCompleteComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/main/game-over/game-over.component.scss":
+  /*!*********************************************************!*\
+    !*** ./src/app/main/game-over/game-over.component.scss ***!
+    \*********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppMainGameOverGameOverComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21haW4vZ2FtZS1vdmVyL2dhbWUtb3Zlci5jb21wb25lbnQuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/main/game-over/game-over.component.ts":
+  /*!*******************************************************!*\
+    !*** ./src/app/main/game-over/game-over.component.ts ***!
+    \*******************************************************/
+
+  /*! exports provided: GameOverComponent */
+
+  /***/
+  function srcAppMainGameOverGameOverComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "GameOverComponent", function () {
+      return GameOverComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let GameOverComponent = class GameOverComponent {
+      constructor() {
+        this.output = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.data = true;
+      }
+
+      retry() {
+        this.output.emit({
+          action: 'RETRY'
+        });
+      }
+
+      continue() {
+        this.output.emit({
+          action: 'CONTINUE'
+        });
+      }
+
+      restart() {
+        this.output.emit({
+          action: 'RESTART'
+        });
+      }
+
+      home() {
+        this.output.emit({
+          action: 'HOME'
+        });
+      }
+
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], GameOverComponent.prototype, "data", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], GameOverComponent.prototype, "output", void 0);
+    GameOverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-game-over',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./game-over.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/main/game-over/game-over.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./game-over.component.scss */
+      "./src/app/main/game-over/game-over.component.scss")).default]
+    })], GameOverComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/main/level-failed/level-failed.component.scss":
+  /*!***************************************************************!*\
+    !*** ./src/app/main/level-failed/level-failed.component.scss ***!
+    \***************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppMainLevelFailedLevelFailedComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21haW4vbGV2ZWwtZmFpbGVkL2xldmVsLWZhaWxlZC5jb21wb25lbnQuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/main/level-failed/level-failed.component.ts":
+  /*!*************************************************************!*\
+    !*** ./src/app/main/level-failed/level-failed.component.ts ***!
+    \*************************************************************/
+
+  /*! exports provided: LevelFailedComponent */
+
+  /***/
+  function srcAppMainLevelFailedLevelFailedComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "LevelFailedComponent", function () {
+      return LevelFailedComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let LevelFailedComponent = class LevelFailedComponent {
+      constructor() {
+        this.output = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.data = true;
+      }
+
+      retry() {
+        this.output.emit({
+          action: 'RETRY'
+        });
+      }
+
+      continue() {
+        this.output.emit({
+          action: 'CONTINUE'
+        });
+      }
+
+      restart() {
+        this.output.emit({
+          action: 'RESTART'
+        });
+      }
+
+      home() {
+        this.output.emit({
+          action: 'HOME'
+        });
+      }
+
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], LevelFailedComponent.prototype, "data", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], LevelFailedComponent.prototype, "output", void 0);
+    LevelFailedComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-level-failed',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./level-failed.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/main/level-failed/level-failed.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./level-failed.component.scss */
+      "./src/app/main/level-failed/level-failed.component.scss")).default]
+    })], LevelFailedComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/memory/card/card/card.component.scss":
   /*!******************************************************!*\
     !*** ./src/app/memory/card/card/card.component.scss ***!
@@ -2178,11 +2789,10 @@
         this.elmRef = elmRef;
         this.cardClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this._isClick = false;
-      }
-
-      ngOnInit() {
         this._discover = false;
       }
+
+      ngOnInit() {}
 
       isActive() {
         return this._isClick;
@@ -2249,6 +2859,7 @@
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CardComponent.prototype, "data", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CardComponent.prototype, "cardIndex", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], CardComponent.prototype, "disableBackground", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('discover')], CardComponent.prototype, "_discover", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], CardComponent.prototype, "cardClicked", void 0);
     CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-card',
@@ -2259,6 +2870,236 @@
       /*! ./card.component.scss */
       "./src/app/memory/card/card/card.component.scss")).default]
     })], CardComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/menu/menu.component.scss":
+  /*!******************************************!*\
+    !*** ./src/app/menu/menu.component.scss ***!
+    \******************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppMenuMenuComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".menu-page {\n  --bb: 5px solid rgb(196, 188, 188);\n  --clr-bg: rgba(0, 0, 0, 0.733);\n  z-index: 1000;\n  background-color: var(--clr-bg);\n  color: white;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  -webkit-transform: translatex(100%);\n          transform: translatex(100%);\n  -webkit-transition: -webkit-transform ease-in 500ms;\n  transition: -webkit-transform ease-in 500ms;\n  transition: transform ease-in 500ms;\n  transition: transform ease-in 500ms, -webkit-transform ease-in 500ms;\n}\n.menu-page.open {\n  -webkit-transform: translatex(40%);\n          transform: translatex(40%);\n}\n.menu-page--content {\n  margin: 0.5em 1em 0.5em;\n}\n.menu-page--header {\n  width: 100%;\n  padding-bottom: 0.5em;\n  border-bottom: var(--bb);\n}\n.menu-page--title {\n  display: inline-block;\n  font-size: 2rem;\n  font-weight: 900;\n  width: 90%;\n  position: relative;\n}\n.menu-page--close {\n  background-color: var(--clr-bg);\n  display: inline-block;\n  font-size: 1.5rem;\n  font-weight: 900;\n  padding: 0.2em 0.2em;\n  border-radius: 0.2em;\n  position: absolute;\n  right: 0;\n  -webkit-transition: right ease-in-out 750ms;\n  transition: right ease-in-out 750ms;\n  cursor: pointer;\n}\n.menu-page--close:hover {\n  background-color: grey;\n}\n.menu-page.open .menu-page--close {\n  right: 100%;\n}\n.menu-page--section:not(:last-of-type) {\n  border-bottom: var(--bb);\n  padding-bottom: 0.5em;\n  padding-top: 0.5em;\n}\n.menu-section--title {\n  font-size: 1.5rem;\n  font-weight: 900;\n  margin-bottom: 0.5em;\n}\n.setting-item {\n  display: -webkit-box;\n  display: flex;\n  font-size: 1.2srem;\n  margin-bottom: 0.5em;\n}\n.setting-item--title {\n  width: 100px;\n}\n.setting-item--btn {\n  background-color: rgba(240, 255, 240, 0.096);\n  border: 1px solid white;\n  border-radius: 5px;\n  height: 1.5em;\n  width: 1.5em;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  cursor: pointer;\n}\n.setting-item--btn:hover {\n  background-color: rgba(126, 110, 110, 0.685);\n}\n.crossed {\n  position: relative;\n}\n.crossed:before {\n  content: \"\";\n  position: absolute;\n  background-color: black;\n  height: 2px;\n  width: 100%;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n}\n.crossed:after {\n  content: \"\";\n  position: absolute;\n  background-color: black;\n  height: 2px;\n  width: 100%;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n.mini-cards {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  width: max(60%, 200px);\n}\n.mini-card {\n  border: 1px solid white;\n  border-radius: 5px;\n  margin: 0.1em;\n  padding: 0.3em;\n  cursor: pointer;\n  text-align: center;\n}\n.mini-card:hover {\n  background-color: rgba(214, 211, 211, 0.26);\n}\n.disabled, .mini-card--disabled {\n  pointer-events: none;\n  cursor: initial;\n  background-color: rgba(0, 0, 0, 0.315);\n}\n.mini-card--disabled {\n  background-color: grey;\n}\n.menu-btn {\n  display: inline-block;\n  padding: 0.3em 0.9em;\n  border: 1px solid white;\n  border-radius: 5px;\n  cursor: pointer;\n}\n.menu-btn:hover {\n  background-color: rgba(214, 211, 211, 0.26);\n}\n@media (max-width: 1045px) {\n  .menu-page.open {\n    -webkit-transform: translatex(20%);\n            transform: translatex(20%);\n  }\n}\n@media (max-width: 580px) {\n  .mini-card--paris {\n    display: none;\n  }\n\n  .menu-page--title {\n    font-size: 1.5rem;\n  }\n\n  .menu-section--title {\n    font-size: 1rem;\n  }\n\n  .mini-card {\n    font-size: smaller;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWVudS9DOlxcTWVpclxcSW50ZXJ2aWV3XFxwb3JqZWN0c1xcbWVtb3J5LWdhbWUvc3JjXFxhcHBcXG1lbnVcXG1lbnUuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21lbnUvbWVudS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUVJLGtDQUFBO0VBQ0EsOEJBQUE7RUFHQSxhQUFBO0VBQ0EsK0JBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxNQUFBO0VBQ0EsU0FBQTtFQUNBLE9BQUE7RUFDQSxRQUFBO0VBQ0EsbUNBQUE7VUFBQSwyQkFBQTtFQUNBLG1EQUFBO0VBQUEsMkNBQUE7RUFBQSxtQ0FBQTtFQUFBLG9FQUFBO0FDSEo7QURLSTtFQUNJLGtDQUFBO1VBQUEsMEJBQUE7QUNIUjtBRE1BO0VBQ0ksdUJBQUE7QUNISjtBRE1BO0VBQ0ksV0FBQTtFQUNBLHFCQUFBO0VBQ0Esd0JBQUE7QUNISjtBREtBO0VBQ0kscUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxVQUFBO0VBQ0Esa0JBQUE7QUNGSjtBRE1BO0VBQ0ksK0JBQUE7RUFDQSxxQkFBQTtFQUNBLGlCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvQkFBQTtFQUNBLG9CQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsMkNBQUE7RUFBQSxtQ0FBQTtFQUVBLGVBQUE7QUNKSjtBREtJO0VBQ0ksc0JBQUE7QUNIUjtBRE9BO0VBQ0ksV0FBQTtBQ0pKO0FET0E7RUFDSSx3QkFBQTtFQUNBLHFCQUFBO0VBQ0Esa0JBQUE7QUNKSjtBRE9BO0VBQ0ksaUJBQUE7RUFDQSxnQkFBQTtFQUNBLG9CQUFBO0FDSko7QURPQTtFQUNJLG9CQUFBO0VBQUEsYUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0JBQUE7QUNKSjtBRE1JO0VBQ0ksWUFBQTtBQ0pSO0FET0k7RUFDSSw0Q0FBQTtFQUNBLHVCQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHdCQUFBO1VBQUEsdUJBQUE7RUFDQSx5QkFBQTtVQUFBLG1CQUFBO0VBQ0EsZUFBQTtBQ0xSO0FET1E7RUFDSSw0Q0FBQTtBQ0xaO0FEVUE7RUFDSSxrQkFBQTtBQ1BKO0FEVUE7RUFDSSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0VBQ0EsZ0NBQUE7VUFBQSx3QkFBQTtBQ1BKO0FEV0E7RUFDSSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0VBQ0EsaUNBQUE7VUFBQSx5QkFBQTtBQ1JKO0FEV0E7RUFDSSxhQUFBO0VBQ0EscUNBQUE7RUFDQSxzQkFBQTtBQ1JKO0FEV0E7RUFDSSx1QkFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLGNBQUE7RUFDQSxlQUFBO0VBQ0Esa0JBQUE7QUNSSjtBRFVJO0VBQ0ksMkNBQUE7QUNSUjtBRGFBO0VBQ0ksb0JBQUE7RUFDQSxlQUFBO0VBQ0Esc0NBQUE7QUNWSjtBRGNBO0VBR0ksc0JBQUE7QUNiSjtBRGlCQTtFQUNJLHFCQUFBO0VBQ0Esb0JBQUE7RUFDQSx1QkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ2RKO0FEZ0JJO0VBQ0ksMkNBQUE7QUNkUjtBRHFCQTtFQUNJO0lBQ0ksa0NBQUE7WUFBQSwwQkFBQTtFQ2xCTjtBQUNGO0FEc0JBO0VBQ0k7SUFDSSxhQUFBO0VDcEJOOztFRHNCRTtJQUNJLGlCQUFBO0VDbkJOOztFRHNCRTtJQUNJLGVBQUE7RUNuQk47O0VEcUJFO0lBQ0ksa0JBQUE7RUNsQk47QUFDRiIsImZpbGUiOiJzcmMvYXBwL21lbnUvbWVudS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4ubWVudS1wYWdleyAgICBcclxuICBcclxuICAgIC0tYmI6IDVweCBzb2xpZCByZ2IoMTk2LCAxODgsIDE4OCk7ICAgIFxyXG4gICAgLS1jbHItYmc6IHJnYmEoMCwgMCwgMCwgMC43MzMpO1xyXG4gIFxyXG5cclxuICAgIHotaW5kZXg6IDEwMDA7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOnZhcigtLWNsci1iZyk7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6MDtcclxuICAgIGJvdHRvbTowO1xyXG4gICAgbGVmdDogMDtcclxuICAgIHJpZ2h0OiAwOyAgIFxyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGV4KDEwMCUpO1xyXG4gICAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIGVhc2UtaW4gNTAwbXM7XHJcblxyXG4gICAgJi5vcGVuIHtcclxuICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZXgoNDAlKTtcclxuICAgIH1cclxufVxyXG4ubWVudS1wYWdlLS1jb250ZW50e1xyXG4gICAgbWFyZ2luOiAwLjVlbSAxZW0gMC41ZW07XHJcbn1cclxuXHJcbi5tZW51LXBhZ2UtLWhlYWRlciB7XHJcbiAgICB3aWR0aDogMTAwJTsgICAgXHJcbiAgICBwYWRkaW5nLWJvdHRvbTogMC41ZW07XHJcbiAgICBib3JkZXItYm90dG9tOiB2YXIoLS1iYik7ICAgICAgXHJcbn1cclxuLm1lbnUtcGFnZS0tdGl0bGV7ICAgICAgIFxyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrOyAgICBcclxuICAgIGZvbnQtc2l6ZTogMnJlbTsgXHJcbiAgICBmb250LXdlaWdodDogOTAwO1xyXG4gICAgd2lkdGg6IDkwJTsgICAgICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIFxyXG59XHJcblxyXG4ubWVudS1wYWdlLS1jbG9zZSB7ICAgIFxyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tY2xyLWJnKTtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsgICAgICAgICAgICBcclxuICAgIGZvbnQtc2l6ZTogMS41cmVtOyBcclxuICAgIGZvbnQtd2VpZ2h0OiA5MDA7ICAgICAgXHJcbiAgICBwYWRkaW5nOiAwLjJlbSAwLjJlbTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDAuMmVtOyAgIFxyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgcmlnaHQ6IDA7XHJcbiAgICB0cmFuc2l0aW9uOiByaWdodCBlYXNlLWluLW91dCA3NTBtcztcclxuICAgIFxyXG4gICAgY3Vyc29yOnBvaW50ZXI7XHJcbiAgICAmOmhvdmVye1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IGdyZXk7XHJcbiAgICB9XHJcbn1cclxuXHJcbi5tZW51LXBhZ2Uub3BlbiAgLm1lbnUtcGFnZS0tY2xvc2Uge1xyXG4gICAgcmlnaHQ6IDEwMCU7XHJcbn1cclxuXHJcbi5tZW51LXBhZ2UtLXNlY3Rpb246bm90KDpsYXN0LW9mLXR5cGUpIHtcclxuICAgIGJvcmRlci1ib3R0b206IHZhcigtLWJiKTsgIFxyXG4gICAgcGFkZGluZy1ib3R0b206IDAuNWVtOyAgICAgIFxyXG4gICAgcGFkZGluZy10b3A6IDAuNWVtOyAgXHJcbn1cclxuXHJcbi5tZW51LXNlY3Rpb24tLXRpdGxle1xyXG4gICAgZm9udC1zaXplOiAxLjVyZW07IFxyXG4gICAgZm9udC13ZWlnaHQ6IDkwMDsgICAgIFxyXG4gICAgbWFyZ2luLWJvdHRvbTogMC41ZW07XHJcbn1cclxuXHJcbi5zZXR0aW5nLWl0ZW0ge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZvbnQtc2l6ZTogMS4yc3JlbTtcclxuICAgIG1hcmdpbi1ib3R0b206IDAuNWVtO1xyXG4gICAgXHJcbiAgICAmLS10aXRsZSB7XHJcbiAgICAgICAgd2lkdGg6IDEwMHB4O1xyXG4gICAgfSAgICBcclxuXHJcbiAgICAmLS1idG57XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNDAsIDI1NSwgMjQwLCAwLjA5Nik7XHJcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXHJcbiAgICAgICAgaGVpZ2h0OiAxLjVlbTtcclxuICAgICAgICB3aWR0aDogMS41ZW07XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAgICAgJjpob3ZlciB7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTI2LCAxMTAsIDExMCwgMC42ODUpO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxufVxyXG5cclxuLmNyb3NzZWQge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4uY3Jvc3NlZDpiZWZvcmUge1xyXG4gICAgY29udGVudDogJyc7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcclxuICAgIGhlaWdodDogMnB4OyAgICBcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xyXG4gICAgXHJcbn1cclxuXHJcbi5jcm9zc2VkOmFmdGVyIHtcclxuICAgIGNvbnRlbnQ6ICcnO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogYmxhY2s7XHJcbiAgICBoZWlnaHQ6IDJweDsgICAgXHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XHJcbn1cclxuXHJcbi5taW5pLWNhcmRzIHtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCg0LCAxZnIpO1xyXG4gICAgd2lkdGg6IG1heCg2MCUsIDIwMHB4KTtcclxufVxyXG5cclxuLm1pbmktY2FyZCB7ICAgIFxyXG4gICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBtYXJnaW46IDAuMWVtO1xyXG4gICAgcGFkZGluZzogMC4zZW07XHJcbiAgICBjdXJzb3I6cG9pbnRlcjtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuXHJcbiAgICAmOmhvdmVyIHtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDIxNCwgMjExLCAyMTEsIDAuMjYpO1xyXG4gICAgfVxyXG59XHJcblxyXG5cclxuLmRpc2FibGVkIHtcclxuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG4gICAgY3Vyc29yOiBpbml0aWFsO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjMxNSk7XHJcbn1cclxuXHJcblxyXG4ubWluaS1jYXJkLS1kaXNhYmxlZCB7XHJcbiAgICBAZXh0ZW5kIC5kaXNhYmxlZDtcclxuXHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmV5O1xyXG59XHJcblxyXG5cclxuLm1lbnUtYnRuIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIHBhZGRpbmc6IDAuM2VtIDAuOWVtO1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7ICAgIFxyXG5cclxuICAgICY6aG92ZXIge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjE0LCAyMTEsIDIxMSwgMC4yNik7XHJcbiAgICB9XHJcbn1cclxuXHJcblxyXG5cclxuXHJcbkBtZWRpYSAobWF4LXdpZHRoOjEwNDVweCl7XHJcbiAgICAubWVudS1wYWdlLm9wZW4gIHsgXHJcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGV4KDIwJSk7XHJcbiAgICB9XHJcblxyXG59XHJcblxyXG5AbWVkaWEgKG1heC13aWR0aDo1ODBweCl7XHJcbiAgICAubWluaS1jYXJkLS1wYXJpcyB7XHJcbiAgICAgICAgZGlzcGxheTogbm9uZTtcclxuICAgIH1cclxuICAgIC5tZW51LXBhZ2UtLXRpdGxleyBcclxuICAgICAgICBmb250LXNpemU6IDEuNXJlbTtcclxuICAgIH1cclxuXHJcbiAgICAubWVudS1zZWN0aW9uLS10aXRsZSB7XHJcbiAgICAgICAgZm9udC1zaXplOiAxcmVtO1xyXG4gICAgfVxyXG4gICAgLm1pbmktY2FyZCB7XHJcbiAgICAgICAgZm9udC1zaXplOiBzbWFsbGVyO1xyXG4gICAgfVxyXG5cclxufVxyXG4gICBcclxuIiwiLm1lbnUtcGFnZSB7XG4gIC0tYmI6IDVweCBzb2xpZCByZ2IoMTk2LCAxODgsIDE4OCk7XG4gIC0tY2xyLWJnOiByZ2JhKDAsIDAsIDAsIDAuNzMzKTtcbiAgei1pbmRleDogMTAwMDtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tY2xyLWJnKTtcbiAgY29sb3I6IHdoaXRlO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgYm90dG9tOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGV4KDEwMCUpO1xuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gZWFzZS1pbiA1MDBtcztcbn1cbi5tZW51LXBhZ2Uub3BlbiB7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRleCg0MCUpO1xufVxuXG4ubWVudS1wYWdlLS1jb250ZW50IHtcbiAgbWFyZ2luOiAwLjVlbSAxZW0gMC41ZW07XG59XG5cbi5tZW51LXBhZ2UtLWhlYWRlciB7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nLWJvdHRvbTogMC41ZW07XG4gIGJvcmRlci1ib3R0b206IHZhcigtLWJiKTtcbn1cblxuLm1lbnUtcGFnZS0tdGl0bGUge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGZvbnQtc2l6ZTogMnJlbTtcbiAgZm9udC13ZWlnaHQ6IDkwMDtcbiAgd2lkdGg6IDkwJTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4ubWVudS1wYWdlLS1jbG9zZSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNsci1iZyk7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgZm9udC1zaXplOiAxLjVyZW07XG4gIGZvbnQtd2VpZ2h0OiA5MDA7XG4gIHBhZGRpbmc6IDAuMmVtIDAuMmVtO1xuICBib3JkZXItcmFkaXVzOiAwLjJlbTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogMDtcbiAgdHJhbnNpdGlvbjogcmlnaHQgZWFzZS1pbi1vdXQgNzUwbXM7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5tZW51LXBhZ2UtLWNsb3NlOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JleTtcbn1cblxuLm1lbnUtcGFnZS5vcGVuIC5tZW51LXBhZ2UtLWNsb3NlIHtcbiAgcmlnaHQ6IDEwMCU7XG59XG5cbi5tZW51LXBhZ2UtLXNlY3Rpb246bm90KDpsYXN0LW9mLXR5cGUpIHtcbiAgYm9yZGVyLWJvdHRvbTogdmFyKC0tYmIpO1xuICBwYWRkaW5nLWJvdHRvbTogMC41ZW07XG4gIHBhZGRpbmctdG9wOiAwLjVlbTtcbn1cblxuLm1lbnUtc2VjdGlvbi0tdGl0bGUge1xuICBmb250LXNpemU6IDEuNXJlbTtcbiAgZm9udC13ZWlnaHQ6IDkwMDtcbiAgbWFyZ2luLWJvdHRvbTogMC41ZW07XG59XG5cbi5zZXR0aW5nLWl0ZW0ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmb250LXNpemU6IDEuMnNyZW07XG4gIG1hcmdpbi1ib3R0b206IDAuNWVtO1xufVxuLnNldHRpbmctaXRlbS0tdGl0bGUge1xuICB3aWR0aDogMTAwcHg7XG59XG4uc2V0dGluZy1pdGVtLS1idG4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI0MCwgMjU1LCAyNDAsIDAuMDk2KTtcbiAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgaGVpZ2h0OiAxLjVlbTtcbiAgd2lkdGg6IDEuNWVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnNldHRpbmctaXRlbS0tYnRuOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMjYsIDExMCwgMTEwLCAwLjY4NSk7XG59XG5cbi5jcm9zc2VkIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4uY3Jvc3NlZDpiZWZvcmUge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xuICBoZWlnaHQ6IDJweDtcbiAgd2lkdGg6IDEwMCU7XG4gIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcbn1cblxuLmNyb3NzZWQ6YWZ0ZXIge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xuICBoZWlnaHQ6IDJweDtcbiAgd2lkdGg6IDEwMCU7XG4gIHRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XG59XG5cbi5taW5pLWNhcmRzIHtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoNCwgMWZyKTtcbiAgd2lkdGg6IG1heCg2MCUsIDIwMHB4KTtcbn1cblxuLm1pbmktY2FyZCB7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG4gIG1hcmdpbjogMC4xZW07XG4gIHBhZGRpbmc6IDAuM2VtO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5taW5pLWNhcmQ6aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDIxNCwgMjExLCAyMTEsIDAuMjYpO1xufVxuXG4uZGlzYWJsZWQsIC5taW5pLWNhcmQtLWRpc2FibGVkIHtcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG4gIGN1cnNvcjogaW5pdGlhbDtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjMxNSk7XG59XG5cbi5taW5pLWNhcmQtLWRpc2FibGVkIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JleTtcbn1cblxuLm1lbnUtYnRuIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBwYWRkaW5nOiAwLjNlbSAwLjllbTtcbiAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLm1lbnUtYnRuOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyMTQsIDIxMSwgMjExLCAwLjI2KTtcbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDEwNDVweCkge1xuICAubWVudS1wYWdlLm9wZW4ge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRleCgyMCUpO1xuICB9XG59XG5AbWVkaWEgKG1heC13aWR0aDogNTgwcHgpIHtcbiAgLm1pbmktY2FyZC0tcGFyaXMge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cblxuICAubWVudS1wYWdlLS10aXRsZSB7XG4gICAgZm9udC1zaXplOiAxLjVyZW07XG4gIH1cblxuICAubWVudS1zZWN0aW9uLS10aXRsZSB7XG4gICAgZm9udC1zaXplOiAxcmVtO1xuICB9XG5cbiAgLm1pbmktY2FyZCB7XG4gICAgZm9udC1zaXplOiBzbWFsbGVyO1xuICB9XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/menu/menu.component.ts":
+  /*!****************************************!*\
+    !*** ./src/app/menu/menu.component.ts ***!
+    \****************************************/
+
+  /*! exports provided: MenuComponent */
+
+  /***/
+  function srcAppMenuMenuComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MenuComponent", function () {
+      return MenuComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _menu_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./menu.service */
+    "./src/app/menu/menu.service.ts");
+    /* harmony import */
+
+
+    var _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../core/windows/sound.service */
+    "./src/app/core/windows/sound.service.ts");
+    /* harmony import */
+
+
+    var _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../core/windows/vibrate.service */
+    "./src/app/core/windows/vibrate.service.ts");
+    /* harmony import */
+
+
+    var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../core/memory-game-manager.service */
+    "./src/app/core/memory-game-manager.service.ts");
+    /* harmony import */
+
+
+    var _core_windows_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../core/windows/utils */
+    "./src/app/core/windows/utils.ts");
+
+    let MenuComponent = class MenuComponent {
+      constructor(menuService, soundService, vibrateService, memoryGameManagerService) {
+        this.menuService = menuService;
+        this.soundService = soundService;
+        this.vibrateService = vibrateService;
+        this.memoryGameManagerService = memoryGameManagerService;
+      }
+
+      ngOnInit() {
+        this.isIOS = Object(_core_windows_utils__WEBPACK_IMPORTED_MODULE_6__["iOS"])();
+        console.log(this.memoryGameManagerService.getHistory());
+        console.log(this.memoryGameManagerService.getGameMetadat());
+        console.log(this.memoryGameManagerService.getUserMaxLevel());
+      }
+
+      toggleSound() {
+        this.soundService.toggleSound();
+      }
+
+      isSoundDisabled() {
+        return !this.soundService.isEnable();
+      }
+
+      toggleVibrate() {
+        this.vibrateService.toggleSound();
+      }
+
+      isVibrateDisabled() {
+        return !this.vibrateService.isEnable();
+      }
+
+      onBackgroundToggle() {
+        this.memoryGameManagerService.toggleBackground();
+      }
+
+      isBackgroundDisabled() {
+        return !this.memoryGameManagerService.getBackground();
+      }
+
+      onClose() {
+        this.menuService.close();
+      }
+
+      onSelectLevel(level) {
+        this.memoryGameManagerService.setLevel(level.level);
+        this.menuService.close();
+      }
+
+      onHome() {
+        this.menuService.close();
+        this.menuService.goHome();
+      }
+
+    };
+
+    MenuComponent.ctorParameters = () => [{
+      type: _menu_service__WEBPACK_IMPORTED_MODULE_2__["MenuService"]
+    }, {
+      type: _core_windows_sound_service__WEBPACK_IMPORTED_MODULE_3__["SoundService"]
+    }, {
+      type: _core_windows_vibrate_service__WEBPACK_IMPORTED_MODULE_4__["VibrateService"]
+    }, {
+      type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_5__["MemoryGameManagerService"]
+    }];
+
+    MenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-menu',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./menu.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/menu/menu.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./menu.component.scss */
+      "./src/app/menu/menu.component.scss")).default]
+    })], MenuComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/menu/menu.service.ts":
+  /*!**************************************!*\
+    !*** ./src/app/menu/menu.service.ts ***!
+    \**************************************/
+
+  /*! exports provided: MenuService */
+
+  /***/
+  function srcAppMenuMenuServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MenuService", function () {
+      return MenuService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+
+    let MenuService = class MenuService {
+      constructor() {
+        this._open = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        this._home = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+      }
+
+      get open$() {
+        return this._open.asObservable();
+      }
+
+      get home$() {
+        return this._home.asObservable();
+      }
+
+      open() {
+        this._open.next(true);
+      }
+
+      close() {
+        this._open.next(false);
+      }
+
+      goHome() {
+        this._home.next();
+      }
+
+    };
+    MenuService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], MenuService);
     /***/
   },
 
@@ -2325,19 +3166,31 @@
     var _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../core/memory-game-manager.service */
     "./src/app/core/memory-game-manager.service.ts");
+    /* harmony import */
+
+
+    var _openning_screen_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./openning-screen.service */
+    "./src/app/openning-screen/openning-screen.service.ts");
 
     let OpenningScreenComponent = class OpenningScreenComponent {
-      constructor(fullscreenService, memoryGameManagerService) {
+      constructor(fullscreenService, memoryGameManagerService, openningScreenService) {
         this.fullscreenService = fullscreenService;
         this.memoryGameManagerService = memoryGameManagerService;
-        this.display = true;
+        this.openningScreenService = openningScreenService;
+        this.first = true;
       }
 
       ngOnInit() {}
 
       go(game) {
-        this.fullscreenService.requestFullscreen();
-        this.display = false;
+        this.openningScreenService.hide();
+
+        if (this.first) {
+          this.fullscreenService.requestFullscreen();
+          this.first = false;
+        }
+
         this.memoryGameManagerService.setGame(game);
       }
 
@@ -2353,6 +3206,8 @@
       type: _core_windows_full_screen_service__WEBPACK_IMPORTED_MODULE_2__["FullScreenService"]
     }, {
       type: _core_memory_game_manager_service__WEBPACK_IMPORTED_MODULE_3__["MemoryGameManagerService"]
+    }, {
+      type: _openning_screen_service__WEBPACK_IMPORTED_MODULE_4__["OpenningScreenService"]
     }];
 
     OpenningScreenComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2364,6 +3219,68 @@
       /*! ./openning-screen.component.scss */
       "./src/app/openning-screen/openning-screen.component.scss")).default]
     })], OpenningScreenComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/openning-screen/openning-screen.service.ts":
+  /*!************************************************************!*\
+    !*** ./src/app/openning-screen/openning-screen.service.ts ***!
+    \************************************************************/
+
+  /*! exports provided: OpenningScreenService */
+
+  /***/
+  function srcAppOpenningScreenOpenningScreenServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "OpenningScreenService", function () {
+      return OpenningScreenService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+
+    let OpenningScreenService = class OpenningScreenService {
+      constructor() {
+        this._display = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](true);
+      }
+
+      get display$() {
+        return this._display.asObservable();
+      }
+
+      display() {
+        this._display.next(true);
+      }
+
+      hide() {
+        this._display.next(false);
+      }
+
+    };
+    OpenningScreenService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], OpenningScreenService);
     /***/
   },
 
