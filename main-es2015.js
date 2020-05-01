@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--\r\n  <app-openning-screen #openning></app-openning-screen>\r\n-->\r\n<app-menu></app-menu>\r\n\r\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\r\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\r\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\r\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\r\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>  \r\n  <div class=\"header__section_menu\" (click)=\"onMenu()\">\r\n    <div class=\"menu\"></div>\r\n  </div>\r\n</header>\r\n\r\n\r\n\r\n<main [ngClass]=\"{'disabled': (menuService.open$ | async)} \">    \r\n  <ng-container #mainTopScreen></ng-container>\r\n  \r\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \r\n    <app-card class=\"app-card\" \r\n              [data]=\"data\"\r\n              [ngStyle]=\"getCardLevelDimension()\"\r\n              [cardIndex] = \"idx\"\r\n              [disableBackground]=\"isBackgroundDisabled()\"\r\n              [discover]=\"isDiscoverCardOnInit()\"\r\n              (cardClicked)=onCardClicked($event)\r\n              >\r\n    </app-card>\r\n  </ng-container>  \r\n</main>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- -->\r\n  <app-openning-screen #openning></app-openning-screen>\r\n\r\n<app-menu></app-menu>\r\n\r\n<header class=\"header\" [ngClass]=\"getBackgroundColor()\">\r\n  <div class=\"header__section level\">Level<div class=\"value\">{{level}}</div></div>\r\n  <div class=\"header__section score\"> Score <div class=\"value\">{{totalScore}}</div></div>\r\n  <div class=\"header__section current_score\">Timer <div class=\"value\">{{current}}</div></div>\r\n  <div class=\"header__section lives\">&#x2764;<div class=\"value\">{{lives}}</div></div>  \r\n  <div class=\"header__section_menu\" (click)=\"onMenu()\">\r\n    <div class=\"menu\"></div>\r\n  </div>\r\n</header>\r\n\r\n\r\n\r\n<main [ngClass]=\"{'disabled': (menuService.open$ | async)} \">    \r\n  <ng-container #mainTopScreen></ng-container>\r\n  \r\n  <ng-container *ngFor=\"let data of getData(); index as idx \">  \r\n    <app-card class=\"app-card\" \r\n              [data]=\"data\"\r\n              [ngStyle]=\"getCardLevelDimension()\"\r\n              [cardIndex] = \"idx\"\r\n              [disableBackground]=\"isBackgroundDisabled()\"\r\n              [discover]=\"isDiscoverCardOnInit()\"\r\n              (cardClicked)=onCardClicked($event)\r\n              >\r\n    </app-card>\r\n  </ng-container>  \r\n</main>\r\n\r\n");
 
 /***/ }),
 
@@ -2026,7 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let MenuService = class MenuService {
     constructor() {
-        this._open = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](true);
+        this._open = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this._home = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
     get open$() {
